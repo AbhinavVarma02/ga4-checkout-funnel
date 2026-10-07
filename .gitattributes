@@ -1,0 +1,2 @@
+# Preserve the native billing report bytes used by its recorded SHA-256.
+reports/bytes_billed.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -1,0 +1,87 @@
+{
+  "billed_bytes": 52428800,
+  "checked_at_utc": "2026-10-05T20:38:55.354669+00:00",
+  "error_result": null,
+  "estimated_bytes": 8827438,
+  "executed": true,
+  "execution_requested": true,
+  "identical_to_before": null,
+  "job_id": "replay_snapshot_8cfc2bdc521c420e83ea150e17118dc3",
+  "maximum_bytes_billed": 134217728,
+  "metadata": {
+    "raw_rows": 31272,
+    "replay_relations": [
+      "dim_date",
+      "fct_funnel_daily",
+      "fct_product_daily",
+      "fct_sessions",
+      "int_sessions",
+      "stg_ga4_events",
+      "stg_ga4_items"
+    ],
+    "source_key": "warehouse_builds.p5_2_raw_extraction"
+  },
+  "processed_bytes": 8827438,
+  "revalidation": {
+    "checked_at_utc": "2026-10-05T20:42:32.081490+00:00",
+    "previous_status": "verification_pending",
+    "scope": "Metadata APIs and completed-job result download only; no query submitted"
+  },
+  "snapshot": {
+    "raw_source": {
+      "keyed_missing_revenue_events": 0,
+      "keyed_purchase_events": 14,
+      "keyed_purchase_revenue_usd": 773,
+      "raw_rows": 31272,
+      "valid_sessions": 2625
+    },
+    "relations": [
+      {
+        "distinct_dates": 92,
+        "fingerprint": "5111e40da4b3759824058e7b699f1f75987c825087c6e9f42a6842899ed72e2e",
+        "first_date": "2020-11-01",
+        "last_date": "2021-01-31",
+        "null_date_rows": 0,
+        "relation_name": "dim_date",
+        "row_count": 92
+      },
+      {
+        "distinct_dates": 1,
+        "fingerprint": "4993071d0442dcc19426379c0ca89ebaab279a2ab11833c15ed457ccf6958606",
+        "first_date": "2020-11-01",
+        "last_date": "2020-11-01",
+        "null_date_rows": 0,
+        "relation_name": "fct_funnel_daily",
+        "row_count": 1670
+      },
+      {
+        "distinct_dates": 1,
+        "fingerprint": "a4cee7ae16efe9ccdbb69e3f50e0b85abd4a4050d8725614b31e8649411c0eba",
+        "first_date": "2020-11-01",
+        "last_date": "2020-11-01",
+        "null_date_rows": 0,
+        "relation_name": "fct_product_daily",
+        "row_count": 4120
+      },
+      {
+        "distinct_dates": 1,
+        "fingerprint": "72f28cdb75e3a8ff96593d450c4981ee5b3c9791848f5b36aa92be367ae5f366",
+        "first_date": "2020-11-01",
+        "last_date": "2020-11-01",
+        "null_date_rows": 0,
+        "relation_name": "fct_sessions",
+        "row_count": 2625
+      }
+    ],
+    "sessions": {
+      "missing_revenue_events": 0,
+      "purchase_events": 14,
+      "purchase_revenue_usd": 773,
+      "sessions": 2625
+    }
+  },
+  "sql_path": "sql/validation/replay_snapshot.sql",
+  "sql_sha256": "22cfe4a9b598efe27f06f720feb3a416e2682adc14a23fcd4576af542285f6f5",
+  "statement_type": "SELECT",
+  "status": "passed"
+}

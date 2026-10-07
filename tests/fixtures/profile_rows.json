@@ -1,0 +1,6 @@
+{
+  "label": "Fixture synthetic event-name aggregate; not real GA4 data",
+  "rows": [
+    {"event_name": "fixture_view", "event_count": 3, "active_dates": 1}
+  ]
+}

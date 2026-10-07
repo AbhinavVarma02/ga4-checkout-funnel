@@ -1,0 +1,19 @@
+model Model
+	culture: en-US
+	sourceQueryCulture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+annotation PBI_QueryOrder = ["ExportsFolder", "fct_sessions", "fct_funnel_daily", "fct_product_daily", "dim_date", "category_summary", "dim_device", "dim_country", "recovery_assumption"]
+
+ref table fct_sessions
+ref table fct_funnel_daily
+ref table fct_product_daily
+ref table dim_date
+ref table category_summary
+ref table dim_device
+ref table dim_country
+ref table recovery_assumption
+
+ref expression ExportsFolder

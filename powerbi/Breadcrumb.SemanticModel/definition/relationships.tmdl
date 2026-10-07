@@ -1,0 +1,71 @@
+relationship fct_sessions_dim_date
+	fromColumn: fct_sessions.session_start_date
+	toColumn: dim_date.date_day
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+	isActive: true
+
+relationship fct_sessions_dim_device
+	fromColumn: fct_sessions.device_category
+	toColumn: dim_device.device_category
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+	isActive: true
+
+relationship fct_sessions_dim_country
+	fromColumn: fct_sessions.country
+	toColumn: dim_country.country
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+	isActive: true
+
+relationship fct_funnel_daily_dim_date
+	fromColumn: fct_funnel_daily.session_start_date
+	toColumn: dim_date.date_day
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+	isActive: true
+
+relationship fct_funnel_daily_dim_device
+	fromColumn: fct_funnel_daily.device_category
+	toColumn: dim_device.device_category
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+	isActive: true
+
+relationship fct_funnel_daily_dim_country
+	fromColumn: fct_funnel_daily.country
+	toColumn: dim_country.country
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+	isActive: true
+
+relationship fct_product_daily_dim_date
+	fromColumn: fct_product_daily.session_start_date
+	toColumn: dim_date.date_day
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+	isActive: true
+
+relationship fct_product_daily_dim_device
+	fromColumn: fct_product_daily.device_category
+	toColumn: dim_device.device_category
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+	isActive: true
+
+relationship fct_product_daily_dim_country
+	fromColumn: fct_product_daily.country
+	toColumn: dim_country.country
+	fromCardinality: many
+	toCardinality: one
+	crossFilteringBehavior: oneDirection
+	isActive: true

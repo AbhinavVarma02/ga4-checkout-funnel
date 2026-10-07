@@ -1,0 +1,623 @@
+{
+  "already_completed_first_day_skipped": true,
+  "analyst_dataset_write_included": false,
+  "artifact_manifest": [
+    {
+      "path": "reports/.checks/p5_6_full_window/backfill_dry_run.log",
+      "sha256": "e6b8a9bbaf3c5711e4a9568352cbc004907de5180e317122e861dbcbef97c441"
+    },
+    {
+      "path": "reports/.checks/p5_6_full_window/eligibility.json",
+      "sha256": "210f715255172592f969d865a5b137877df4d0a9db423e4c0641f80410e0035a"
+    },
+    {
+      "path": "reports/.checks/p5_6_full_window/future_test_preflight.json",
+      "sha256": "b1a293bd48f3ef2163085e98171dbbe59bbe8cd7dda0385f9620035d7c3b75d2"
+    }
+  ],
+  "candidate_env": {
+    "activated": false,
+    "path": "airflow/backfill.env.example",
+    "sha256": "6185bc7437ca64524e97349025f5f9acafa2c3626505dc4e5643a94eaa73ee8e"
+  },
+  "checked_at_utc": "2026-10-06T00:15:12.448023+00:00",
+  "cli_dry_run_exit_code": 0,
+  "configured_project": "ga4-checkout-funnel",
+  "current_runtime_query_cap_bytes": 134217728,
+  "eligible_new_date_count": 91,
+  "eligible_new_dates": [
+    "2020-11-02",
+    "2020-11-03",
+    "2020-11-04",
+    "2020-11-05",
+    "2020-11-06",
+    "2020-11-07",
+    "2020-11-08",
+    "2020-11-09",
+    "2020-11-10",
+    "2020-11-11",
+    "2020-11-12",
+    "2020-11-13",
+    "2020-11-14",
+    "2020-11-15",
+    "2020-11-16",
+    "2020-11-17",
+    "2020-11-18",
+    "2020-11-19",
+    "2020-11-20",
+    "2020-11-21",
+    "2020-11-22",
+    "2020-11-23",
+    "2020-11-24",
+    "2020-11-25",
+    "2020-11-26",
+    "2020-11-27",
+    "2020-11-28",
+    "2020-11-29",
+    "2020-11-30",
+    "2020-12-01",
+    "2020-12-02",
+    "2020-12-03",
+    "2020-12-04",
+    "2020-12-05",
+    "2020-12-06",
+    "2020-12-07",
+    "2020-12-08",
+    "2020-12-09",
+    "2020-12-10",
+    "2020-12-11",
+    "2020-12-12",
+    "2020-12-13",
+    "2020-12-14",
+    "2020-12-15",
+    "2020-12-16",
+    "2020-12-17",
+    "2020-12-18",
+    "2020-12-19",
+    "2020-12-20",
+    "2020-12-21",
+    "2020-12-22",
+    "2020-12-23",
+    "2020-12-24",
+    "2020-12-25",
+    "2020-12-26",
+    "2020-12-27",
+    "2020-12-28",
+    "2020-12-29",
+    "2020-12-30",
+    "2020-12-31",
+    "2021-01-01",
+    "2021-01-02",
+    "2021-01-03",
+    "2021-01-04",
+    "2021-01-05",
+    "2021-01-06",
+    "2021-01-07",
+    "2021-01-08",
+    "2021-01-09",
+    "2021-01-10",
+    "2021-01-11",
+    "2021-01-12",
+    "2021-01-13",
+    "2021-01-14",
+    "2021-01-15",
+    "2021-01-16",
+    "2021-01-17",
+    "2021-01-18",
+    "2021-01-19",
+    "2021-01-20",
+    "2021-01-21",
+    "2021-01-22",
+    "2021-01-23",
+    "2021-01-24",
+    "2021-01-25",
+    "2021-01-26",
+    "2021-01-27",
+    "2021-01-28",
+    "2021-01-29",
+    "2021-01-30",
+    "2021-01-31"
+  ],
+  "extraction": {
+    "all_92_source_scan_estimated_bytes": 3583657854,
+    "maximum_day_estimated_bytes": 79162796,
+    "native_extraction_dry_runs_repeated": 0,
+    "remaining_91_source_scan_estimated_bytes": 3560091790
+  },
+  "installed_none_eligibility": {
+    "backfill_count": 3,
+    "checked_at_utc": "2026-10-06T00:13:12.508444+00:00",
+    "dagrun_count": 1,
+    "existing_first_day_none_skip_reason": "BackfillDagRunExceptionReason.ALREADY_EXISTS",
+    "existing_first_day_run_id": "backfill__2020-11-01T00:00:00+00:00",
+    "existing_first_day_state": "success",
+    "installed_eligibility_source": "def _get_dag_run_no_create_reason(dr, reprocess_behavior: ReprocessBehavior) -> str | None:\n    non_create_reason = None\n    if dr.state not in (DagRunState.SUCCESS, DagRunState.FAILED):\n        non_create_reason = BackfillDagRunExceptionReason.IN_FLIGHT\n    elif reprocess_behavior is ReprocessBehavior.NONE:\n        non_create_reason = BackfillDagRunExceptionReason.ALREADY_EXISTS\n    elif reprocess_behavior is ReprocessBehavior.FAILED:\n        if dr.state != DagRunState.FAILED:\n            non_create_reason = BackfillDagRunExceptionReason.ALREADY_EXISTS\n    return non_create_reason\n",
+    "is_paused": true,
+    "queries_or_mutations": 0,
+    "task_count": 5
+  },
+  "largest_model_select_estimate": 2891550912,
+  "limits": [
+    "These are saved/new planning estimates and explicit arithmetic, not executed 91-day results",
+    "Possible charges remain owner-gated; 4 GiB per query is not an aggregate budget",
+    "Account-wide remaining query/storage allowance and other spending unknown",
+    "No assurance of free execution or measured cost saving",
+    "No source/model/test implementation or current owner/runtime env changed"
+  ],
+  "local_checks": {
+    "canonical_exports": {
+      "category_summary": {
+        "rows": 82,
+        "sha256": "4a14a650142be3290fab52ee4dc2bd2494f5f206e9b04077044f3ce77f746050",
+        "source_key": "bi_exports.category_summary",
+        "status": "passed"
+      },
+      "dim_date": {
+        "rows": 92,
+        "sha256": "8954211b04ed1bb16d80283ec082c5ddf620117f845ea6a2917ec0b8a913df29",
+        "source_key": "bi_exports.dim_date",
+        "status": "passed"
+      },
+      "fct_funnel_daily": {
+        "rows": 170520,
+        "sha256": "869f1b68688866e31badf9a578177b5d10fc298e38015f8a050f1a4790567688",
+        "source_key": "bi_exports.fct_funnel_daily",
+        "status": "passed"
+      },
+      "fct_product_daily": {
+        "rows": 604094,
+        "sha256": "fb4f8676f39dac252ebbf5a7ecd1a4771f83732855921afc6c40b7fae5e8f60e",
+        "source_key": "bi_exports.fct_product_daily",
+        "status": "passed"
+      },
+      "fct_sessions": {
+        "rows": 360129,
+        "sha256": "9511caf85c92b1ac21c7cf43ab7151dcc2452a0cb03c7886870a5b815e138c21",
+        "source_key": "bi_exports.fct_sessions",
+        "status": "passed"
+      }
+    },
+    "checked_at_utc": "2026-10-06T00:17:47.076961+00:00",
+    "csv_native_bytes_unchanged_during_full_window_preparation": true,
+    "dag_and_pipeline_sources_unchanged": true,
+    "mandatory_wording": {
+      "exact_resume_title": "passed",
+      "mandatory_limits": 4
+    },
+    "owner_configs_and_runtime_cap_preserved": true,
+    "owner_powerbi_files_bytes_index_status_preserved": 300,
+    "prior_metrics_and_dry_runs_preserved": true,
+    "relative_links_checked": 338
+  },
+  "location": "US",
+  "new_backfill_or_dagrun_records_created": 0,
+  "new_future_test_dry_runs": {
+    "checked_at_utc": "2026-10-06T00:13:05.783337+00:00",
+    "dry_run_queries": 14,
+    "estimated_select_bytes_sum": 4196060548,
+    "executed_queries": 0,
+    "future_test_proxies": {
+      "test.ga4_checkout_funnel.accepted_values_fct_funnel_daily_funnel_mode__any_order__strict_ordered.29c89b4bdc": {
+        "estimated_select_bytes": 2302020,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Existing full-window analyst table as proxy for future materialized replay fact",
+        "sql": "\n    \n    \n\nwith all_values as (\n\n    select\n        funnel_mode as value_field,\n        count(*) as n_records\n\n    from `ga4-checkout-funnel`.`ga4_analytics`.`fct_funnel_daily`\n    group by funnel_mode\n\n)\n\nselect *\nfrom all_values\nwhere value_field not in (\n    'any_order','strict_ordered'\n)\n\n\n",
+        "sql_sha256": "2da875067503e59718c23a2ccc48f8efff7591e7468cccf54c12ca5bea71171e"
+      },
+      "test.ga4_checkout_funnel.accepted_values_fct_funnel_daily_step_name__session_start__view_item__add_to_cart__begin_checkout__purchase.ff182103f3": {
+        "estimated_select_bytes": 2216760,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Existing full-window analyst table as proxy for future materialized replay fact",
+        "sql": "\n    \n    \n\nwith all_values as (\n\n    select\n        step_name as value_field,\n        count(*) as n_records\n\n    from `ga4-checkout-funnel`.`ga4_analytics`.`fct_funnel_daily`\n    group by step_name\n\n)\n\nselect *\nfrom all_values\nwhere value_field not in (\n    'session_start','view_item','add_to_cart','begin_checkout','purchase'\n)\n\n\n",
+        "sql_sha256": "12e3661e1f026a621fca515796f311d46e08772c5b80119f80c1684c402d84b1"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_funnel_daily_funnel_mode.c58c441e6e": {
+        "estimated_select_bytes": 2302020,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Existing full-window analyst table as proxy for future materialized replay fact",
+        "sql": "\n    \n    \n\n\n\nselect funnel_mode\nfrom `ga4-checkout-funnel`.`ga4_analytics`.`fct_funnel_daily`\nwhere funnel_mode is null\n\n\n",
+        "sql_sha256": "0bb22f1d91c428491d3969ec50a1d923da0e1a1a9e97de6638002ac3c1e09a44"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_funnel_daily_reached_sessions.b97e2a0abe": {
+        "estimated_select_bytes": 1364160,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Existing full-window analyst table as proxy for future materialized replay fact",
+        "sql": "\n    \n    \n\n\n\nselect reached_sessions\nfrom `ga4-checkout-funnel`.`ga4_analytics`.`fct_funnel_daily`\nwhere reached_sessions is null\n\n\n",
+        "sql_sha256": "405ea18c16b2ac7b716ed2a7e561dd0f49f1e347fe36d47b88f994734a5e535f"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_funnel_daily_step_name.f8869c365b": {
+        "estimated_select_bytes": 2216760,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Existing full-window analyst table as proxy for future materialized replay fact",
+        "sql": "\n    \n    \n\n\n\nselect step_name\nfrom `ga4-checkout-funnel`.`ga4_analytics`.`fct_funnel_daily`\nwhere step_name is null\n\n\n",
+        "sql_sha256": "ab5ee9931960e8a9016bde99e466249aa17c563306dfcb8f89f57231a42e91a6"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_sessions_ga_session_id.f602bfd9f5": {
+        "estimated_select_bytes": 2881032,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Existing full-window analyst table as proxy for future materialized replay fact",
+        "sql": "\n    \n    \n\n\n\nselect ga_session_id\nfrom `ga4-checkout-funnel`.`ga4_analytics`.`fct_sessions`\nwhere ga_session_id is null\n\n\n",
+        "sql_sha256": "82931e291cb61d5bdb880337852b7f74774e60d39e2644e3d4269452a6641b39"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_sessions_session_start_date.5cf94a9cc6": {
+        "estimated_select_bytes": 2881032,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Existing full-window analyst table as proxy for future materialized replay fact",
+        "sql": "\n    \n    \n\n\n\nselect session_start_date\nfrom `ga4-checkout-funnel`.`ga4_analytics`.`fct_sessions`\nwhere session_start_date is null\n\n\n",
+        "sql_sha256": "7f1e50686a689325287ff48c550937c4239997ac232631716b52b542b28fd29b"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_sessions_user_pseudo_id.30ba8351c7": {
+        "estimated_select_bytes": 7444283,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Existing full-window analyst table as proxy for future materialized replay fact",
+        "sql": "\n    \n    \n\n\n\nselect user_pseudo_id\nfrom `ga4-checkout-funnel`.`ga4_analytics`.`fct_sessions`\nwhere user_pseudo_id is null\n\n\n",
+        "sql_sha256": "1e8a840a385299198405ae6443b6bebd6f25282c3d43972da2bb705fdd51c95c"
+      },
+      "test.ga4_checkout_funnel.not_null_int_sessions_ga_session_id.0a82b5147e": {
+        "estimated_select_bytes": 1038149379,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Hypothetical full raw history: compiled view inlined over DATE-converted public export",
+        "sql": "\n    \n    \n\n\n\nselect ga_session_id\nfrom (-- One row per user_pseudo_id + ga_session_id, assigned to first export date.\nWITH valid_events AS (\n    SELECT *\n    FROM (-- One row per exported event; never unnest items in this model.\nSELECT\n    \n    \n        event.event_date\n    \n AS event_date,\n    event.event_date AS event_date_raw,\n    event.event_timestamp AS event_timestamp_micros,\n    event.event_bundle_sequence_id,\n    event.event_name,\n    event.user_pseudo_id,\n    (\n        SELECT ANY_VALUE(param.value.int_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'ga_session_id'\n    ) AS ga_session_id,\n    event.device.category AS device_category,\n    event.geo.country,\n    event.traffic_source.source AS first_touch_source,\n    event.traffic_source.medium AS first_touch_medium,\n    event.traffic_source.name AS first_touch_campaign,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'source'\n    ) AS event_param_source,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'medium'\n    ) AS event_param_medium,\n    event.ecommerce.transaction_id,\n    safe_cast(event.ecommerce.purchase_revenue_in_usd as numeric)\n        AS purchase_revenue_usd,\n    ARRAY_LENGTH(event.items) AS item_rows\nFROM \n    \n        (\n            SELECT * FROM (SELECT * REPLACE(PARSE_DATE('%Y%m%d', event_date) AS event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` WHERE _TABLE_SUFFIX BETWEEN '20201101' AND '20210131')\n            WHERE event_date BETWEEN DATE '2020-11-01' AND DATE '2021-01-31'\n        )\n    \n AS event)\n    WHERE user_pseudo_id IS NOT NULL AND ga_session_id IS NOT NULL\n),\n\nfirst_visit_users AS (\n    SELECT DISTINCT user_pseudo_id\n    FROM (-- One row per exported event; never unnest items in this model.\nSELECT\n    \n    \n        event.event_date\n    \n AS event_date,\n    event.event_date AS event_date_raw,\n    event.event_timestamp AS event_timestamp_micros,\n    event.event_bundle_sequence_id,\n    event.event_name,\n    event.user_pseudo_id,\n    (\n        SELECT ANY_VALUE(param.value.int_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'ga_session_id'\n    ) AS ga_session_id,\n    event.device.category AS device_category,\n    event.geo.country,\n    event.traffic_source.source AS first_touch_source,\n    event.traffic_source.medium AS first_touch_medium,\n    event.traffic_source.name AS first_touch_campaign,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'source'\n    ) AS event_param_source,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'medium'\n    ) AS event_param_medium,\n    event.ecommerce.transaction_id,\n    safe_cast(event.ecommerce.purchase_revenue_in_usd as numeric)\n        AS purchase_revenue_usd,\n    ARRAY_LENGTH(event.items) AS item_rows\nFROM \n    \n        (\n            SELECT * FROM (SELECT * REPLACE(PARSE_DATE('%Y%m%d', event_date) AS event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` WHERE _TABLE_SUFFIX BETWEEN '20201101' AND '20210131')\n            WHERE event_date BETWEEN DATE '2020-11-01' AND DATE '2021-01-31'\n        )\n    \n AS event)\n    WHERE event_name = 'first_visit' AND user_pseudo_id IS NOT NULL\n),\n\ngrouped_sessions AS (\n    SELECT\n        user_pseudo_id,\n        ga_session_id,\n        MIN(event_date) AS session_start_date,\n        MIN(event_timestamp_micros) AS first_event_timestamp_micros,\n        ARRAY_AGG(\n            STRUCT(device_category, country, first_touch_source, first_touch_medium)\n            ORDER BY event_timestamp_micros, event_date, event_name LIMIT 1\n        )[OFFSET(0)] AS first_event_dimensions,\n        ARRAY_AGG(\n            IF(\n                event_name IN (\n                    'session_start', 'view_item', 'add_to_cart',\n                    'begin_checkout', 'purchase'\n                ),\n                STRUCT(event_name, event_timestamp_micros),\n                NULL\n            ) IGNORE NULLS ORDER BY event_timestamp_micros\n        ) AS funnel_events,\n        COUNT(*) AS event_count,\n        COUNTIF(event_name = 'session_start') AS session_start_events,\n        COUNTIF(event_name = 'view_item') AS view_item_events,\n        COUNTIF(event_name = 'add_to_cart') AS add_to_cart_events,\n        COUNTIF(event_name = 'begin_checkout') AS begin_checkout_events,\n        COUNTIF(event_name = 'purchase') AS purchase_events,\n        COUNTIF(event_name = 'purchase' AND purchase_revenue_usd IS NULL)\n            AS purchase_events_missing_revenue,\n        SUM(IF(event_name = 'purchase', COALESCE(purchase_revenue_usd, 0), 0))\n            AS purchase_revenue_usd\n    FROM valid_events\n    GROUP BY user_pseudo_id, ga_session_id\n),\n\nordered_session_start AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE step.event_name = 'session_start'\n        ) AS ordered_session_start_micros\n    FROM grouped_sessions\n),\n\nordered_view_item AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'view_item'\n                AND step.event_timestamp_micros > ordered_session_start_micros\n        ) AS ordered_view_item_micros\n    FROM ordered_session_start\n),\n\nordered_add_to_cart AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'add_to_cart'\n                AND step.event_timestamp_micros > ordered_view_item_micros\n        ) AS ordered_add_to_cart_micros\n    FROM ordered_view_item\n),\n\nordered_begin_checkout AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'begin_checkout'\n                AND step.event_timestamp_micros > ordered_add_to_cart_micros\n        ) AS ordered_begin_checkout_micros\n    FROM ordered_add_to_cart\n),\n\nordered_purchase AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'purchase'\n                AND step.event_timestamp_micros > ordered_begin_checkout_micros\n        ) AS ordered_purchase_micros\n    FROM ordered_begin_checkout\n)\n\nSELECT\n    session.user_pseudo_id,\n    session.ga_session_id,\n    session.session_start_date,\n    session.first_event_timestamp_micros,\n    session.first_event_dimensions.device_category,\n    session.first_event_dimensions.country,\n    session.first_event_dimensions.first_touch_source,\n    session.first_event_dimensions.first_touch_medium,\n    session.event_count,\n    session.session_start_events,\n    session.view_item_events,\n    session.add_to_cart_events,\n    session.begin_checkout_events,\n    session.purchase_events,\n    session.purchase_events_missing_revenue,\n    session.purchase_revenue_usd,\n    first_visit_users.user_pseudo_id IS NOT NULL AS is_new_user_in_window,\n    session.session_start_events > 0 AS has_session_start,\n    session.view_item_events > 0 AS has_view_item,\n    session.add_to_cart_events > 0 AS has_add_to_cart,\n    session.begin_checkout_events > 0 AS has_begin_checkout,\n    session.purchase_events > 0 AS has_purchase,\n    session.ordered_session_start_micros IS NOT NULL AS ordered_session_start,\n    session.ordered_view_item_micros IS NOT NULL AS ordered_view_item,\n    session.ordered_add_to_cart_micros IS NOT NULL AS ordered_add_to_cart,\n    session.ordered_begin_checkout_micros IS NOT NULL AS ordered_begin_checkout,\n    session.ordered_purchase_micros IS NOT NULL AS ordered_purchase\nFROM ordered_purchase AS session\nLEFT JOIN first_visit_users\n    ON session.user_pseudo_id = first_visit_users.user_pseudo_id)\nwhere ga_session_id is null\n\n\n",
+        "sql_sha256": "a10674de569b46133ee851e6a1283cf15c13b6a60b5b34e74f78495ee816580d"
+      },
+      "test.ga4_checkout_funnel.not_null_int_sessions_session_start_date.94b5486ccb": {
+        "estimated_select_bytes": 1038149379,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Hypothetical full raw history: compiled view inlined over DATE-converted public export",
+        "sql": "\n    \n    \n\n\n\nselect session_start_date\nfrom (-- One row per user_pseudo_id + ga_session_id, assigned to first export date.\nWITH valid_events AS (\n    SELECT *\n    FROM (-- One row per exported event; never unnest items in this model.\nSELECT\n    \n    \n        event.event_date\n    \n AS event_date,\n    event.event_date AS event_date_raw,\n    event.event_timestamp AS event_timestamp_micros,\n    event.event_bundle_sequence_id,\n    event.event_name,\n    event.user_pseudo_id,\n    (\n        SELECT ANY_VALUE(param.value.int_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'ga_session_id'\n    ) AS ga_session_id,\n    event.device.category AS device_category,\n    event.geo.country,\n    event.traffic_source.source AS first_touch_source,\n    event.traffic_source.medium AS first_touch_medium,\n    event.traffic_source.name AS first_touch_campaign,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'source'\n    ) AS event_param_source,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'medium'\n    ) AS event_param_medium,\n    event.ecommerce.transaction_id,\n    safe_cast(event.ecommerce.purchase_revenue_in_usd as numeric)\n        AS purchase_revenue_usd,\n    ARRAY_LENGTH(event.items) AS item_rows\nFROM \n    \n        (\n            SELECT * FROM (SELECT * REPLACE(PARSE_DATE('%Y%m%d', event_date) AS event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` WHERE _TABLE_SUFFIX BETWEEN '20201101' AND '20210131')\n            WHERE event_date BETWEEN DATE '2020-11-01' AND DATE '2021-01-31'\n        )\n    \n AS event)\n    WHERE user_pseudo_id IS NOT NULL AND ga_session_id IS NOT NULL\n),\n\nfirst_visit_users AS (\n    SELECT DISTINCT user_pseudo_id\n    FROM (-- One row per exported event; never unnest items in this model.\nSELECT\n    \n    \n        event.event_date\n    \n AS event_date,\n    event.event_date AS event_date_raw,\n    event.event_timestamp AS event_timestamp_micros,\n    event.event_bundle_sequence_id,\n    event.event_name,\n    event.user_pseudo_id,\n    (\n        SELECT ANY_VALUE(param.value.int_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'ga_session_id'\n    ) AS ga_session_id,\n    event.device.category AS device_category,\n    event.geo.country,\n    event.traffic_source.source AS first_touch_source,\n    event.traffic_source.medium AS first_touch_medium,\n    event.traffic_source.name AS first_touch_campaign,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'source'\n    ) AS event_param_source,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'medium'\n    ) AS event_param_medium,\n    event.ecommerce.transaction_id,\n    safe_cast(event.ecommerce.purchase_revenue_in_usd as numeric)\n        AS purchase_revenue_usd,\n    ARRAY_LENGTH(event.items) AS item_rows\nFROM \n    \n        (\n            SELECT * FROM (SELECT * REPLACE(PARSE_DATE('%Y%m%d', event_date) AS event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` WHERE _TABLE_SUFFIX BETWEEN '20201101' AND '20210131')\n            WHERE event_date BETWEEN DATE '2020-11-01' AND DATE '2021-01-31'\n        )\n    \n AS event)\n    WHERE event_name = 'first_visit' AND user_pseudo_id IS NOT NULL\n),\n\ngrouped_sessions AS (\n    SELECT\n        user_pseudo_id,\n        ga_session_id,\n        MIN(event_date) AS session_start_date,\n        MIN(event_timestamp_micros) AS first_event_timestamp_micros,\n        ARRAY_AGG(\n            STRUCT(device_category, country, first_touch_source, first_touch_medium)\n            ORDER BY event_timestamp_micros, event_date, event_name LIMIT 1\n        )[OFFSET(0)] AS first_event_dimensions,\n        ARRAY_AGG(\n            IF(\n                event_name IN (\n                    'session_start', 'view_item', 'add_to_cart',\n                    'begin_checkout', 'purchase'\n                ),\n                STRUCT(event_name, event_timestamp_micros),\n                NULL\n            ) IGNORE NULLS ORDER BY event_timestamp_micros\n        ) AS funnel_events,\n        COUNT(*) AS event_count,\n        COUNTIF(event_name = 'session_start') AS session_start_events,\n        COUNTIF(event_name = 'view_item') AS view_item_events,\n        COUNTIF(event_name = 'add_to_cart') AS add_to_cart_events,\n        COUNTIF(event_name = 'begin_checkout') AS begin_checkout_events,\n        COUNTIF(event_name = 'purchase') AS purchase_events,\n        COUNTIF(event_name = 'purchase' AND purchase_revenue_usd IS NULL)\n            AS purchase_events_missing_revenue,\n        SUM(IF(event_name = 'purchase', COALESCE(purchase_revenue_usd, 0), 0))\n            AS purchase_revenue_usd\n    FROM valid_events\n    GROUP BY user_pseudo_id, ga_session_id\n),\n\nordered_session_start AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE step.event_name = 'session_start'\n        ) AS ordered_session_start_micros\n    FROM grouped_sessions\n),\n\nordered_view_item AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'view_item'\n                AND step.event_timestamp_micros > ordered_session_start_micros\n        ) AS ordered_view_item_micros\n    FROM ordered_session_start\n),\n\nordered_add_to_cart AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'add_to_cart'\n                AND step.event_timestamp_micros > ordered_view_item_micros\n        ) AS ordered_add_to_cart_micros\n    FROM ordered_view_item\n),\n\nordered_begin_checkout AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'begin_checkout'\n                AND step.event_timestamp_micros > ordered_add_to_cart_micros\n        ) AS ordered_begin_checkout_micros\n    FROM ordered_add_to_cart\n),\n\nordered_purchase AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'purchase'\n                AND step.event_timestamp_micros > ordered_begin_checkout_micros\n        ) AS ordered_purchase_micros\n    FROM ordered_begin_checkout\n)\n\nSELECT\n    session.user_pseudo_id,\n    session.ga_session_id,\n    session.session_start_date,\n    session.first_event_timestamp_micros,\n    session.first_event_dimensions.device_category,\n    session.first_event_dimensions.country,\n    session.first_event_dimensions.first_touch_source,\n    session.first_event_dimensions.first_touch_medium,\n    session.event_count,\n    session.session_start_events,\n    session.view_item_events,\n    session.add_to_cart_events,\n    session.begin_checkout_events,\n    session.purchase_events,\n    session.purchase_events_missing_revenue,\n    session.purchase_revenue_usd,\n    first_visit_users.user_pseudo_id IS NOT NULL AS is_new_user_in_window,\n    session.session_start_events > 0 AS has_session_start,\n    session.view_item_events > 0 AS has_view_item,\n    session.add_to_cart_events > 0 AS has_add_to_cart,\n    session.begin_checkout_events > 0 AS has_begin_checkout,\n    session.purchase_events > 0 AS has_purchase,\n    session.ordered_session_start_micros IS NOT NULL AS ordered_session_start,\n    session.ordered_view_item_micros IS NOT NULL AS ordered_view_item,\n    session.ordered_add_to_cart_micros IS NOT NULL AS ordered_add_to_cart,\n    session.ordered_begin_checkout_micros IS NOT NULL AS ordered_begin_checkout,\n    session.ordered_purchase_micros IS NOT NULL AS ordered_purchase\nFROM ordered_purchase AS session\nLEFT JOIN first_visit_users\n    ON session.user_pseudo_id = first_visit_users.user_pseudo_id)\nwhere session_start_date is null\n\n\n",
+        "sql_sha256": "6f92c5193a0d30e1c017b7b3a011c144c207e1bb71f523c35bb1c68a74930922"
+      },
+      "test.ga4_checkout_funnel.not_null_int_sessions_user_pseudo_id.730a2c117a": {
+        "estimated_select_bytes": 1038149379,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Hypothetical full raw history: compiled view inlined over DATE-converted public export",
+        "sql": "\n    \n    \n\n\n\nselect user_pseudo_id\nfrom (-- One row per user_pseudo_id + ga_session_id, assigned to first export date.\nWITH valid_events AS (\n    SELECT *\n    FROM (-- One row per exported event; never unnest items in this model.\nSELECT\n    \n    \n        event.event_date\n    \n AS event_date,\n    event.event_date AS event_date_raw,\n    event.event_timestamp AS event_timestamp_micros,\n    event.event_bundle_sequence_id,\n    event.event_name,\n    event.user_pseudo_id,\n    (\n        SELECT ANY_VALUE(param.value.int_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'ga_session_id'\n    ) AS ga_session_id,\n    event.device.category AS device_category,\n    event.geo.country,\n    event.traffic_source.source AS first_touch_source,\n    event.traffic_source.medium AS first_touch_medium,\n    event.traffic_source.name AS first_touch_campaign,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'source'\n    ) AS event_param_source,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'medium'\n    ) AS event_param_medium,\n    event.ecommerce.transaction_id,\n    safe_cast(event.ecommerce.purchase_revenue_in_usd as numeric)\n        AS purchase_revenue_usd,\n    ARRAY_LENGTH(event.items) AS item_rows\nFROM \n    \n        (\n            SELECT * FROM (SELECT * REPLACE(PARSE_DATE('%Y%m%d', event_date) AS event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` WHERE _TABLE_SUFFIX BETWEEN '20201101' AND '20210131')\n            WHERE event_date BETWEEN DATE '2020-11-01' AND DATE '2021-01-31'\n        )\n    \n AS event)\n    WHERE user_pseudo_id IS NOT NULL AND ga_session_id IS NOT NULL\n),\n\nfirst_visit_users AS (\n    SELECT DISTINCT user_pseudo_id\n    FROM (-- One row per exported event; never unnest items in this model.\nSELECT\n    \n    \n        event.event_date\n    \n AS event_date,\n    event.event_date AS event_date_raw,\n    event.event_timestamp AS event_timestamp_micros,\n    event.event_bundle_sequence_id,\n    event.event_name,\n    event.user_pseudo_id,\n    (\n        SELECT ANY_VALUE(param.value.int_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'ga_session_id'\n    ) AS ga_session_id,\n    event.device.category AS device_category,\n    event.geo.country,\n    event.traffic_source.source AS first_touch_source,\n    event.traffic_source.medium AS first_touch_medium,\n    event.traffic_source.name AS first_touch_campaign,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'source'\n    ) AS event_param_source,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'medium'\n    ) AS event_param_medium,\n    event.ecommerce.transaction_id,\n    safe_cast(event.ecommerce.purchase_revenue_in_usd as numeric)\n        AS purchase_revenue_usd,\n    ARRAY_LENGTH(event.items) AS item_rows\nFROM \n    \n        (\n            SELECT * FROM (SELECT * REPLACE(PARSE_DATE('%Y%m%d', event_date) AS event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` WHERE _TABLE_SUFFIX BETWEEN '20201101' AND '20210131')\n            WHERE event_date BETWEEN DATE '2020-11-01' AND DATE '2021-01-31'\n        )\n    \n AS event)\n    WHERE event_name = 'first_visit' AND user_pseudo_id IS NOT NULL\n),\n\ngrouped_sessions AS (\n    SELECT\n        user_pseudo_id,\n        ga_session_id,\n        MIN(event_date) AS session_start_date,\n        MIN(event_timestamp_micros) AS first_event_timestamp_micros,\n        ARRAY_AGG(\n            STRUCT(device_category, country, first_touch_source, first_touch_medium)\n            ORDER BY event_timestamp_micros, event_date, event_name LIMIT 1\n        )[OFFSET(0)] AS first_event_dimensions,\n        ARRAY_AGG(\n            IF(\n                event_name IN (\n                    'session_start', 'view_item', 'add_to_cart',\n                    'begin_checkout', 'purchase'\n                ),\n                STRUCT(event_name, event_timestamp_micros),\n                NULL\n            ) IGNORE NULLS ORDER BY event_timestamp_micros\n        ) AS funnel_events,\n        COUNT(*) AS event_count,\n        COUNTIF(event_name = 'session_start') AS session_start_events,\n        COUNTIF(event_name = 'view_item') AS view_item_events,\n        COUNTIF(event_name = 'add_to_cart') AS add_to_cart_events,\n        COUNTIF(event_name = 'begin_checkout') AS begin_checkout_events,\n        COUNTIF(event_name = 'purchase') AS purchase_events,\n        COUNTIF(event_name = 'purchase' AND purchase_revenue_usd IS NULL)\n            AS purchase_events_missing_revenue,\n        SUM(IF(event_name = 'purchase', COALESCE(purchase_revenue_usd, 0), 0))\n            AS purchase_revenue_usd\n    FROM valid_events\n    GROUP BY user_pseudo_id, ga_session_id\n),\n\nordered_session_start AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE step.event_name = 'session_start'\n        ) AS ordered_session_start_micros\n    FROM grouped_sessions\n),\n\nordered_view_item AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'view_item'\n                AND step.event_timestamp_micros > ordered_session_start_micros\n        ) AS ordered_view_item_micros\n    FROM ordered_session_start\n),\n\nordered_add_to_cart AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'add_to_cart'\n                AND step.event_timestamp_micros > ordered_view_item_micros\n        ) AS ordered_add_to_cart_micros\n    FROM ordered_view_item\n),\n\nordered_begin_checkout AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'begin_checkout'\n                AND step.event_timestamp_micros > ordered_add_to_cart_micros\n        ) AS ordered_begin_checkout_micros\n    FROM ordered_add_to_cart\n),\n\nordered_purchase AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'purchase'\n                AND step.event_timestamp_micros > ordered_begin_checkout_micros\n        ) AS ordered_purchase_micros\n    FROM ordered_begin_checkout\n)\n\nSELECT\n    session.user_pseudo_id,\n    session.ga_session_id,\n    session.session_start_date,\n    session.first_event_timestamp_micros,\n    session.first_event_dimensions.device_category,\n    session.first_event_dimensions.country,\n    session.first_event_dimensions.first_touch_source,\n    session.first_event_dimensions.first_touch_medium,\n    session.event_count,\n    session.session_start_events,\n    session.view_item_events,\n    session.add_to_cart_events,\n    session.begin_checkout_events,\n    session.purchase_events,\n    session.purchase_events_missing_revenue,\n    session.purchase_revenue_usd,\n    first_visit_users.user_pseudo_id IS NOT NULL AS is_new_user_in_window,\n    session.session_start_events > 0 AS has_session_start,\n    session.view_item_events > 0 AS has_view_item,\n    session.add_to_cart_events > 0 AS has_add_to_cart,\n    session.begin_checkout_events > 0 AS has_begin_checkout,\n    session.purchase_events > 0 AS has_purchase,\n    session.ordered_session_start_micros IS NOT NULL AS ordered_session_start,\n    session.ordered_view_item_micros IS NOT NULL AS ordered_view_item,\n    session.ordered_add_to_cart_micros IS NOT NULL AS ordered_add_to_cart,\n    session.ordered_begin_checkout_micros IS NOT NULL AS ordered_begin_checkout,\n    session.ordered_purchase_micros IS NOT NULL AS ordered_purchase\nFROM ordered_purchase AS session\nLEFT JOIN first_visit_users\n    ON session.user_pseudo_id = first_visit_users.user_pseudo_id)\nwhere user_pseudo_id is null\n\n\n",
+        "sql_sha256": "f3ef912649a9e8cc24137c296f76bd765ebfb01ad2ae2ae103c1ca3dee17cd92"
+      },
+      "test.ga4_checkout_funnel.ordered_funnel_nonincreasing": {
+        "estimated_select_bytes": 9529650,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Existing full-window analyst table as proxy for future materialized replay fact",
+        "sql": "-- Return any strict-ordered step whose reach exceeds its previous step.\nWITH steps AS (\n    SELECT\n        session_start_date,\n        device_category,\n        country,\n        step_order,\n        reached_sessions,\n        LAG(reached_sessions) OVER (\n            PARTITION BY session_start_date, device_category, country\n            ORDER BY step_order\n        ) AS previous_step_sessions\n    FROM `ga4-checkout-funnel`.`ga4_analytics`.`fct_funnel_daily`\n    WHERE funnel_mode = 'strict_ordered'\n)\n\nSELECT *\nFROM steps\nWHERE\n    previous_step_sessions IS NOT NULL\n    AND reached_sessions > previous_step_sessions",
+        "sql_sha256": "4960beaf283e8fda9775541c69f6b4b7e0fbd98d83b9b5bfa9a99642cfb8db39"
+      },
+      "test.ga4_checkout_funnel.unique_session_pair_fct_sessions_ga_session_id__user_pseudo_id.961881c8f7": {
+        "estimated_select_bytes": 10325315,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Existing full-window analyst table as proxy for future materialized replay fact",
+        "sql": "\n    SELECT\n        user_pseudo_id,\n        ga_session_id,\n        COUNT(*) AS duplicate_rows\n    FROM `ga4-checkout-funnel`.`ga4_analytics`.`fct_sessions`\n    GROUP BY user_pseudo_id, ga_session_id\n    HAVING COUNT(*) > 1\n",
+        "sql_sha256": "ded71093da537e5970d3d8cf83d88a1c05ab145df4f417ae7832c8f992cc7717"
+      },
+      "test.ga4_checkout_funnel.unique_session_pair_int_sessions_ga_session_id__user_pseudo_id.a1513e91e5": {
+        "estimated_select_bytes": 1038149379,
+        "executed": false,
+        "fits_proposed_4_gib_cap": true,
+        "scope": "Hypothetical full raw history: compiled view inlined over DATE-converted public export",
+        "sql": "\n    SELECT\n        user_pseudo_id,\n        ga_session_id,\n        COUNT(*) AS duplicate_rows\n    FROM (-- One row per user_pseudo_id + ga_session_id, assigned to first export date.\nWITH valid_events AS (\n    SELECT *\n    FROM (-- One row per exported event; never unnest items in this model.\nSELECT\n    \n    \n        event.event_date\n    \n AS event_date,\n    event.event_date AS event_date_raw,\n    event.event_timestamp AS event_timestamp_micros,\n    event.event_bundle_sequence_id,\n    event.event_name,\n    event.user_pseudo_id,\n    (\n        SELECT ANY_VALUE(param.value.int_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'ga_session_id'\n    ) AS ga_session_id,\n    event.device.category AS device_category,\n    event.geo.country,\n    event.traffic_source.source AS first_touch_source,\n    event.traffic_source.medium AS first_touch_medium,\n    event.traffic_source.name AS first_touch_campaign,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'source'\n    ) AS event_param_source,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'medium'\n    ) AS event_param_medium,\n    event.ecommerce.transaction_id,\n    safe_cast(event.ecommerce.purchase_revenue_in_usd as numeric)\n        AS purchase_revenue_usd,\n    ARRAY_LENGTH(event.items) AS item_rows\nFROM \n    \n        (\n            SELECT * FROM (SELECT * REPLACE(PARSE_DATE('%Y%m%d', event_date) AS event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` WHERE _TABLE_SUFFIX BETWEEN '20201101' AND '20210131')\n            WHERE event_date BETWEEN DATE '2020-11-01' AND DATE '2021-01-31'\n        )\n    \n AS event)\n    WHERE user_pseudo_id IS NOT NULL AND ga_session_id IS NOT NULL\n),\n\nfirst_visit_users AS (\n    SELECT DISTINCT user_pseudo_id\n    FROM (-- One row per exported event; never unnest items in this model.\nSELECT\n    \n    \n        event.event_date\n    \n AS event_date,\n    event.event_date AS event_date_raw,\n    event.event_timestamp AS event_timestamp_micros,\n    event.event_bundle_sequence_id,\n    event.event_name,\n    event.user_pseudo_id,\n    (\n        SELECT ANY_VALUE(param.value.int_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'ga_session_id'\n    ) AS ga_session_id,\n    event.device.category AS device_category,\n    event.geo.country,\n    event.traffic_source.source AS first_touch_source,\n    event.traffic_source.medium AS first_touch_medium,\n    event.traffic_source.name AS first_touch_campaign,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'source'\n    ) AS event_param_source,\n    (\n        SELECT ANY_VALUE(param.value.string_value)\n        FROM UNNEST(event.event_params) AS param\n        WHERE param.key = 'medium'\n    ) AS event_param_medium,\n    event.ecommerce.transaction_id,\n    safe_cast(event.ecommerce.purchase_revenue_in_usd as numeric)\n        AS purchase_revenue_usd,\n    ARRAY_LENGTH(event.items) AS item_rows\nFROM \n    \n        (\n            SELECT * FROM (SELECT * REPLACE(PARSE_DATE('%Y%m%d', event_date) AS event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` WHERE _TABLE_SUFFIX BETWEEN '20201101' AND '20210131')\n            WHERE event_date BETWEEN DATE '2020-11-01' AND DATE '2021-01-31'\n        )\n    \n AS event)\n    WHERE event_name = 'first_visit' AND user_pseudo_id IS NOT NULL\n),\n\ngrouped_sessions AS (\n    SELECT\n        user_pseudo_id,\n        ga_session_id,\n        MIN(event_date) AS session_start_date,\n        MIN(event_timestamp_micros) AS first_event_timestamp_micros,\n        ARRAY_AGG(\n            STRUCT(device_category, country, first_touch_source, first_touch_medium)\n            ORDER BY event_timestamp_micros, event_date, event_name LIMIT 1\n        )[OFFSET(0)] AS first_event_dimensions,\n        ARRAY_AGG(\n            IF(\n                event_name IN (\n                    'session_start', 'view_item', 'add_to_cart',\n                    'begin_checkout', 'purchase'\n                ),\n                STRUCT(event_name, event_timestamp_micros),\n                NULL\n            ) IGNORE NULLS ORDER BY event_timestamp_micros\n        ) AS funnel_events,\n        COUNT(*) AS event_count,\n        COUNTIF(event_name = 'session_start') AS session_start_events,\n        COUNTIF(event_name = 'view_item') AS view_item_events,\n        COUNTIF(event_name = 'add_to_cart') AS add_to_cart_events,\n        COUNTIF(event_name = 'begin_checkout') AS begin_checkout_events,\n        COUNTIF(event_name = 'purchase') AS purchase_events,\n        COUNTIF(event_name = 'purchase' AND purchase_revenue_usd IS NULL)\n            AS purchase_events_missing_revenue,\n        SUM(IF(event_name = 'purchase', COALESCE(purchase_revenue_usd, 0), 0))\n            AS purchase_revenue_usd\n    FROM valid_events\n    GROUP BY user_pseudo_id, ga_session_id\n),\n\nordered_session_start AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE step.event_name = 'session_start'\n        ) AS ordered_session_start_micros\n    FROM grouped_sessions\n),\n\nordered_view_item AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'view_item'\n                AND step.event_timestamp_micros > ordered_session_start_micros\n        ) AS ordered_view_item_micros\n    FROM ordered_session_start\n),\n\nordered_add_to_cart AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'add_to_cart'\n                AND step.event_timestamp_micros > ordered_view_item_micros\n        ) AS ordered_add_to_cart_micros\n    FROM ordered_view_item\n),\n\nordered_begin_checkout AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'begin_checkout'\n                AND step.event_timestamp_micros > ordered_add_to_cart_micros\n        ) AS ordered_begin_checkout_micros\n    FROM ordered_add_to_cart\n),\n\nordered_purchase AS (\n    SELECT\n        *,\n        (\n            SELECT MIN(step.event_timestamp_micros)\n            FROM UNNEST(funnel_events) AS step\n            WHERE\n                step.event_name = 'purchase'\n                AND step.event_timestamp_micros > ordered_begin_checkout_micros\n        ) AS ordered_purchase_micros\n    FROM ordered_begin_checkout\n)\n\nSELECT\n    session.user_pseudo_id,\n    session.ga_session_id,\n    session.session_start_date,\n    session.first_event_timestamp_micros,\n    session.first_event_dimensions.device_category,\n    session.first_event_dimensions.country,\n    session.first_event_dimensions.first_touch_source,\n    session.first_event_dimensions.first_touch_medium,\n    session.event_count,\n    session.session_start_events,\n    session.view_item_events,\n    session.add_to_cart_events,\n    session.begin_checkout_events,\n    session.purchase_events,\n    session.purchase_events_missing_revenue,\n    session.purchase_revenue_usd,\n    first_visit_users.user_pseudo_id IS NOT NULL AS is_new_user_in_window,\n    session.session_start_events > 0 AS has_session_start,\n    session.view_item_events > 0 AS has_view_item,\n    session.add_to_cart_events > 0 AS has_add_to_cart,\n    session.begin_checkout_events > 0 AS has_begin_checkout,\n    session.purchase_events > 0 AS has_purchase,\n    session.ordered_session_start_micros IS NOT NULL AS ordered_session_start,\n    session.ordered_view_item_micros IS NOT NULL AS ordered_view_item,\n    session.ordered_add_to_cart_micros IS NOT NULL AS ordered_add_to_cart,\n    session.ordered_begin_checkout_micros IS NOT NULL AS ordered_begin_checkout,\n    session.ordered_purchase_micros IS NOT NULL AS ordered_purchase\nFROM ordered_purchase AS session\nLEFT JOIN first_visit_users\n    ON session.user_pseudo_id = first_visit_users.user_pseudo_id)\n    GROUP BY user_pseudo_id, ga_session_id\n    HAVING COUNT(*) > 1\n",
+        "sql_sha256": "96f1b171772b9e8f41f0cb236da3682bc1add11c01b9f9322b4b2c5a872ee0db"
+      }
+    },
+    "limitations": [
+      "Future raw and replay facts are not populated; these are public-equivalent/existing analyst proxies, not measured future replay job bytes",
+      "Repeated DML/scripts/retries/billing rounding/storage/account-wide allowance are additional",
+      "No test execution or result pass is claimed"
+    ],
+    "maximum_estimated_test_bytes": 1038149379,
+    "mutations": 0,
+    "proposed_query_cap_bytes": 4294967296,
+    "scope": "New final-history test planning gap only; previous model/extraction dry runs reused"
+  },
+  "new_raw_dates_loaded": 0,
+  "next_owner_gate": 18,
+  "operating_checkpoint": {
+    "already_active_work_may_complete_after_pause": true,
+    "cumulative_completed_new_backfill_job_billed_bytes": 549755813888,
+    "includes_lookup_jobs": true,
+    "pause_on_observed_failure_or_unknown_accounting": true,
+    "server_enforced_aggregate_budget": false
+  },
+  "preservation": {
+    "current_query_cap_not_raised": true,
+    "dag_paused": true,
+    "old_metrics_and_dry_run_values_preserved": true,
+    "owner_files_configs_unchanged": true,
+    "owner_powerbi_files": 300
+  },
+  "pricing": {
+    "active_logical_storage_usd_per_gib_hour": "0.000031507",
+    "aggregate_query_spend_limit_enforced": false,
+    "billing_enabled_verified": true,
+    "checked_at_utc": "2026-10-06T00:15:12.449085+00:00",
+    "monthly_free_query_bytes": 1099511627776,
+    "monthly_free_storage_gib": 10,
+    "official_source_url": "https://cloud.google.com/bigquery/pricing?authuser=1",
+    "on_demand_usd_per_tib": "6.25",
+    "remaining_account_wide_allowance_or_spend": "unknown",
+    "single_4_gib_capped_query_gross_usd": "0.0244140625",
+    "verification": "Official indexed pricing page; direct renderer exceeds tool content limit"
+  },
+  "proposed_query_cap_bytes": 4294967296,
+  "raw_dataset": "ga4_raw",
+  "reference_arithmetic_scenario": {
+    "assumption": "Each of 91 days scans final-history inlined fact SELECT proxies plus final-history test proxies, once; this deliberately flat scenario does not model day-by-day growth and is not a whole-pipeline estimate or upper bound",
+    "estimated_reference_processed_bytes": 733058253819,
+    "excluded": [
+      "Reconciliation",
+      "Generated script/DML/adapter metadata queries",
+      "Automatic client/adapter/task retries",
+      "Billing rounding/minimums",
+      "Temporary/persistent/time-travel storage",
+      "Other billing-account use"
+    ],
+    "final_history_fact_select_proxy_bytes_sum": 3820402771,
+    "final_history_test_select_proxy_bytes_sum": 4196060548,
+    "gross_reference_usd_before_allowance_rounding_additions": "4.166953737120593359577469528",
+    "plus_remaining_extraction_estimate": 3560091790,
+    "reference_processed_tib": "0.6667125979392949375323951244"
+  },
+  "replay_dataset": "ga4_replay_analytics",
+  "reused_planning_source_keys": [
+    "warehouse_builds.p5_6_backfill_extraction_plan",
+    "continuation_validation.p5_6_airflow_runtime",
+    "warehouse_builds.p5_6_airflow_recovery"
+  ],
+  "saved_model_select_planning": [
+    {
+      "estimated_select_bytes_sum": 64727777,
+      "history_through": "2020-11-01",
+      "models": {
+        "dim_date": {
+          "estimated_select_bytes": 0,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+        },
+        "fct_funnel_daily": {
+          "estimated_select_bytes": 8388728,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "95ba7bbdc7b2406ee52210bdac8f98596906b0c03688a0ac586c5940f10049d6"
+        },
+        "fct_product_daily": {
+          "estimated_select_bytes": 9555803,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "320d663f2b4fdf5cf16a17d804d23e914fa2ea4f56779bbafc5c14a09bc34902"
+        },
+        "fct_sessions": {
+          "estimated_select_bytes": 9049654,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "fb6c76509ef58982fcb2621ffc22c0860c6cf8e1593963432db94ef8d26478c6"
+        },
+        "int_sessions": {
+          "estimated_select_bytes": 9049654,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "27722a43d63ff24cbadc9ce635d27788d8f20f44c3df21aa4efea92dc211d4d2"
+        },
+        "stg_ga4_events": {
+          "estimated_select_bytes": 18469665,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "96a0b7f141dd23cd8c05c20ddb5b765f9b115f435fe82b8f0393823b5695ba4f"
+        },
+        "stg_ga4_items": {
+          "estimated_select_bytes": 10214273,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "98a5ccd2d83367524718159b2d742d3b7258329352d4666a163734312a01fe55"
+        }
+      },
+      "native_compile_success": true,
+      "run_date": "2020-11-01",
+      "scope": "Existing loaded raw first day",
+      "source_code_matches_current_repository": true
+    },
+    {
+      "estimated_select_bytes_sum": 698379484,
+      "history_through": "2020-11-07",
+      "models": {
+        "dim_date": {
+          "estimated_select_bytes": 0,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+        },
+        "fct_funnel_daily": {
+          "estimated_select_bytes": 89481239,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "12aa1dd817ab37047d36db87aafc4a2263478c312f0f2391461c92f78c2f8845"
+        },
+        "fct_product_daily": {
+          "estimated_select_bytes": 103367399,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "c360b6482fd1865564b9ca88f7241750bf343c2ad6c5d0846c4f1d937211ee58"
+        },
+        "fct_sessions": {
+          "estimated_select_bytes": 96260193,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "58e8ccc18aaef76b791e2c8d1eaa6405b9a52b76647051957087cc72e36870b8"
+        },
+        "int_sessions": {
+          "estimated_select_bytes": 96260193,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "c2f90725663c0a304a35c87cd4d6388960967c89f8eb8ee9d229ff4f0e8ca21a"
+        },
+        "stg_ga4_events": {
+          "estimated_select_bytes": 202176912,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "9382625dc9cd0cbeb80769dfe3c054393fede8db9e55320d4b79e3b83b363135"
+        },
+        "stg_ga4_items": {
+          "estimated_select_bytes": 110833548,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "dfb568b072347a0e2d95b4dff5e5a81560393b62346b8b2c5e9c678219203659"
+        }
+      },
+      "native_compile_success": true,
+      "run_date": "2020-11-07",
+      "scope": "Public-source equivalent for hypothetical loaded history; not a future raw/DML estimate",
+      "source_code_matches_current_repository": true
+    },
+    {
+      "estimated_select_bytes_sum": 3190478710,
+      "history_through": "2020-11-30",
+      "models": {
+        "dim_date": {
+          "estimated_select_bytes": 0,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+        },
+        "fct_funnel_daily": {
+          "estimated_select_bytes": 402769592,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "6a8fc444b348fd8637dc28d2839c51bc7b6c1a5a56cbec6cbbc41bf19f25e6cb"
+        },
+        "fct_product_daily": {
+          "estimated_select_bytes": 471833971,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "b2ae7110c0faa3adda1c467d6b94be1686b514c0ee859b4359cd4af22ad71675"
+        },
+        "fct_sessions": {
+          "estimated_select_bytes": 433306119,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "f1cc99f6a166578a0962f2c34fe83dceefc72c0d664c343a418a0892800ca94e"
+        },
+        "int_sessions": {
+          "estimated_select_bytes": 433306119,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "ed08045137a7317e28ef9d6dae8fdca3fa55da10a2d6e5993b05fe5eb801f419"
+        },
+        "stg_ga4_events": {
+          "estimated_select_bytes": 941420041,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "3497ddd7f3e5ec256c7b18a4b0a039e28175458109092238de8458d7f97581e1"
+        },
+        "stg_ga4_items": {
+          "estimated_select_bytes": 507842868,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "066bbf908f1a31ed368847a5e3fff126d540c4195b63db9eba840ba1b05d1088"
+        }
+      },
+      "native_compile_success": true,
+      "run_date": "2020-11-30",
+      "scope": "Public-source equivalent for hypothetical loaded history; not a future raw/DML estimate",
+      "source_code_matches_current_repository": true
+    },
+    {
+      "estimated_select_bytes_sum": 9495090030,
+      "history_through": "2021-01-31",
+      "models": {
+        "dim_date": {
+          "estimated_select_bytes": 0,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+        },
+        "fct_funnel_daily": {
+          "estimated_select_bytes": 1159791038,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "f31d2f452932f16053ade4f5c61a66c5bffb2706b668dbcede8233e52de3bf7b"
+        },
+        "fct_product_daily": {
+          "estimated_select_bytes": 1411793714,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "54db5507d8cd6602f75a5444c5e3a809482e28edecc3c7c0b16f9011bd8847b8"
+        },
+        "fct_sessions": {
+          "estimated_select_bytes": 1248818019,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "322f6d72eeaec889e32f94c08d5fba2be007a12e67a0462c32e6cc195fb5faf1"
+        },
+        "int_sessions": {
+          "estimated_select_bytes": 1248818019,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "cab750cf8bc970424c50a597c0d37477d03578ce5f63f343ce29991c2808977e"
+        },
+        "stg_ga4_events": {
+          "estimated_select_bytes": 2891550912,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "1069cd61cc0b3ec266ac2a1eba472e2ce5f1948508168ee5dc8be91a0a10d07b"
+        },
+        "stg_ga4_items": {
+          "estimated_select_bytes": 1534318328,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "e9db98cec974a5e55afdebef3b72870ff93281fe882e8b2a7251520328d0154e"
+        }
+      },
+      "native_compile_success": true,
+      "run_date": "2021-01-31",
+      "scope": "Public-source equivalent for hypothetical loaded history; not a future raw/DML estimate",
+      "source_code_matches_current_repository": true
+    }
+  ],
+  "script_preflight_limit": {
+    "first_day_actual_labeled_leaf_billed_bytes": 265289728,
+    "first_day_actual_labeled_leaf_jobs": 32,
+    "first_day_actual_script_children": 9,
+    "first_day_actual_script_parents": 3,
+    "native_future_scripts_measured": false,
+    "official_source_url": "https://docs.cloud.google.com/bigquery/docs/multi-statement-queries#dry-run_a_multi-statement_query",
+    "reason": "Script dry runs stop at DDL/control flow and cannot model future temporary relation contents; no script/DML sum is invented"
+  },
+  "secret_scan": {
+    "binary_sha256": "88f91962aa2f93ac6ab281d553b9e125f5197bbbce38f9f2437f7299c32e5509",
+    "checked_at_utc": "2026-10-06T00:19:45.256982+00:00",
+    "command": "gitleaks git . --log-opts=--all --redact --report-format json --report-path reports/.checks/p5_6_full_window/full_history_gitleaks.json",
+    "current_recovery_and_preparation_files_scans": "Passed using only the two verified unchanged noncredential evidence lines; exact local fingerprints, no broad exclusion",
+    "existing_exact_noncredential_exceptions_unchanged": true,
+    "final_preservation": {
+      "bytes_index_status_and_owner_config_hashes_preserved": true,
+      "native_csv_equals_committed_blob": true,
+      "owner_powerbi_files": 300,
+      "working_tree_clean_except_preexisting_owner_powerbi_changes": true
+    },
+    "gitleaksignore_sha256": "db0498bc186bd86bbb7288a0003c2da4a8d967a61b5bcadcd2e4eeaf0a33a65b",
+    "history_exception_count": 2,
+    "metadata_commit_follows_this_scan": true,
+    "reachable_commits_scanned": 118,
+    "scanned_head": "3bb8c263a4581deebd4bf2f835460c68f8a47c9f",
+    "tool": "gitleaks",
+    "unresolved_findings": 0,
+    "version": "8.30.1"
+  },
+  "source_key": "continuation_validation.p5_6_full_window_preparation",
+  "starting_head": "8cc62604271d7b87e385f309dbde3e78db19e0d1",
+  "status": "prepared_not_approved_or_executed",
+  "total_window_dates": 92,
+  "window_first_day": "2020-11-01",
+  "window_last_day": "2021-01-31"
+}

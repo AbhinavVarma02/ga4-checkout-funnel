@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: int_sessions
+    description: One row per observed user and session ID across the selected export window.
+    data_tests:
+      - unique_session_pair:
+          arguments:
+            user_column: user_pseudo_id
+            session_column: ga_session_id
+    columns:
+      - name: user_pseudo_id
+        description: Pseudonymous user half of the session key.
+        data_tests: [not_null]
+      - name: ga_session_id
+        description: Integer GA session ID half of the session key.
+        data_tests: [not_null]
+      - name: session_start_date
+        description: Minimum export date observed for this session.
+        data_tests: [not_null]
+      - name: first_event_timestamp_micros
+        description: Earliest observed event timestamp in this session.
+      - name: device_category
+        description: Device category on the earliest observed event.
+      - name: country
+        description: Country on the earliest observed event.
+      - name: first_touch_source
+        description: First-touch user acquisition source from earliest event.
+      - name: first_touch_medium
+        description: First-touch user acquisition medium from earliest event.
+      - name: event_count
+        description: Number of export events in this session.
+      - name: session_start_events
+        description: Number of observed session_start events.
+      - name: view_item_events
+        description: Number of observed view_item events.
+      - name: add_to_cart_events
+        description: Number of observed add_to_cart events.
+      - name: begin_checkout_events
+        description: Number of observed begin_checkout events.
+      - name: purchase_events
+        description: Number of observed purchase events.
+      - name: purchase_events_missing_revenue
+        description: Purchase events missing canonical USD revenue.
+      - name: purchase_revenue_usd
+        description: Sum of purchase-event USD revenue in this session.
+      - name: is_new_user_in_window
+        description: Whether this user has a first_visit event in the selected window, even if that event has no session ID.
+      - name: has_session_start
+        description: Whether any session_start event appears, regardless of order.
+      - name: has_view_item
+        description: Whether any view_item event appears, regardless of order.
+      - name: has_add_to_cart
+        description: Whether any add_to_cart event appears, regardless of order.
+      - name: has_begin_checkout
+        description: Whether any begin_checkout event appears, regardless of order.
+      - name: has_purchase
+        description: Whether any purchase event appears, regardless of order.
+      - name: ordered_session_start
+        description: Whether a session_start event begins the strict funnel.
+      - name: ordered_view_item
+        description: Whether view_item occurs after an observed session_start.
+      - name: ordered_add_to_cart
+        description: Whether add_to_cart occurs after the qualifying view_item.
+      - name: ordered_begin_checkout
+        description: Whether begin_checkout occurs after the qualifying cart event.
+      - name: ordered_purchase
+        description: Whether purchase occurs after the qualifying checkout event.

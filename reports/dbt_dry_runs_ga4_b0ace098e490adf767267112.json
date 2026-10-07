@@ -1,0 +1,58 @@
+{
+  "dbt_dim_date": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T17:01:06.585509+00:00",
+    "estimated_bytes": 0,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+  },
+  "dbt_fct_funnel_daily": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T17:01:06.369200+00:00",
+    "estimated_bytes": 1126102923,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "e875b736459d04d29df47f0a1fcda927e78c6db2b80dfbc5424205f1bbbec265"
+  },
+  "dbt_fct_product_daily": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T17:01:05.527071+00:00",
+    "estimated_bytes": 1373004249,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "22c0e07382c3a177e11ca514821067e01139be337aa7961652a3ac0bfefa2dac"
+  },
+  "dbt_fct_sessions": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T17:01:05.920908+00:00",
+    "estimated_bytes": 1213119653,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "aa9e3854ba7c7cc2e794e8e9c1f6346b9d290ab2157b0ea3d46829e41c95cf3a"
+  },
+  "dbt_int_sessions": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T17:01:05.170740+00:00",
+    "estimated_bytes": 1213119653,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "27722a43d63ff24cbadc9ce635d27788d8f20f44c3df21aa4efea92dc211d4d2"
+  },
+  "dbt_stg_ga4_events": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T17:01:04.498084+00:00",
+    "estimated_bytes": 2822358441,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "96a0b7f141dd23cd8c05c20ddb5b765f9b115f435fe82b8f0393823b5695ba4f"
+  },
+  "dbt_stg_ga4_items": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T17:01:04.777447+00:00",
+    "estimated_bytes": 1492950448,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "98a5ccd2d83367524718159b2d742d3b7258329352d4666a163734312a01fe55"
+  }
+}

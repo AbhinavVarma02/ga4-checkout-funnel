@@ -1,0 +1,21 @@
+{
+  "checked_at_utc": "2026-10-05T20:30:21.612921+00:00",
+  "estimated_bytes": 8827438,
+  "executed": false,
+  "maximum_bytes_billed": 134217728,
+  "metadata": {
+    "raw_rows": 31272,
+    "replay_relations": [
+      "dim_date",
+      "fct_funnel_daily",
+      "fct_product_daily",
+      "fct_sessions",
+      "int_sessions",
+      "stg_ga4_events",
+      "stg_ga4_items"
+    ],
+    "source_key": "warehouse_builds.p5_2_raw_extraction"
+  },
+  "sql_path": "sql/validation/replay_snapshot.sql",
+  "sql_sha256": "22cfe4a9b598efe27f06f720feb3a416e2682adc14a23fcd4576af542285f6f5"
+}

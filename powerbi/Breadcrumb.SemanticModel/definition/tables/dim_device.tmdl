@@ -1,0 +1,18 @@
+table dim_device
+	lineageTag: 73f1e2c7-0f5b-5e35-8b7d-05a8f8d90b92
+
+	column device_category
+		dataType: string
+		isKey
+		sourceColumn: device_category
+		summarizeBy: none
+		lineageTag: ec30a4d5-b63c-5fbd-a6f3-b057c2a90513
+
+	partition dim_device = m
+		mode: import
+		source =
+				let
+				    Source = Table.SelectColumns(fct_sessions, {"device_category"}),
+				    Unique = Table.Distinct(Source)
+				in
+				    Unique

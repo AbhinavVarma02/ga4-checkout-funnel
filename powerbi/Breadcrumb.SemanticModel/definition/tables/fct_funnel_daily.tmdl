@@ -1,0 +1,117 @@
+table fct_funnel_daily
+	lineageTag: 8c5e7ee0-afc5-51a1-84b9-5d762ea36b56
+
+	column session_start_date
+		dataType: dateTime
+		isHidden
+		sourceColumn: session_start_date
+		summarizeBy: none
+		lineageTag: 00ebed72-9b71-5f09-820d-6f9ab9f243f8
+		formatString: yyyy-MM-dd
+
+	column device_category
+		dataType: string
+		isHidden
+		sourceColumn: device_category
+		summarizeBy: none
+		lineageTag: 78ed2733-6287-5803-9dbc-fc0471e80c4b
+
+	column country
+		dataType: string
+		isHidden
+		sourceColumn: country
+		summarizeBy: none
+		lineageTag: 38859fb9-5234-5a5c-af89-5408dddc07e2
+
+	column funnel_mode
+		dataType: string
+		sourceColumn: funnel_mode
+		summarizeBy: none
+		lineageTag: 91368246-ffc8-592e-b5a9-04c82c94718b
+
+	column step_order
+		dataType: int64
+		isHidden
+		sourceColumn: step_order
+		summarizeBy: none
+		lineageTag: 15802894-a682-5f44-ba1b-661ee76be437
+		formatString: #,0
+
+	column step_name
+		dataType: string
+		sourceColumn: step_name
+		summarizeBy: none
+		lineageTag: 98410fe2-910b-5ab1-927a-2c37d4f14482
+		sortByColumn: step_order
+
+	column total_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: total_sessions
+		summarizeBy: none
+		lineageTag: 11ab61e2-7eb1-5837-b48f-769f061138a5
+		formatString: #,0
+
+	column reached_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: reached_sessions
+		summarizeBy: none
+		lineageTag: 09a909ba-72ea-5c5b-b69a-89d1bfc2a4f6
+		formatString: #,0
+
+	column purchased_sessions_among_reached
+		dataType: int64
+		isHidden
+		sourceColumn: purchased_sessions_among_reached
+		summarizeBy: none
+		lineageTag: aa2121ef-ec68-5083-84da-f35313a0af9d
+		formatString: #,0
+
+	column purchase_revenue_usd_among_reached
+		dataType: decimal
+		isHidden
+		sourceColumn: purchase_revenue_usd_among_reached
+		summarizeBy: none
+		lineageTag: 6a6cd784-a7a4-573d-abd2-0e41cac26572
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+
+	column next_step_reached_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: next_step_reached_sessions
+		summarizeBy: none
+		lineageTag: 831165d3-6a84-5a6b-b430-f5389548cc8f
+		formatString: #,0
+
+	column next_step_purchased_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: next_step_purchased_sessions
+		summarizeBy: none
+		lineageTag: 5cdeaea7-6e31-58dc-9911-5c5bd3a1c522
+		formatString: #,0
+
+	partition fct_funnel_daily = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ExportsFolder & "\fct_funnel_daily.csv"),
+				        [Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {
+				        {"session_start_date", type date},
+				        {"device_category", type text},
+				        {"country", type text},
+				        {"funnel_mode", type text},
+				        {"step_order", Int64.Type},
+				        {"step_name", type text},
+				        {"total_sessions", Int64.Type},
+				        {"reached_sessions", Int64.Type},
+				        {"purchased_sessions_among_reached", Int64.Type},
+				        {"purchase_revenue_usd_among_reached", Currency.Type},
+				        {"next_step_reached_sessions", Int64.Type},
+				        {"next_step_purchased_sessions", Int64.Type}
+				    }, "en-US")
+				in
+				    Typed

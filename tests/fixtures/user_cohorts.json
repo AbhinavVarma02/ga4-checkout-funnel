@@ -1,0 +1,10 @@
+{
+  "label": "Fixture synthetic sessions; never real GA4 data",
+  "first_visit_user_ids": ["user-a"],
+  "sessions": [
+    {"session_key": "user-a:1", "user_pseudo_id": "user-a", "purchased": true, "purchase_revenue": "12.50"},
+    {"session_key": "user-a:2", "user_pseudo_id": "user-a", "purchased": false, "purchase_revenue": "0"},
+    {"session_key": "user-b:1", "user_pseudo_id": "user-b", "purchased": false, "purchase_revenue": "0"},
+    {"session_key": "unknown:1", "user_pseudo_id": null, "purchased": true, "purchase_revenue": "3.75"}
+  ]
+}

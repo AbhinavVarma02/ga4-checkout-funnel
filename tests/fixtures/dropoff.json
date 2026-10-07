@@ -1,0 +1,15 @@
+{
+  "label": "Fixture synthetic transition counts; never real GA4 data",
+  "sessions_with_session_start": 100,
+  "any_order_view_item_sessions": 40,
+  "any_order_view_item_purchase_sessions": 4,
+  "any_order_view_item_purchase_revenue_usd": "80",
+  "any_order_add_to_cart_sessions": 20,
+  "any_order_add_to_cart_purchase_sessions": 2,
+  "any_order_add_to_cart_purchase_revenue_usd": "30",
+  "any_order_begin_checkout_sessions": 10,
+  "any_order_begin_checkout_purchase_sessions": 1,
+  "any_order_begin_checkout_purchase_revenue_usd": "10",
+  "any_order_purchase_sessions": 1,
+  "any_order_purchase_purchase_revenue_usd": "10"
+}

@@ -1,0 +1,56 @@
+table dim_date
+	lineageTag: f8786abc-2756-545d-b990-f7fc55f8e898
+	dataCategory: Time
+
+	column date_day
+		dataType: dateTime
+		isKey
+		sourceColumn: date_day
+		summarizeBy: none
+		lineageTag: 045098d1-3118-5bf8-91e4-b21ce323e966
+		formatString: yyyy-MM-dd
+
+	column calendar_year
+		dataType: int64
+		sourceColumn: calendar_year
+		summarizeBy: none
+		lineageTag: 09c545b2-f728-5501-ab74-172a73646310
+		formatString: #,0
+
+	column calendar_month
+		dataType: int64
+		sourceColumn: calendar_month
+		summarizeBy: none
+		lineageTag: 05471980-7b13-5833-8447-1392519a6e4d
+		formatString: #,0
+
+	column calendar_day
+		dataType: int64
+		sourceColumn: calendar_day
+		summarizeBy: none
+		lineageTag: e5b1fdda-667f-5f59-aa28-b4a086bdd138
+		formatString: #,0
+
+	column day_of_week_sunday_first
+		dataType: int64
+		sourceColumn: day_of_week_sunday_first
+		summarizeBy: none
+		lineageTag: cb32a786-8eb1-5074-81c3-226baea4ce6c
+		formatString: #,0
+
+	partition dim_date = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ExportsFolder & "\dim_date.csv"),
+				        [Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {
+				        {"date_day", type date},
+				        {"calendar_year", Int64.Type},
+				        {"calendar_month", Int64.Type},
+				        {"calendar_day", Int64.Type},
+				        {"day_of_week_sunday_first", Int64.Type}
+				    }, "en-US")
+				in
+				    Typed

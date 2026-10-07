@@ -1,0 +1,75 @@
+table category_summary
+	lineageTag: 533aec57-a76e-5822-8dbc-37fd31e5bb8f
+
+	column item_category
+		dataType: string
+		sourceColumn: item_category
+		summarizeBy: none
+		lineageTag: 05f01f6d-d0fb-58ef-82b1-75f15570bbc0
+
+	column null_purchase_item_revenue_rows
+		dataType: int64
+		isHidden
+		sourceColumn: null_purchase_item_revenue_rows
+		summarizeBy: none
+		lineageTag: 7c1a0376-1ce8-5c0d-9266-f9745afbeefd
+		formatString: #,0
+
+	column purchase_item_revenue_usd
+		dataType: decimal
+		isHidden
+		sourceColumn: purchase_item_revenue_usd
+		summarizeBy: none
+		lineageTag: 3d17d767-2b6d-560c-a481-4cf9d237c72c
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+
+	column purchase_without_view_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: purchase_without_view_sessions
+		summarizeBy: none
+		lineageTag: 21de93de-8bf2-575d-8b3c-3e12170f6923
+		formatString: #,0
+
+	column purchasing_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: purchasing_sessions
+		summarizeBy: none
+		lineageTag: 568ae3ee-e0e8-5a69-931e-f56bc494d248
+		formatString: #,0
+
+	column view_and_purchase_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: view_and_purchase_sessions
+		summarizeBy: none
+		lineageTag: 9a9074b7-7148-5967-bb87-485c068c0477
+		formatString: #,0
+
+	column viewing_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: viewing_sessions
+		summarizeBy: none
+		lineageTag: f1b3c960-6645-5d91-96ff-c5934d77abd6
+		formatString: #,0
+
+	partition category_summary = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ExportsFolder & "\category_summary.csv"),
+				        [Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {
+				        {"item_category", type text},
+				        {"null_purchase_item_revenue_rows", Int64.Type},
+				        {"purchase_item_revenue_usd", Currency.Type},
+				        {"purchase_without_view_sessions", Int64.Type},
+				        {"purchasing_sessions", Int64.Type},
+				        {"view_and_purchase_sessions", Int64.Type},
+				        {"viewing_sessions", Int64.Type}
+				    }, "en-US")
+				in
+				    Typed

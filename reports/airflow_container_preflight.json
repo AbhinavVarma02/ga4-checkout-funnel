@@ -1,0 +1,304 @@
+{
+  "checked_at_utc": "2026-10-05T22:32:56.325130+00:00",
+  "configured_validation_cap_bytes": 134217728,
+  "dry_run_queries": 43,
+  "executed": false,
+  "first_day_model_and_test_select_bytes_sum": 174986425,
+  "limitations": [
+    "Dry-run only; no load, DML, data test execution, byte-log SELECT or CSV update",
+    "Future history estimates use public source substitution and do not establish actual future raw-table bytes",
+    "Generated insert_overwrite scripts, child statements, retries, storage and account-wide allowance/spend are additional and unmeasured",
+    "Current 128 MiB cap is for bounded first-day validation, not an approved 92-day backfill cap"
+  ],
+  "logger": {
+    "csv_written": false,
+    "dry_run_permission_verified": true,
+    "estimated_select_bytes": 1142001,
+    "executed": false,
+    "query_write_permission_not_executed": true,
+    "sql_sha256": "8c2e81c15a22bc0d0c268606670200bcf037969fa4a0a850b39c287fa215b926"
+  },
+  "native_first_day_tests": {
+    "test.ga4_checkout_funnel.accepted_values_fct_funnel_daily_funnel_mode__any_order__strict_ordered.29c89b4bdc": {
+      "estimated_select_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "7dbf8885d6541163bc9f8557adeacc85ea40c29f4f40e93baf31ae352ad78507"
+    },
+    "test.ga4_checkout_funnel.accepted_values_fct_funnel_daily_step_name__session_start__view_item__add_to_cart__begin_checkout__purchase.ff182103f3": {
+      "estimated_select_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "0d2a3d94a0bf397bb0183375f2ac6d7c10f03d4b06e4497d99b89e284f8185e1"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_funnel_daily_funnel_mode.c58c441e6e": {
+      "estimated_select_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "861f9ff905120202ada0fb257770c33f2092ab162cce938bb5d7efab256e8361"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_funnel_daily_reached_sessions.b97e2a0abe": {
+      "estimated_select_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "0867da56e40749446011d5bbfdf27d08163cf6b0c03cb4c9c5fc2b1d144d5bd3"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_funnel_daily_step_name.f8869c365b": {
+      "estimated_select_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "4f4a30ed952dba510d46eeba80c7b68089f3c99db3d2e98db1af9e9fc4c98b0d"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_sessions_ga_session_id.f602bfd9f5": {
+      "estimated_select_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "4954c9fb4819d7354cbabe5c4a3e2f57029c5cdd2be806c7a300f43ae93c4d97"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_sessions_session_start_date.5cf94a9cc6": {
+      "estimated_select_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "62887f648fd7932542ba56a1730b1f14bfd3469ef4e3985c62e777e864f2cb62"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_sessions_user_pseudo_id.30ba8351c7": {
+      "estimated_select_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "5856bf70f1ff207b52ff642d2719230e7f230aa553f324d0613f63745ff5d498"
+    },
+    "test.ga4_checkout_funnel.not_null_int_sessions_ga_session_id.0a82b5147e": {
+      "estimated_select_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "673da157bcc1ced404c07fa2a17e6bfbc270ea73ab38ace3d64883e4ff14422f"
+    },
+    "test.ga4_checkout_funnel.not_null_int_sessions_session_start_date.94b5486ccb": {
+      "estimated_select_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "8173267dd729960d991e5ba66e3646692dbcd92b42a314e1b861eeff52553e09"
+    },
+    "test.ga4_checkout_funnel.not_null_int_sessions_user_pseudo_id.730a2c117a": {
+      "estimated_select_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "10720e6b76daaae0e1d0af62a4d0d8535edd364bb9a9ef99a0e504c09d39dcd8"
+    },
+    "test.ga4_checkout_funnel.ordered_funnel_nonincreasing": {
+      "estimated_select_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "ab0699efd275f35bd2aee6d4ef02159787fe2ad09e5f240efaeeed9427359127"
+    },
+    "test.ga4_checkout_funnel.unique_session_pair_fct_sessions_ga_session_id__user_pseudo_id.961881c8f7": {
+      "estimated_select_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "c96eb3562b55465663b6cab792982782176cb79163de8fce29c2cbcf08d39dd2"
+    },
+    "test.ga4_checkout_funnel.unique_session_pair_int_sessions_ga_session_id__user_pseudo_id.a1513e91e5": {
+      "estimated_select_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "f4125ebae8d77be7e3448f0a134fcd19a7e7c1782a2fa74a02514fd0ef47d69d"
+    }
+  },
+  "representative_histories": [
+    {
+      "estimated_select_bytes_sum": 64727777,
+      "history_through": "2020-11-01",
+      "models": {
+        "dim_date": {
+          "estimated_select_bytes": 0,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+        },
+        "fct_funnel_daily": {
+          "estimated_select_bytes": 8388728,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "95ba7bbdc7b2406ee52210bdac8f98596906b0c03688a0ac586c5940f10049d6"
+        },
+        "fct_product_daily": {
+          "estimated_select_bytes": 9555803,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "320d663f2b4fdf5cf16a17d804d23e914fa2ea4f56779bbafc5c14a09bc34902"
+        },
+        "fct_sessions": {
+          "estimated_select_bytes": 9049654,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "fb6c76509ef58982fcb2621ffc22c0860c6cf8e1593963432db94ef8d26478c6"
+        },
+        "int_sessions": {
+          "estimated_select_bytes": 9049654,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "27722a43d63ff24cbadc9ce635d27788d8f20f44c3df21aa4efea92dc211d4d2"
+        },
+        "stg_ga4_events": {
+          "estimated_select_bytes": 18469665,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "96a0b7f141dd23cd8c05c20ddb5b765f9b115f435fe82b8f0393823b5695ba4f"
+        },
+        "stg_ga4_items": {
+          "estimated_select_bytes": 10214273,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "98a5ccd2d83367524718159b2d742d3b7258329352d4666a163734312a01fe55"
+        }
+      },
+      "native_compile_success": true,
+      "run_date": "2020-11-01",
+      "scope": "Existing loaded raw first day",
+      "source_code_matches_current_repository": true
+    },
+    {
+      "estimated_select_bytes_sum": 698379484,
+      "history_through": "2020-11-07",
+      "models": {
+        "dim_date": {
+          "estimated_select_bytes": 0,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+        },
+        "fct_funnel_daily": {
+          "estimated_select_bytes": 89481239,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "12aa1dd817ab37047d36db87aafc4a2263478c312f0f2391461c92f78c2f8845"
+        },
+        "fct_product_daily": {
+          "estimated_select_bytes": 103367399,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "c360b6482fd1865564b9ca88f7241750bf343c2ad6c5d0846c4f1d937211ee58"
+        },
+        "fct_sessions": {
+          "estimated_select_bytes": 96260193,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "58e8ccc18aaef76b791e2c8d1eaa6405b9a52b76647051957087cc72e36870b8"
+        },
+        "int_sessions": {
+          "estimated_select_bytes": 96260193,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "c2f90725663c0a304a35c87cd4d6388960967c89f8eb8ee9d229ff4f0e8ca21a"
+        },
+        "stg_ga4_events": {
+          "estimated_select_bytes": 202176912,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "9382625dc9cd0cbeb80769dfe3c054393fede8db9e55320d4b79e3b83b363135"
+        },
+        "stg_ga4_items": {
+          "estimated_select_bytes": 110833548,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "dfb568b072347a0e2d95b4dff5e5a81560393b62346b8b2c5e9c678219203659"
+        }
+      },
+      "native_compile_success": true,
+      "run_date": "2020-11-07",
+      "scope": "Public-source equivalent for hypothetical loaded history; not a future raw/DML estimate",
+      "source_code_matches_current_repository": true
+    },
+    {
+      "estimated_select_bytes_sum": 3190478710,
+      "history_through": "2020-11-30",
+      "models": {
+        "dim_date": {
+          "estimated_select_bytes": 0,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+        },
+        "fct_funnel_daily": {
+          "estimated_select_bytes": 402769592,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "6a8fc444b348fd8637dc28d2839c51bc7b6c1a5a56cbec6cbbc41bf19f25e6cb"
+        },
+        "fct_product_daily": {
+          "estimated_select_bytes": 471833971,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "b2ae7110c0faa3adda1c467d6b94be1686b514c0ee859b4359cd4af22ad71675"
+        },
+        "fct_sessions": {
+          "estimated_select_bytes": 433306119,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "f1cc99f6a166578a0962f2c34fe83dceefc72c0d664c343a418a0892800ca94e"
+        },
+        "int_sessions": {
+          "estimated_select_bytes": 433306119,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "ed08045137a7317e28ef9d6dae8fdca3fa55da10a2d6e5993b05fe5eb801f419"
+        },
+        "stg_ga4_events": {
+          "estimated_select_bytes": 941420041,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "3497ddd7f3e5ec256c7b18a4b0a039e28175458109092238de8458d7f97581e1"
+        },
+        "stg_ga4_items": {
+          "estimated_select_bytes": 507842868,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "066bbf908f1a31ed368847a5e3fff126d540c4195b63db9eba840ba1b05d1088"
+        }
+      },
+      "native_compile_success": true,
+      "run_date": "2020-11-30",
+      "scope": "Public-source equivalent for hypothetical loaded history; not a future raw/DML estimate",
+      "source_code_matches_current_repository": true
+    },
+    {
+      "estimated_select_bytes_sum": 9495090030,
+      "history_through": "2021-01-31",
+      "models": {
+        "dim_date": {
+          "estimated_select_bytes": 0,
+          "executed": false,
+          "fits_current_validation_cap": true,
+          "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+        },
+        "fct_funnel_daily": {
+          "estimated_select_bytes": 1159791038,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "f31d2f452932f16053ade4f5c61a66c5bffb2706b668dbcede8233e52de3bf7b"
+        },
+        "fct_product_daily": {
+          "estimated_select_bytes": 1411793714,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "54db5507d8cd6602f75a5444c5e3a809482e28edecc3c7c0b16f9011bd8847b8"
+        },
+        "fct_sessions": {
+          "estimated_select_bytes": 1248818019,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "322f6d72eeaec889e32f94c08d5fba2be007a12e67a0462c32e6cc195fb5faf1"
+        },
+        "int_sessions": {
+          "estimated_select_bytes": 1248818019,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "cab750cf8bc970424c50a597c0d37477d03578ce5f63f343ce29991c2808977e"
+        },
+        "stg_ga4_events": {
+          "estimated_select_bytes": 2891550912,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "1069cd61cc0b3ec266ac2a1eba472e2ce5f1948508168ee5dc8be91a0a10d07b"
+        },
+        "stg_ga4_items": {
+          "estimated_select_bytes": 1534318328,
+          "executed": false,
+          "fits_current_validation_cap": false,
+          "sql_sha256": "e9db98cec974a5e55afdebef3b72870ff93281fe882e8b2a7251520328d0154e"
+        }
+      },
+      "native_compile_success": true,
+      "run_date": "2021-01-31",
+      "scope": "Public-source equivalent for hypothetical loaded history; not a future raw/DML estimate",
+      "source_code_matches_current_repository": true
+    }
+  ],
+  "scope": "Actual scheduler identity; native dbt compile with adapter SQL execution blocked; BigQuery SELECT dry runs only"
+}

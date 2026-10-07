@@ -1,0 +1,170 @@
+{
+  "checked_at_utc": "2026-10-06T22:57:05.002489+00:00",
+  "current_job_id": "p5_7_filtered_68077d30a2d444ee93eea1408c380dae",
+  "executed_job_ids": [
+    "p5_7_unfiltered_e2f92263c00e4447947c4439d9283ee0",
+    "p5_7_filtered_68077d30a2d444ee93eea1408c380dae"
+  ],
+  "plans": {
+    "filtered": {
+      "checked_at_utc": "2026-10-06T22:57:05.000988+00:00",
+      "estimated_bytes": 5685678,
+      "executed": true,
+      "filtered": true,
+      "first_day": "2021-01-25",
+      "job_id": "p5_7_filtered_68077d30a2d444ee93eea1408c380dae",
+      "labels": {
+        "app": "ga4_checkout_funnel",
+        "ga4_run": "p5_7_gate24_20210125",
+        "role": "partition_comparison"
+      },
+      "last_day": "2021-01-31",
+      "location": "US",
+      "maximum_bytes_billed": 134217728,
+      "project": "ga4-checkout-funnel",
+      "query": "\n        SELECT\n            COUNT(*) AS scan_scope_rows,\n            COUNTIF(event_date BETWEEN @first_day AND @last_day) AS window_events,\n            COUNT(DISTINCT IF(event_date BETWEEN @first_day AND @last_day, event_date, NULL)) AS observed_window_days,\n            COUNTIF((event_date BETWEEN @first_day AND @last_day) AND event_name = 'purchase') AS window_purchase_events,\n            SUM(IF((event_date BETWEEN @first_day AND @last_day) AND event_name = 'purchase',\n                COALESCE(CAST(ecommerce.purchase_revenue_in_usd AS BIGNUMERIC), 0), 0))\n                AS window_purchase_revenue_usd\n        FROM `ga4-checkout-funnel.ga4_raw.ga4_events`\n        WHERE event_date BETWEEN @first_day AND @last_day\n    ",
+      "query_parameters": [
+        {
+          "name": "first_day",
+          "parameterType": {
+            "type": "DATE"
+          },
+          "parameterValue": {
+            "value": "2021-01-25"
+          }
+        },
+        {
+          "name": "last_day",
+          "parameterType": {
+            "type": "DATE"
+          },
+          "parameterValue": {
+            "value": "2021-01-31"
+          }
+        }
+      ],
+      "query_sha256": "7964f53886b4d728e7de644a8b0c8bbe535b9d195f0c82eb59f5889dea1cd9df",
+      "table_id": "ga4-checkout-funnel.ga4_raw.ga4_events",
+      "use_query_cache": false
+    },
+    "unfiltered": {
+      "checked_at_utc": "2026-10-06T22:57:04.685537+00:00",
+      "estimated_bytes": 90364769,
+      "executed": true,
+      "filtered": false,
+      "first_day": "2021-01-25",
+      "job_id": "p5_7_unfiltered_e2f92263c00e4447947c4439d9283ee0",
+      "labels": {
+        "app": "ga4_checkout_funnel",
+        "ga4_run": "p5_7_gate24_20210125",
+        "role": "partition_comparison"
+      },
+      "last_day": "2021-01-31",
+      "location": "US",
+      "maximum_bytes_billed": 134217728,
+      "project": "ga4-checkout-funnel",
+      "query": "\n        SELECT\n            COUNT(*) AS scan_scope_rows,\n            COUNTIF(event_date BETWEEN @first_day AND @last_day) AS window_events,\n            COUNT(DISTINCT IF(event_date BETWEEN @first_day AND @last_day, event_date, NULL)) AS observed_window_days,\n            COUNTIF((event_date BETWEEN @first_day AND @last_day) AND event_name = 'purchase') AS window_purchase_events,\n            SUM(IF((event_date BETWEEN @first_day AND @last_day) AND event_name = 'purchase',\n                COALESCE(CAST(ecommerce.purchase_revenue_in_usd AS BIGNUMERIC), 0), 0))\n                AS window_purchase_revenue_usd\n        FROM `ga4-checkout-funnel.ga4_raw.ga4_events`\n        \n    ",
+      "query_parameters": [
+        {
+          "name": "first_day",
+          "parameterType": {
+            "type": "DATE"
+          },
+          "parameterValue": {
+            "value": "2021-01-25"
+          }
+        },
+        {
+          "name": "last_day",
+          "parameterType": {
+            "type": "DATE"
+          },
+          "parameterValue": {
+            "value": "2021-01-31"
+          }
+        }
+      ],
+      "query_sha256": "11d3143afffc2c91af0ead061908453bea06cc3072554ab602a98a79346e9a4d",
+      "table_id": "ga4-checkout-funnel.ga4_raw.ga4_events",
+      "use_query_cache": false
+    }
+  },
+  "results": {
+    "filtered": {
+      "billed_bytes": 10485760,
+      "cache_hit": false,
+      "ended_at_utc": "2026-10-06T22:57:06.534000+00:00",
+      "error_result": null,
+      "errors": null,
+      "estimated_bytes": 5685678,
+      "job_id": "p5_7_filtered_68077d30a2d444ee93eea1408c380dae",
+      "labels": {
+        "app": "ga4_checkout_funnel",
+        "ga4_run": "p5_7_gate24_20210125",
+        "role": "partition_comparison"
+      },
+      "location": "US",
+      "maximum_bytes_billed": 134217728,
+      "processed_bytes": 5685678,
+      "project": "ga4-checkout-funnel",
+      "query_sha256": "7964f53886b4d728e7de644a8b0c8bbe535b9d195f0c82eb59f5889dea1cd9df",
+      "row": {
+        "observed_window_days": 7,
+        "scan_scope_rows": 273507,
+        "window_events": 273507,
+        "window_purchase_events": 343,
+        "window_purchase_revenue_usd": "5546"
+      },
+      "rows": [
+        {
+          "observed_window_days": 7,
+          "scan_scope_rows": 273507,
+          "window_events": 273507,
+          "window_purchase_events": 343,
+          "window_purchase_revenue_usd": "5546"
+        }
+      ],
+      "started_at_utc": "2026-10-06T22:57:06.289000+00:00",
+      "state": "DONE"
+    },
+    "unfiltered": {
+      "billed_bytes": 91226112,
+      "cache_hit": false,
+      "ended_at_utc": "2026-10-06T22:57:05.581000+00:00",
+      "error_result": null,
+      "errors": null,
+      "estimated_bytes": 90364769,
+      "job_id": "p5_7_unfiltered_e2f92263c00e4447947c4439d9283ee0",
+      "labels": {
+        "app": "ga4_checkout_funnel",
+        "ga4_run": "p5_7_gate24_20210125",
+        "role": "partition_comparison"
+      },
+      "location": "US",
+      "maximum_bytes_billed": 134217728,
+      "processed_bytes": 90364769,
+      "project": "ga4-checkout-funnel",
+      "query_sha256": "11d3143afffc2c91af0ead061908453bea06cc3072554ab602a98a79346e9a4d",
+      "row": {
+        "observed_window_days": 7,
+        "scan_scope_rows": 4295584,
+        "window_events": 273507,
+        "window_purchase_events": 343,
+        "window_purchase_revenue_usd": "5546"
+      },
+      "rows": [
+        {
+          "observed_window_days": 7,
+          "scan_scope_rows": 4295584,
+          "window_events": 273507,
+          "window_purchase_events": 343,
+          "window_purchase_revenue_usd": "5546"
+        }
+      ],
+      "started_at_utc": "2026-10-06T22:57:05.168000+00:00",
+      "state": "DONE"
+    }
+  },
+  "scope": "Two uncached US SELECTs; no failed-job resubmission or warehouse writes",
+  "status": "passed"
+}

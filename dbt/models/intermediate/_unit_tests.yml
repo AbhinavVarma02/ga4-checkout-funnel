@@ -1,0 +1,36 @@
+version: 2
+
+unit_tests:
+  - name: session_logic_handles_midnight_order_and_first_visit
+    description: >
+      Fixture-only check of session grain, midnight assignment, repeated cart
+      after a view, purchase revenue, and the in-window first-visit cohort.
+    model: int_sessions
+    given:
+      - input: ref('stg_ga4_events')
+        format: sql
+        fixture: session_logic_input
+    expect:
+      rows:
+        - {user_pseudo_id: fixture_user_1, ga_session_id: 1, session_start_date: '2020-11-01', event_count: 7, is_new_user_in_window: true, has_purchase: true, ordered_purchase: true, purchase_revenue_usd: 10}
+        - {user_pseudo_id: fixture_user_2, ga_session_id: 2, session_start_date: '2020-11-01', event_count: 1, is_new_user_in_window: false, has_purchase: true, ordered_purchase: false, purchase_revenue_usd: 5}
+
+  - name: session_logic_handles_ties_missing_keys_and_late_first_visit
+    description: Synthetic fixture; timestamp ties do not prove order and sessionless first_visit still classifies prior valid sessions.
+    model: int_sessions
+    given:
+      - input: ref('stg_ga4_events')
+        rows:
+          - {user_pseudo_id: cohort_user, ga_session_id: 1, event_date: '2020-11-01', event_timestamp_micros: 1, event_name: session_start}
+          - {user_pseudo_id: cohort_user, ga_session_id: 1, event_date: '2020-11-01', event_timestamp_micros: 2, event_name: purchase, purchase_revenue_usd: 5}
+          - {user_pseudo_id: cohort_user, ga_session_id: null, event_date: '2020-11-05', event_timestamp_micros: 10, event_name: first_visit}
+          - {user_pseudo_id: tied_user, ga_session_id: 1, event_date: '2020-11-01', event_timestamp_micros: 3, event_name: session_start}
+          - {user_pseudo_id: tied_user, ga_session_id: 1, event_date: '2020-11-01', event_timestamp_micros: 3, event_name: view_item}
+          - {user_pseudo_id: tied_user, ga_session_id: 1, event_date: '2020-11-01', event_timestamp_micros: 3, event_name: add_to_cart}
+          - {user_pseudo_id: tied_user, ga_session_id: 1, event_date: '2020-11-01', event_timestamp_micros: 3, event_name: begin_checkout}
+          - {user_pseudo_id: tied_user, ga_session_id: 1, event_date: '2020-11-01', event_timestamp_micros: 3, event_name: purchase, purchase_revenue_usd: 7}
+          - {user_pseudo_id: null, ga_session_id: 1, event_date: '2020-11-01', event_timestamp_micros: 4, event_name: purchase, purchase_revenue_usd: 8}
+    expect:
+      rows:
+        - {user_pseudo_id: cohort_user, ga_session_id: 1, session_start_date: '2020-11-01', event_count: 2, is_new_user_in_window: true, has_view_item: false, has_purchase: true, ordered_view_item: false, ordered_purchase: false, purchase_revenue_usd: 5}
+        - {user_pseudo_id: tied_user, ga_session_id: 1, session_start_date: '2020-11-01', event_count: 5, is_new_user_in_window: false, has_view_item: true, has_purchase: true, ordered_view_item: false, ordered_purchase: false, purchase_revenue_usd: 7}

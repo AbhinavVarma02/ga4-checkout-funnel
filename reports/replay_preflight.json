@@ -1,0 +1,169 @@
+{
+  "checked_at_utc": "2026-10-05T19:47:36.180810+00:00",
+  "data_tests": {
+    "test.ga4_checkout_funnel.accepted_values_fct_funnel_daily_funnel_mode__any_order__strict_ordered.29c89b4bdc": {
+      "estimated_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "72473063ba90d1be11aa0a4d289e5bdb94d0d7fa7f9c5bbd4bf637f079c18b93"
+    },
+    "test.ga4_checkout_funnel.accepted_values_fct_funnel_daily_step_name__session_start__view_item__add_to_cart__begin_checkout__purchase.ff182103f3": {
+      "estimated_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "982ef8714dc013ee8c5b451dc9a1167416b765457683c4db61eaa2cb3aa1b304"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_funnel_daily_funnel_mode.c58c441e6e": {
+      "estimated_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "024640a02d272650ca14bfa786456b3bb53d59f964d528f4fe942463609bb165"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_funnel_daily_reached_sessions.b97e2a0abe": {
+      "estimated_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "9f6889694d03c52bb65b0c6c157a843239c479a2dd2cd37cf29d48a67966616d"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_funnel_daily_step_name.f8869c365b": {
+      "estimated_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "0a9a9ca00c250fdcfad4e8c08e3fedf39eb3f611826ab9f36f194ba2c3f6cc84"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_sessions_ga_session_id.f602bfd9f5": {
+      "estimated_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "1350523a50745d610ad13e6a9ee8dbc3e7d35475cc02d6c77c8cd3fef8a020a6"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_sessions_session_start_date.5cf94a9cc6": {
+      "estimated_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "7698fa63209774666806efbfa444ec63b213d61907052f119d07e7939ff6de3d"
+    },
+    "test.ga4_checkout_funnel.not_null_fct_sessions_user_pseudo_id.30ba8351c7": {
+      "estimated_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "0243b50fe2ab26298baf68e00e4b659e9d6f9d893244fadc9d03a9a2253506ed"
+    },
+    "test.ga4_checkout_funnel.not_null_int_sessions_ga_session_id.0a82b5147e": {
+      "estimated_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "673da157bcc1ced404c07fa2a17e6bfbc270ea73ab38ace3d64883e4ff14422f"
+    },
+    "test.ga4_checkout_funnel.not_null_int_sessions_session_start_date.94b5486ccb": {
+      "estimated_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "8173267dd729960d991e5ba66e3646692dbcd92b42a314e1b861eeff52553e09"
+    },
+    "test.ga4_checkout_funnel.not_null_int_sessions_user_pseudo_id.730a2c117a": {
+      "estimated_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "10720e6b76daaae0e1d0af62a4d0d8535edd364bb9a9ef99a0e504c09d39dcd8"
+    },
+    "test.ga4_checkout_funnel.ordered_funnel_nonincreasing": {
+      "estimated_bytes": 8388616,
+      "executed": false,
+      "sql_sha256": "cf48567dc2f2779390d858d9c7e33fa1624672092c9802b6016f3cc44307d01d"
+    },
+    "test.ga4_checkout_funnel.unique_session_pair_fct_sessions_ga_session_id__user_pseudo_id.961881c8f7": {
+      "estimated_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "625571d85cae9c979fb7f0e12c63ce61ab7383f39dec5e08aeb62e934e1a2f46"
+    },
+    "test.ga4_checkout_funnel.unique_session_pair_int_sessions_ga_session_id__user_pseudo_id.a1513e91e5": {
+      "estimated_bytes": 7490869,
+      "executed": false,
+      "sql_sha256": "f4125ebae8d77be7e3448f0a134fcd19a7e7c1782a2fa74a02514fd0ef47d69d"
+    }
+  },
+  "estimated_select_bytes_sum": 174986425,
+  "executed": false,
+  "initial_build_query_cap_sum": 2818572288,
+  "limitations": [
+    "No models, tests, loads, reruns, DML or Airflow tasks executed",
+    "SELECT estimates do not validate CTAS or insert_overwrite script costs",
+    "Query cap sum is for one initial build without retries; storage is additional",
+    "Account-wide remaining allowance and total spend remain unverified"
+  ],
+  "maximum_bytes_billed_per_job": 134217728,
+  "metadata": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "analytics_dataset_exists": false,
+    "location": "US",
+    "project": "ga4-checkout-funnel",
+    "raw_logical_bytes": 23503520,
+    "raw_metadata_compatible": true,
+    "raw_modified_at": "2026-10-05T19:16:47.655000+00:00",
+    "raw_rows": 31272,
+    "raw_table": "ga4-checkout-funnel:ga4_raw.ga4_events",
+    "scope_note": "Metadata only; existing P5.2 evidence establishes the first-day copy"
+  },
+  "models": {
+    "dim_date": {
+      "analytics_dataset": "ga4_replay_analytics",
+      "checked_at_utc": "2026-10-05T19:47:28.984658+00:00",
+      "estimated_bytes": 0,
+      "executed": false,
+      "maximum_bytes_billed": 134217728,
+      "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+    },
+    "fct_funnel_daily": {
+      "analytics_dataset": "ga4_replay_analytics",
+      "checked_at_utc": "2026-10-05T19:47:28.784706+00:00",
+      "estimated_bytes": 8388728,
+      "executed": false,
+      "maximum_bytes_billed": 134217728,
+      "sql_sha256": "a7442fe3221d9c84bd310db2eca96085a1b15aa7d743aea4c276d40319e42dcf"
+    },
+    "fct_product_daily": {
+      "analytics_dataset": "ga4_replay_analytics",
+      "checked_at_utc": "2026-10-05T19:47:27.675282+00:00",
+      "estimated_bytes": 9555803,
+      "executed": false,
+      "maximum_bytes_billed": 134217728,
+      "sql_sha256": "898a54b7a12f579a0556b14ae28c99493e980a1c35b53c4db1aadd3b05004322"
+    },
+    "fct_sessions": {
+      "analytics_dataset": "ga4_replay_analytics",
+      "checked_at_utc": "2026-10-05T19:47:28.411312+00:00",
+      "estimated_bytes": 9049654,
+      "executed": false,
+      "maximum_bytes_billed": 134217728,
+      "sql_sha256": "24237d8d83b044c766d8bdd607766747e8a6276e07b6ad51f739558c843b5ce1"
+    },
+    "int_sessions": {
+      "analytics_dataset": "ga4_replay_analytics",
+      "checked_at_utc": "2026-10-05T19:47:27.268612+00:00",
+      "estimated_bytes": 9049654,
+      "executed": false,
+      "maximum_bytes_billed": 134217728,
+      "sql_sha256": "27722a43d63ff24cbadc9ce635d27788d8f20f44c3df21aa4efea92dc211d4d2"
+    },
+    "stg_ga4_events": {
+      "analytics_dataset": "ga4_replay_analytics",
+      "checked_at_utc": "2026-10-05T19:47:26.379429+00:00",
+      "estimated_bytes": 18469665,
+      "executed": false,
+      "maximum_bytes_billed": 134217728,
+      "sql_sha256": "96a0b7f141dd23cd8c05c20ddb5b765f9b115f435fe82b8f0393823b5695ba4f"
+    },
+    "stg_ga4_items": {
+      "analytics_dataset": "ga4_replay_analytics",
+      "checked_at_utc": "2026-10-05T19:47:26.739822+00:00",
+      "estimated_bytes": 10214273,
+      "executed": false,
+      "maximum_bytes_billed": 134217728,
+      "sql_sha256": "98a5ccd2d83367524718159b2d742d3b7258329352d4666a163734312a01fe55"
+    }
+  },
+  "pricing": {
+    "checked_date": "2026-10-05",
+    "initial_build_query_cap_cost_usd": "0.016021728515625",
+    "on_demand_usd_per_tib": "6.25",
+    "scope": "Gross query planning ceiling for one initial build at per-job caps; retries and storage additional; not an invoice or account-wide allowance check",
+    "source": "https://cloud.google.com/bigquery/pricing?authuser=1"
+  },
+  "scope": "Metadata APIs, native compilation with SQL execution forbidden, and SELECT dry runs only",
+  "source_evidence_present": true,
+  "source_key": "warehouse_builds.p5_2_raw_extraction",
+  "variables": {
+    "pipeline_mode": "replay",
+    "run_date": "2020-11-01"
+  }
+}

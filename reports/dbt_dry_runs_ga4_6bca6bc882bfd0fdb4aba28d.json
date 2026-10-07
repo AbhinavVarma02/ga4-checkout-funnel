@@ -1,0 +1,58 @@
+{
+  "dbt_dim_date": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:52:08.281892+00:00",
+    "estimated_bytes": 0,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+  },
+  "dbt_fct_funnel_daily": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:52:08.107093+00:00",
+    "estimated_bytes": 973915246,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "84bf608f025151234a1a82f68828ebc7e27c2317b0d723a6dae0eeb03be5282d"
+  },
+  "dbt_fct_product_daily": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:52:07.276585+00:00",
+    "estimated_bytes": 1187500306,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "8335bc82ae4f81551106c5b00fde8475709bd30fd8ccd36f89bf51890bf066d2"
+  },
+  "dbt_fct_sessions": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:52:07.665044+00:00",
+    "estimated_bytes": 1048687754,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "bced4f6596beee29b6cfdf4ecd4883a2af42be34b0d07b40e48285ecf82cb36e"
+  },
+  "dbt_int_sessions": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:52:06.911251+00:00",
+    "estimated_bytes": 1048687754,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "27722a43d63ff24cbadc9ce635d27788d8f20f44c3df21aa4efea92dc211d4d2"
+  },
+  "dbt_stg_ga4_events": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:52:06.149148+00:00",
+    "estimated_bytes": 2443862509,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "96a0b7f141dd23cd8c05c20ddb5b765f9b115f435fe82b8f0393823b5695ba4f"
+  },
+  "dbt_stg_ga4_items": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:52:06.451166+00:00",
+    "estimated_bytes": 1290981087,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "98a5ccd2d83367524718159b2d742d3b7258329352d4666a163734312a01fe55"
+  }
+}

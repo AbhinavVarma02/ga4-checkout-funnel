@@ -1,0 +1,6 @@
+dbt-core==1.12.5
+dbt-bigquery==1.12.1
+google-cloud-bigquery==3.46.1
+python-dotenv==1.2.4
+opentelemetry-api==1.45.0
+opentelemetry-sdk==1.45.0

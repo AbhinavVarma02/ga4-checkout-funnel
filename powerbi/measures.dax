@@ -1,0 +1,144 @@
+// Create each measure separately with Modeling > New measure.
+// Table and column names match dbt marts; relationships are in the build guide.
+// No Power BI engine has executed these expressions yet: owner validation required.
+
+Sessions = COUNTROWS ( fct_sessions )
+
+Purchase Sessions =
+    CALCULATE ( [Sessions], fct_sessions[has_purchase] = TRUE () )
+
+Session Conversion = DIVIDE ( [Purchase Sessions], [Sessions] )
+
+Purchase Revenue USD = SUM ( fct_sessions[purchase_revenue_usd] )
+
+Purchase Events = SUM ( fct_sessions[purchase_events] )
+
+Revenue per Session USD = DIVIDE ( [Purchase Revenue USD], [Sessions] )
+
+Sessions without Observed Start =
+    CALCULATE ( [Sessions], fct_sessions[has_session_start] = FALSE () )
+
+Funnel Reached Sessions =
+    IF (
+        HASONEVALUE ( fct_funnel_daily[funnel_mode] )
+            && HASONEVALUE ( fct_funnel_daily[step_order] ),
+        SUM ( fct_funnel_daily[reached_sessions] )
+    )
+
+Funnel Next Step Sessions =
+    IF (
+        HASONEVALUE ( fct_funnel_daily[funnel_mode] )
+            && HASONEVALUE ( fct_funnel_daily[step_order] ),
+        SUM ( fct_funnel_daily[next_step_reached_sessions] )
+    )
+
+Next Step Conversion = DIVIDE ( [Funnel Next Step Sessions], [Funnel Reached Sessions] )
+
+Funnel Lost Sessions =
+    IF (
+        SELECTEDVALUE ( fct_funnel_daily[step_order] ) < 5
+            && NOT ISBLANK ( [Funnel Reached Sessions] ),
+        [Funnel Reached Sessions] - [Funnel Next Step Sessions]
+    )
+
+// Use these fixed any-order entry-to-view measures on the scenario page.
+// Date/device/country dimension filters remain active; mode and step are overridden.
+Entry Sessions Any Order =
+    CALCULATE (
+        SUM ( fct_funnel_daily[reached_sessions] ),
+        REMOVEFILTERS (
+            fct_funnel_daily[funnel_mode],
+            fct_funnel_daily[step_order],
+            fct_funnel_daily[step_name]
+        ),
+        fct_funnel_daily[funnel_mode] = "any_order",
+        fct_funnel_daily[step_order] = 1
+    )
+
+View Sessions Any Order =
+    CALCULATE (
+        SUM ( fct_funnel_daily[reached_sessions] ),
+        REMOVEFILTERS (
+            fct_funnel_daily[funnel_mode],
+            fct_funnel_daily[step_order],
+            fct_funnel_daily[step_name]
+        ),
+        fct_funnel_daily[funnel_mode] = "any_order",
+        fct_funnel_daily[step_order] = 2
+    )
+
+View Continuer Purchase Revenue USD =
+    CALCULATE (
+        SUM ( fct_funnel_daily[purchase_revenue_usd_among_reached] ),
+        REMOVEFILTERS (
+            fct_funnel_daily[funnel_mode],
+            fct_funnel_daily[step_order],
+            fct_funnel_daily[step_name]
+        ),
+        fct_funnel_daily[funnel_mode] = "any_order",
+        fct_funnel_daily[step_order] = 2
+    )
+
+Entry Dropouts Any Order = [Entry Sessions Any Order] - [View Sessions Any Order]
+
+// Create recovery_assumption as a disconnected Enter data table: 0.05, 0.10, 0.20.
+Assumed Recovery Fraction = SELECTEDVALUE ( recovery_assumption[fraction] )
+
+Modeled Recovery USD =
+    VAR Opportunity =
+        [Entry Dropouts Any Order]
+            * DIVIDE ( [View Continuer Purchase Revenue USD], [View Sessions Any Order] )
+    VAR ScenarioValue = Opportunity * [Assumed Recovery Fraction]
+    RETURN
+        IF (
+            NOT ISBLANK ( [Assumed Recovery Fraction] )
+                && [View Sessions Any Order] > 0,
+            ROUNDDOWN ( ScenarioValue * 100, 0 ) / 100
+        )
+
+Item Revenue USD = SUM ( fct_product_daily[purchase_item_revenue_usd] )
+
+Product Viewing Sessions =
+    IF (
+        HASONEVALUE ( fct_product_daily[item_id] )
+            && HASONEVALUE ( fct_product_daily[item_category] ),
+        SUM ( fct_product_daily[viewing_sessions] )
+    )
+
+Product View and Purchase Sessions =
+    IF (
+        HASONEVALUE ( fct_product_daily[item_id] )
+            && HASONEVALUE ( fct_product_daily[item_category] ),
+        SUM ( fct_product_daily[view_and_purchase_sessions] )
+    )
+
+Product Purchase without View Sessions =
+    IF (
+        HASONEVALUE ( fct_product_daily[item_id] )
+            && HASONEVALUE ( fct_product_daily[item_category] ),
+        SUM ( fct_product_daily[purchase_without_view_sessions] )
+    )
+
+Product View to Purchase Conversion =
+    DIVIDE ( [Product View and Purchase Sessions], [Product Viewing Sessions] )
+
+// category_summary is disconnected and covers the complete source window only.
+Category Viewing Sessions Full Window =
+    IF (
+        HASONEVALUE ( category_summary[item_category] ),
+        SUM ( category_summary[viewing_sessions] )
+    )
+
+Category View and Purchase Sessions Full Window =
+    IF (
+        HASONEVALUE ( category_summary[item_category] ),
+        SUM ( category_summary[view_and_purchase_sessions] )
+    )
+
+Category Conversion Full Window =
+    DIVIDE (
+        [Category View and Purchase Sessions Full Window],
+        [Category Viewing Sessions Full Window]
+    )
+
+Category Item Revenue USD Full Window = SUM ( category_summary[purchase_item_revenue_usd] )

@@ -1,0 +1,25 @@
+{
+  "label": "Fixture synthetic reconciliation rows; not real GA4 data",
+  "source": {
+    "side": "source",
+    "event_count": 3,
+    "purchase_count": 1,
+    "purchase_with_transaction_id": 1,
+    "distinct_transaction_ids": 1,
+    "purchase_revenue_count": 1,
+    "purchase_revenue_total": "12.34",
+    "purchase_revenue_usd_count": 1,
+    "purchase_revenue_usd_total": "12.34"
+  },
+  "raw": {
+    "side": "raw",
+    "event_count": 3,
+    "purchase_count": 1,
+    "purchase_with_transaction_id": 1,
+    "distinct_transaction_ids": 1,
+    "purchase_revenue_count": 1,
+    "purchase_revenue_total": "12.34",
+    "purchase_revenue_usd_count": 1,
+    "purchase_revenue_usd_total": "12.34"
+  }
+}

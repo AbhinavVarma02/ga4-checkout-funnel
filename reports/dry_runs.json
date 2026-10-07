@@ -1,0 +1,1568 @@
+{
+  "01_schema_columns": {
+    "checked_at_utc": "2026-10-04T19:18:23.526747+00:00",
+    "estimated_bytes": 10485760,
+    "executed": true,
+    "job_id": "a2e021e6-d253-4e4f-9ea1-d39762802260"
+  },
+  "01_schema_nested": {
+    "checked_at_utc": "2026-10-04T19:18:37.384954+00:00",
+    "estimated_bytes": 10485760,
+    "executed": true,
+    "job_id": "83398856-ccf8-49ae-bfd2-508110af853a"
+  },
+  "02_event_names": {
+    "checked_at_utc": "2026-10-04T19:19:04.529503+00:00",
+    "estimated_bytes": 98910401,
+    "executed": true,
+    "job_id": "5fdf3221-5e7c-4ee2-93b6-f20ae32a5587"
+  },
+  "03_event_params": {
+    "checked_at_utc": "2026-10-04T19:19:35.351151+00:00",
+    "estimated_bytes": 1411194689,
+    "executed": true,
+    "job_id": "5155ada8-2378-4ebd-a1c2-0e504a00e6c7"
+  },
+  "04_daily_profile": {
+    "checked_at_utc": "2026-10-04T19:24:41.171338+00:00",
+    "estimated_bytes": 1038149379,
+    "executed": true,
+    "job_id": "4302be0a-6363-406d-a7d2-6444b43d5c99"
+  },
+  "05_commerce_profile": {
+    "checked_at_utc": "2026-10-04T19:25:00.536668+00:00",
+    "estimated_bytes": 1099665202,
+    "executed": true,
+    "job_id": "f4fb1677-eeb7-43f1-8a80-a5e5b8dfed8e"
+  },
+  "06_midnight_sessions": {
+    "checked_at_utc": "2026-10-04T19:25:38.619373+00:00",
+    "estimated_bytes": 982194818,
+    "executed": true,
+    "job_id": "3302905a-ff33-4062-880d-71c10e1681c2"
+  },
+  "07_purchase_ids": {
+    "checked_at_utc": "2026-10-04T19:25:58.051101+00:00",
+    "estimated_bytes": 107104921,
+    "executed": true,
+    "job_id": "19aa681a-8dee-462b-8d55-2c6fa65e5ff4"
+  },
+  "08_items_profile": {
+    "checked_at_utc": "2026-10-04T19:20:04.486531+00:00",
+    "estimated_bytes": 1048427370,
+    "executed": true,
+    "job_id": "67339088-75ff-4196-bf77-c8d2a52ed742"
+  },
+  "09_session_attribution": {
+    "checked_at_utc": "2026-10-04T19:21:22.571932+00:00",
+    "estimated_bytes": 1604978110,
+    "executed": true,
+    "job_id": "2e15efa6-4047-434d-b898-b05ea032a19d"
+  },
+  "10_revenue_reconciliation": {
+    "checked_at_utc": "2026-10-04T19:27:19.084984+00:00",
+    "estimated_bytes": 1048556778,
+    "executed": true,
+    "job_id": "d69408f4-f1eb-43e2-8f97-8fdeabc64b38"
+  },
+  "11_purchase_id_reconciliation": {
+    "checked_at_utc": "2026-10-04T19:27:56.862733+00:00",
+    "estimated_bytes": 107104921,
+    "executed": true,
+    "job_id": "e4bdb33e-9915-4c0e-8fa5-7f9b608795ca"
+  },
+  "backfill_extraction_plan": {
+    "checked_at_utc": "2026-10-05T21:07:35.786267+00:00",
+    "cloud_changes": false,
+    "days": 92,
+    "estimated_bytes": 3583657854,
+    "executed_selects": 0,
+    "first_day": "2020-11-01",
+    "first_day_existing_estimate_reused": true,
+    "gross_source_scan_estimate_usd_before_billing_rounding": "0.02037073644487463752739131451",
+    "last_day": "2021-01-31",
+    "limitations": [
+      "First-day existing immutable-sample estimate reused rather than repeated; 91 new days are dry-run-only",
+      "Future full-window backfill includes a first-day overwrite and needs explicit review; no existing partition was rewritten",
+      "Only raw extraction source scans estimated; no whole pipeline price, savings or account allowance claimed",
+      "Current Docker/runtime and broader load/model limits remain owner-gated"
+    ],
+    "loads": 0,
+    "location": "US",
+    "maximum_bytes_billed_per_day_planning_cap": 134217728,
+    "maximum_estimated_bytes_one_day": 79162796,
+    "native_dry_runs_this_checkpoint": 91,
+    "pricing_source_key": "warehouse_builds.p5_3_replay_initialization.pricing",
+    "project": "ga4-checkout-funnel",
+    "rows": [
+      {
+        "dry_run": true,
+        "estimated_bytes": 23566064,
+        "event_date": "2020-11-01",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": false,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201101`",
+        "query_sha256": "ab2f060141783fa650256f6e7293494406be3b99ec31450fd3eae0178e70828a",
+        "source_key": "warehouse_builds.p5_2_raw_extraction.preflight.extraction_dry_run"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 37495889,
+        "event_date": "2020-11-02",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201102`",
+        "query_sha256": "4b9f3f6b7e2820aa1aa8155c989685ef0ddee687535b1fa7a4368ca45363c1c2",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 47616695,
+        "event_date": "2020-11-03",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201103`",
+        "query_sha256": "c8343a8a1aaa7446e12826adcbebeab470927c6c8c22c514be37290aaf0c28ee",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 40020148,
+        "event_date": "2020-11-04",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201104`",
+        "query_sha256": "94bafb88e6fbbbc94bf56d110cc978d3be8d8166d2ee9aedefe39020ba123b39",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 40037683,
+        "event_date": "2020-11-05",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201105`",
+        "query_sha256": "8e13cd258bddee682185ab87c0ca6e9fd0e300aa637d7ec445046fdce0baec6b",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 39305195,
+        "event_date": "2020-11-06",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201106`",
+        "query_sha256": "4bd4c883e135847190f3ad31cc6ba8a5343ecf8b41322078bae263601673045e",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 26897501,
+        "event_date": "2020-11-07",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201107`",
+        "query_sha256": "77d00fbcb63e7d3c87ab9f94ac6ff1b26d83dacabcdf4b4074027a0a150e7c89",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 22511431,
+        "event_date": "2020-11-08",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201108`",
+        "query_sha256": "3aff56af2bfa2aacff6150bce6812feea9500c00004d167aa692e19c7fb598fa",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 34291840,
+        "event_date": "2020-11-09",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201109`",
+        "query_sha256": "803139cf5cf92c9d270a6847b1956b04269875509477f2fbae3d79921725043d",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 40588395,
+        "event_date": "2020-11-10",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201110`",
+        "query_sha256": "d882b8a46920cbf4491f2e2c93e246eb867f5bd5bcb2c41e88b7959e55422ae2",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 40405425,
+        "event_date": "2020-11-11",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201111`",
+        "query_sha256": "c88dc539d1ccb66b07f60066a1bf1d83bbb6b93ce0e75b2f48353fc60de54154",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 38329268,
+        "event_date": "2020-11-12",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201112`",
+        "query_sha256": "9744d0ba49eba3c9e370e3c0f8c8ec71d5f8b79a28b07b3ff5e01d9d5abbbe32",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 38881841,
+        "event_date": "2020-11-13",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201113`",
+        "query_sha256": "ff22eee2bd6aba28942748238cffc61dceef2266b7eeb82727a5280da8e1dbff",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 25691751,
+        "event_date": "2020-11-14",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201114`",
+        "query_sha256": "4220ba4cd52dba9b4bf1ba753f84a273ddbfcdfd2c5236faf2d9b49cde24eebe",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 23300081,
+        "event_date": "2020-11-15",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201115`",
+        "query_sha256": "54b01ccfd14ca567f5ea44760afb8534a372567cdc15bee8b20b801d0954ab49",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 38278567,
+        "event_date": "2020-11-16",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201116`",
+        "query_sha256": "40bf12f7033c5917f640554b604738196921479bdb093960b0704904bbcad240",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 49027371,
+        "event_date": "2020-11-17",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201117`",
+        "query_sha256": "5336dc1b1345c1e23472f11a2727dfff5f77d2e6b03c2e9bb9adae1b9fc14853",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 44810491,
+        "event_date": "2020-11-18",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201118`",
+        "query_sha256": "0e2dbad2f64194da0cd490c662611d1e2f238ccd57a209cc59c3092070a9a0a2",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 41643900,
+        "event_date": "2020-11-19",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201119`",
+        "query_sha256": "128732ab75a463dcf1127451fcabf4f94de5f7403ebec5b0aea50ca411046657",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 45785479,
+        "event_date": "2020-11-20",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201120`",
+        "query_sha256": "f6b8260a4a16f7e8f737d8a99ade5d035c46e8a3f4cbbad3885c0d7f3f3ad15c",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 32016045,
+        "event_date": "2020-11-21",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201121`",
+        "query_sha256": "d165ca8ad7400a799b2b881b873f973793c4be9aab8cb0f95ec0d694a255aafa",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 27553175,
+        "event_date": "2020-11-22",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201122`",
+        "query_sha256": "248c4eecbea221e7eb7a6834c5c6382ba2fa6d8d4872f6fe34c8cbf7909462d8",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 40933394,
+        "event_date": "2020-11-23",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201123`",
+        "query_sha256": "2a072e57de87a3148719dd2a0d744dc4448e41514cda5a93ae15473d19e51bb4",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 52034659,
+        "event_date": "2020-11-24",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201124`",
+        "query_sha256": "639be6c7ea7adf1803c65e4d5292ec5fdd78a74ddd64a394dff5333376f8eaaf",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 53506681,
+        "event_date": "2020-11-25",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201125`",
+        "query_sha256": "d85e194c602820a6c8743d8f75eca18c749c21cc2ef4602791071dbc2ec9d868",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 46355267,
+        "event_date": "2020-11-26",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201126`",
+        "query_sha256": "1f9f632df34521c8664da01ff9bea421b95df3a51c646157ae32fce698424b98",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 47817391,
+        "event_date": "2020-11-27",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201127`",
+        "query_sha256": "c1569a979a5133493e10c4a78a73fe67e19820551b31af405da64f4782c19ae7",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 39177692,
+        "event_date": "2020-11-28",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201128`",
+        "query_sha256": "348fb52d82930a3cd6c6922a0164407a8354afaa59a2b45786de0792a8ec4606",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 35571917,
+        "event_date": "2020-11-29",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201129`",
+        "query_sha256": "87ae4ac016574f0e2f7db652bb1de3ba0b7a5f6971bfbb047903794fa2c613fe",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 64757316,
+        "event_date": "2020-11-30",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201130`",
+        "query_sha256": "4b9e31c11bb70eb68d4d60c0ca1a7e29c6185797475a826adecf2a423cd2fac1",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 64880131,
+        "event_date": "2020-12-01",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201201`",
+        "query_sha256": "074b005364fe572887ad0bb97340c55428df24920a92818fddadfbfb49b3bb4d",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 60433471,
+        "event_date": "2020-12-02",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201202`",
+        "query_sha256": "5cd45f82b505473703a6a45d4a0dbefa690fcd62081c768f4a6df6517f7a8770",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 62907703,
+        "event_date": "2020-12-03",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201203`",
+        "query_sha256": "b7d48e971cb4c2dd08ea427afefcdb224b1b13c413f80be687a6d73143628987",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 64208231,
+        "event_date": "2020-12-04",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201204`",
+        "query_sha256": "ba143615451127ed435a60ccf73aad6555119e1d8baa4ac96b797de62d20dc71",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 44542673,
+        "event_date": "2020-12-05",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201205`",
+        "query_sha256": "45498afe68e4103cbb1313308b2e187704f27f91624ad1f3541ce8cd0dbd780c",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 36735007,
+        "event_date": "2020-12-06",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201206`",
+        "query_sha256": "5b997ec44a677f8f5e2c03706aebe8bf58b5802086a73b0aa2aad409170945b7",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 63341597,
+        "event_date": "2020-12-07",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201207`",
+        "query_sha256": "fc43ecea3261b73861a2b4bda10cc4209e6d3995243d2c966ecd2afab6b3c294",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 79162796,
+        "event_date": "2020-12-08",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201208`",
+        "query_sha256": "016b2f56b445d79d59444fc624764f0f8e8c5f9a381f1664ab117993c5e2bb32",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 73365151,
+        "event_date": "2020-12-09",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201209`",
+        "query_sha256": "e7ffe5fbcb586c381bf288a94877c3403111f341e34684d9ba96172989e8d52c",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 72435279,
+        "event_date": "2020-12-10",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201210`",
+        "query_sha256": "d3b0a500247b9ac677993fc1893467fe5a0962b45162da8202a5bbc0c211ee7a",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 70852484,
+        "event_date": "2020-12-11",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201211`",
+        "query_sha256": "81ee4385d2231c352211e8cf9247ed05decb3d20cafe5fdbc0da0290ce57877a",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 49824772,
+        "event_date": "2020-12-12",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201212`",
+        "query_sha256": "df2ba348c069260ca69f77e890ff3fc907fe4414449c1405d1793a89cd7b5c2a",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 40208910,
+        "event_date": "2020-12-13",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201213`",
+        "query_sha256": "b56f37e2f6eaf7cb82c87d31a3038a6fe523f4f0b58f452f280f90439522e3bb",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 60391665,
+        "event_date": "2020-12-14",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201214`",
+        "query_sha256": "ac0ddb710c3df07f346e46b5882657b6fdfd40b3d87d7d04ed40fa4da4611009",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 69434789,
+        "event_date": "2020-12-15",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201215`",
+        "query_sha256": "bcb4038f6ebd188eba11e2b8b2cc4c5bc15161fa3f0f0f58138e48bbc20879ba",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 64196603,
+        "event_date": "2020-12-16",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201216`",
+        "query_sha256": "7115c794750b47234954b1bf2ef310fb1a46cf352af180f895cf86a89e39ea9d",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 60781343,
+        "event_date": "2020-12-17",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201217`",
+        "query_sha256": "bec0cdb9072338383fc2240d4484c2e5b8c57fd4a243a939b19f09d3352df03f",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 54391549,
+        "event_date": "2020-12-18",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201218`",
+        "query_sha256": "a840cfda788a52289e9f9a19ee48ba6ad49f5775e50e8c9524d8127378db1be6",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 33347564,
+        "event_date": "2020-12-19",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201219`",
+        "query_sha256": "9a8a0eccbbbdb36f544efdcc37e3ad63bedaa1aaca88125fe8a8058d7b3cb510",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 25969224,
+        "event_date": "2020-12-20",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201220`",
+        "query_sha256": "b3035a6efc932ef507d1c07156c83d4063f8e8e0d5d149d8eee0e50664b919a1",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 38392473,
+        "event_date": "2020-12-21",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201221`",
+        "query_sha256": "5ea54929efe3acf7e3bbfc76da53523542a403e4295cd3e1ff7a6fb2a53885ad",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 41899170,
+        "event_date": "2020-12-22",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201222`",
+        "query_sha256": "167f36a2f9af140c276f605edc4c252f477948230ac84486fa64ec75e1c99355",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 37892151,
+        "event_date": "2020-12-23",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201223`",
+        "query_sha256": "951ac32b787aa2b5fc62971b5ed1f5b1ef7c7246b35056d839584fb4df34a2a9",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 23179438,
+        "event_date": "2020-12-24",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201224`",
+        "query_sha256": "20ac608a96f2c3e44715ade0abffb0a59105d3facad0ceb2d371453a9b422048",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 18525693,
+        "event_date": "2020-12-25",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201225`",
+        "query_sha256": "9874a7d2250d69df9ad77a511ed98f9800ffa75c4470687c5d63ae374d2dd8a4",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 18640761,
+        "event_date": "2020-12-26",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201226`",
+        "query_sha256": "e9547018fcf387a1b2f2e1d1d0ca643f5b10d2e3552d1b2ea1deaa6cf4d0eac8",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 19493833,
+        "event_date": "2020-12-27",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201227`",
+        "query_sha256": "e4bfd15ec8559166574bbfa5dec88961fbec164068114ca7a3f7eff1c727ffba",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 28358555,
+        "event_date": "2020-12-28",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201228`",
+        "query_sha256": "61090d6befb8cfb09a9f3f827473413aeb86375d5a9263c93313a5594699777b",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 27377132,
+        "event_date": "2020-12-29",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201229`",
+        "query_sha256": "1a57c0b5abc16cf0c84f935918da304a6805284610e23cd30c85f97b9ff52a2b",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 23460028,
+        "event_date": "2020-12-30",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201230`",
+        "query_sha256": "948ef1d081bfd70147778947d970f892ae5e2a96330d2161d262323432a6512e",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 19732344,
+        "event_date": "2020-12-31",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201231`",
+        "query_sha256": "b62d402888c89d5ce4b3f75e4d28a542738904932dcf3d4269994810aa28bd97",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 17438724,
+        "event_date": "2021-01-01",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210101`",
+        "query_sha256": "ec8ab076ead7d0a5b85570e83b1576a6d11c379c9779aa5636e82bf35f5926ac",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 17943049,
+        "event_date": "2021-01-02",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210102`",
+        "query_sha256": "9a68a6a3689239518bec85d0b1cef6d8a91c27dc41f3a7d48b7ebf151c23f519",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 18734504,
+        "event_date": "2021-01-03",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210103`",
+        "query_sha256": "fe3c99e9083fb1648fce527cc9cc62f63a17696b5da1551b3983995ac2cbbc8e",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 23959527,
+        "event_date": "2021-01-04",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210104`",
+        "query_sha256": "0a604fa684850a91ce2dd5772e54cac58174a7ab777cff46971fb8b89e7976e8",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 32634463,
+        "event_date": "2021-01-05",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210105`",
+        "query_sha256": "ebcf2590f455c94aa2c49bf2420a2336da100a87dcd1915754a6a40aa6ad328d",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 41869512,
+        "event_date": "2021-01-06",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210106`",
+        "query_sha256": "4cb6c6c9350866f57f2ccae9e766ffa6c435d357c35c560e728c15e3209bd8c9",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 34349091,
+        "event_date": "2021-01-07",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210107`",
+        "query_sha256": "a0d38ca68d6644c2accf62e34f028180e8443d1b0f6b552854edbdd7728049e1",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 31992706,
+        "event_date": "2021-01-08",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210108`",
+        "query_sha256": "14203cc3cde2bcc3c291cdad301635de280a79009833af32e0ef23d54d2d7930",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 24860941,
+        "event_date": "2021-01-09",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210109`",
+        "query_sha256": "cbdbf3d294c859583865f8a7b008050875daa830ca3e7f15c0f8b2849fdb878a",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 21063341,
+        "event_date": "2021-01-10",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210110`",
+        "query_sha256": "843beb5149eae598f3f6e9bc1bdaf7ab5fa3d4846af83596e0d30fbafd5e9600",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 29552834,
+        "event_date": "2021-01-11",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210111`",
+        "query_sha256": "a351cdb373702ceede91194a54689cd765672ad35a0bd86e58bc0d60bfdd918d",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 38742100,
+        "event_date": "2021-01-12",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210112`",
+        "query_sha256": "96ba00aeb11dcaaae39b3b73defdd45f14c13de8446ad5d26e279d7af01a160f",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 35983093,
+        "event_date": "2021-01-13",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210113`",
+        "query_sha256": "5d7fe48f34afaae423b2131f971ca1164b69247767087cba82491cca6be9878d",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 36717535,
+        "event_date": "2021-01-14",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210114`",
+        "query_sha256": "4c1f0be85bb9f205017d5ffb7659783001de1c02e9f6cc9f00afcb286d85a86e",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 32795219,
+        "event_date": "2021-01-15",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210115`",
+        "query_sha256": "3f44703598e73f37c3ed6f4018b550411d9f2affcc3b43557b1e8b420f2c4c0b",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 23547205,
+        "event_date": "2021-01-16",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210116`",
+        "query_sha256": "f1092856dc549e8d96a95846748acbd931be408ca3e060e2059881d1d30af5e0",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 20418488,
+        "event_date": "2021-01-17",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210117`",
+        "query_sha256": "fb8676cd2e2ce4c854e4eb9e588465157127459b3403be0c17a5ec3162323703",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 24271764,
+        "event_date": "2021-01-18",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210118`",
+        "query_sha256": "517082ec7dcb280bebe7066749fc6f4e292cb7564c5976b37bba8b8cfeec19f0",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 41947009,
+        "event_date": "2021-01-19",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210119`",
+        "query_sha256": "705eaff8ed68502c66be1fb6d22da65a14e9982b1e6bba6f5370d86c0ac1a8f2",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 54812507,
+        "event_date": "2021-01-20",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210120`",
+        "query_sha256": "81fa1f37b110658c0459bc290f5d6502734869b7e6d82a5174a1fccb3d642512",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 42681717,
+        "event_date": "2021-01-21",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210121`",
+        "query_sha256": "8ac1600afbfdd9127a780dfdb9dbf5d274ab1db632a41482858ba7b6ffa0a78f",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 41912826,
+        "event_date": "2021-01-22",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210122`",
+        "query_sha256": "9e06bdaac2d7744efd000069430e4b7d4b6bb94e7b6c74f9532a95ca6b05bc14",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 27701724,
+        "event_date": "2021-01-23",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210123`",
+        "query_sha256": "df08b8e2884df264032bbae13f23d8ca1bd85d7d5ca201b89965a42a0de5cd57",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 26116045,
+        "event_date": "2021-01-24",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210124`",
+        "query_sha256": "cee53968fc7eb5639cc755b20c55a0852aae47166a038a9293e94327cf8e01ce",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 33135144,
+        "event_date": "2021-01-25",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210125`",
+        "query_sha256": "18733d0d08631dce3bb7a10226946ecf08a3f1bba71d952a10c74d214ace5c63",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 33035290,
+        "event_date": "2021-01-26",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210126`",
+        "query_sha256": "4f007d5764ba8f69d9cf8705929bdf66fab58d55585a1d522a63d3c9cafd57ef",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 38448344,
+        "event_date": "2021-01-27",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210127`",
+        "query_sha256": "c666ca621c7a95d803333de67c542af5986dde99512b0a6570b7f6d37f98ca3d",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 33889422,
+        "event_date": "2021-01-28",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210128`",
+        "query_sha256": "96edcef1b498313c1214e952dd4398563145a7087295e160992841e2df731b8d",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 32506668,
+        "event_date": "2021-01-29",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210129`",
+        "query_sha256": "c7a1fe8b0684b08313f427d037a2898d51e39c875020ae14038e31d613ea55a1",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 23951725,
+        "event_date": "2021-01-30",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210130`",
+        "query_sha256": "f42331073ea95b4222543e64f40308aefa26b42bac5c6d697fb844ed63f8712e",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      },
+      {
+        "dry_run": true,
+        "estimated_bytes": 20074265,
+        "event_date": "2021-01-31",
+        "executed": false,
+        "fresh_dry_run_this_checkpoint": true,
+        "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20210131`",
+        "query_sha256": "1042438b1688f564141940d31f24b98737101ae408a6dc8d10a350fe2695268d",
+        "source_key": "native dry-run-only pipeline.extract_day"
+      }
+    ],
+    "scope": "Extraction SELECT estimates only; dbt DML/scripts/tests/reconciliation/logger/retries/storage are additional. This does not authorize any extraction or backfill.",
+    "status": "extraction_dry_run_plan_complete_backfill_pending_owner_go"
+  },
+  "bi_export_dim_date": {
+    "checked_at_utc": "2026-10-04T22:02:26.254710+00:00",
+    "estimated_bytes": 0,
+    "executed": true,
+    "execution_job_id": "756de728-a39e-4712-ade3-46503849a6e5",
+    "job_id": "756de728-a39e-4712-ade3-46503849a6e5"
+  },
+  "bi_export_fct_funnel_daily": {
+    "checked_at_utc": "2026-10-04T21:46:57.665158+00:00",
+    "estimated_bytes": 1159791038,
+    "executed": true,
+    "job_id": "3398aac4-9443-4bd4-969a-4be1ebcda0f2"
+  },
+  "bi_export_fct_product_daily": {
+    "checked_at_utc": "2026-10-04T22:00:19.084824+00:00",
+    "estimated_bytes": 1411793714,
+    "executed": true,
+    "execution_job_id": "10ca37fa-5bd1-4f6b-bf70-521a3214ec07",
+    "job_id": "10ca37fa-5bd1-4f6b-bf70-521a3214ec07"
+  },
+  "bi_export_fct_sessions": {
+    "checked_at_utc": "2026-10-04T21:45:46.682811+00:00",
+    "estimated_bytes": 1248818019,
+    "executed": true,
+    "job_id": "51163ebf-c236-44f8-a492-60b146183448"
+  },
+  "dbt_fct_product_daily": {
+    "checked_at_utc": "2026-10-04T20:14:58.579627+00:00",
+    "estimated_bytes": 1411793714,
+    "executed": false
+  },
+  "dbt_int_sessions": {
+    "checked_at_utc": "2026-10-04T19:55:34.695249+00:00",
+    "estimated_bytes": 1248818019,
+    "executed": false
+  },
+  "dbt_int_sessions_data_test_not_null_int_sessions_ga_session_id": {
+    "checked_at_utc": "2026-10-04T23:14:54.440628+00:00",
+    "estimated_bytes": 995193539,
+    "executed": false,
+    "scope": "int_sessions SELECT over existing staging view; data-test refs inlined because int_sessions is not yet built"
+  },
+  "dbt_int_sessions_data_test_not_null_int_sessions_session_start_date": {
+    "checked_at_utc": "2026-10-04T23:14:57.812979+00:00",
+    "estimated_bytes": 1038149379,
+    "executed": false,
+    "scope": "int_sessions SELECT over existing staging view; data-test refs inlined because int_sessions is not yet built"
+  },
+  "dbt_int_sessions_data_test_not_null_int_sessions_user_pseudo_id": {
+    "checked_at_utc": "2026-10-04T23:14:50.891422+00:00",
+    "estimated_bytes": 995193539,
+    "executed": false,
+    "scope": "int_sessions SELECT over existing staging view; data-test refs inlined because int_sessions is not yet built"
+  },
+  "dbt_int_sessions_data_test_unique_session_pair_int_sessions_ga_session_id__user_pseudo_id": {
+    "checked_at_utc": "2026-10-04T23:15:01.008760+00:00",
+    "estimated_bytes": 995193539,
+    "executed": false,
+    "scope": "int_sessions SELECT over existing staging view; data-test refs inlined because int_sessions is not yet built"
+  },
+  "dbt_int_sessions_materialized_staging": {
+    "checked_at_utc": "2026-10-04T23:14:48.311144+00:00",
+    "estimated_bytes": 1248818019,
+    "executed": false,
+    "scope": "int_sessions SELECT over existing staging view; data-test refs inlined because int_sessions is not yet built"
+  },
+  "dbt_stg_ga4_events": {
+    "checked_at_utc": "2026-10-04T23:00:42.054186+00:00",
+    "estimated_bytes": 2891550912,
+    "executed": false
+  },
+  "dbt_stg_ga4_items": {
+    "checked_at_utc": "2026-10-04T23:00:44.700535+00:00",
+    "estimated_bytes": 1534318328,
+    "executed": false
+  },
+  "materialized_daily_source": {
+    "checked_at_utc": "2026-10-04T23:07:28.752623+00:00",
+    "estimated_bytes": 98955937,
+    "executed": true,
+    "job_id": "aaa20e4d-889a-4bea-b381-a579023fb70b"
+  },
+  "materialized_staging_items": {
+    "checked_at_utc": "2026-10-04T23:10:06.606988+00:00",
+    "estimated_bytes": 308002773,
+    "executed": true,
+    "job_id": "11a9654a-6530-48d0-a545-b010f84a0cce"
+  },
+  "p2_3_revised_preflight": {
+    "checked_at_utc": "2026-10-05T00:49:52.316607+00:00",
+    "per_query_cap": 21474836480,
+    "queries": {
+      "int_sessions": {
+        "estimated_bytes": 1248818019,
+        "executed": false,
+        "sql_sha256": "9fcf5d3abf8bc4588b17323a877bbc48626dac895cc5be6a78d8a48d3c46f091"
+      },
+      "not_null_int_sessions_ga_session_id": {
+        "estimated_bytes": 995193539,
+        "executed": false,
+        "sql_sha256": "0984bd60b07e0e3cff13fa774f6062290729e3e00ebe60ead8f7f8b3e2faacdb"
+      },
+      "not_null_int_sessions_session_start_date": {
+        "estimated_bytes": 1038149379,
+        "executed": false,
+        "sql_sha256": "f7c904e7c86becb6abd0d4dca99f9d1eb23876c431d8a1e30f1085c49dcd2db6"
+      },
+      "not_null_int_sessions_user_pseudo_id": {
+        "estimated_bytes": 995193539,
+        "executed": false,
+        "sql_sha256": "a447c3012f0823c15f5d0f0ffcaf3168972e296b62bda85965bfb7f38bdbfe62"
+      },
+      "unique_session_pair_int_sessions_ga_session_id__user_pseudo_id": {
+        "estimated_bytes": 995193539,
+        "executed": false,
+        "sql_sha256": "0334113a0121731b968c1c6d2b2e8f1652710ba1d8c43d8a418bbdff1fcf86bf"
+      }
+    },
+    "scope": "Current model SELECT over existing staging view plus exactly four inlined data-test SELECTs; dry runs only"
+  },
+  "p2_4_current_preflight": {
+    "checked_at_utc": "2026-10-05T01:15:03.970588+00:00",
+    "data_tests": {
+      "test.ga4_checkout_funnel.accepted_values_fct_funnel_daily_funnel_mode__any_order__strict_ordered.29c89b4bdc": {
+        "estimated_bytes": 1159745502,
+        "executed": false,
+        "sql_sha256": "f6c6e889fcdd899d9f74e9bc79cc1cbd65853567eaaf1b2e4e04531b6acf02d9"
+      },
+      "test.ga4_checkout_funnel.accepted_values_fct_funnel_daily_step_name__session_start__view_item__add_to_cart__begin_checkout__purchase.ff182103f3": {
+        "estimated_bytes": 1159745502,
+        "executed": false,
+        "sql_sha256": "cf7cf43cb78c92546b443d620fe1b5adbb9dd724bbd1e0ea12dda5667f548227"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_funnel_daily_funnel_mode.c58c441e6e": {
+        "estimated_bytes": 1159745502,
+        "executed": false,
+        "sql_sha256": "3c890f641603ee7f10148ff633bdc101e83902f48f4c386d2d7564781946ae9d"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_funnel_daily_reached_sessions.b97e2a0abe": {
+        "estimated_bytes": 1159745502,
+        "executed": false,
+        "sql_sha256": "41eab5c4441fefdb6eb4d240775045a788ed5a9ea1cb70872da7c108c02173f2"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_funnel_daily_step_name.f8869c365b": {
+        "estimated_bytes": 1159745502,
+        "executed": false,
+        "sql_sha256": "6a62ff4b68c504b776cb8cfef184fcb89592eea61bc8b8a74605cf1508958efd"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_sessions_ga_session_id.f602bfd9f5": {
+        "estimated_bytes": 995193539,
+        "executed": false,
+        "sql_sha256": "e4c7ede420007a945c55d004a2100f731022af59afef3634f630c7d8bbcb17bf"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_sessions_session_start_date.5cf94a9cc6": {
+        "estimated_bytes": 1038149379,
+        "executed": false,
+        "sql_sha256": "65026e52b5e9f4b7dd022d16422586251917b50199ca2b15970f9d0e560cd285"
+      },
+      "test.ga4_checkout_funnel.not_null_fct_sessions_user_pseudo_id.30ba8351c7": {
+        "estimated_bytes": 995193539,
+        "executed": false,
+        "sql_sha256": "b240a95446977599109afc84bf5ba2c865b12b81a614ba2449cc588603477989"
+      },
+      "test.ga4_checkout_funnel.ordered_funnel_nonincreasing": {
+        "estimated_bytes": 1159745502,
+        "executed": false,
+        "sql_sha256": "0e7a9d15ff7fb9d96c51afa49c870ef1d919118220ef915b4215c83440008bd9"
+      },
+      "test.ga4_checkout_funnel.unique_session_pair_fct_sessions_ga_session_id__user_pseudo_id.961881c8f7": {
+        "estimated_bytes": 995193539,
+        "executed": false,
+        "sql_sha256": "a71f0d091cbdbd6820309a46d220e32f56feb330ddf7aea29ae6588926f4ced1"
+      }
+    },
+    "models": {
+      "dbt_dim_date": {
+        "checked_at_utc": "2026-10-05T01:08:16.569671+00:00",
+        "estimated_bytes": 0,
+        "executed": false
+      },
+      "dbt_fct_funnel_daily": {
+        "checked_at_utc": "2026-10-05T01:08:19.850505+00:00",
+        "estimated_bytes": 1159791038,
+        "executed": false
+      },
+      "dbt_fct_product_daily": {
+        "checked_at_utc": "2026-10-05T01:08:22.592915+00:00",
+        "estimated_bytes": 1411793714,
+        "executed": false
+      },
+      "dbt_fct_sessions": {
+        "checked_at_utc": "2026-10-05T01:08:25.695907+00:00",
+        "estimated_bytes": 1248818019,
+        "executed": false
+      },
+      "dbt_int_sessions": {
+        "checked_at_utc": "2026-10-05T01:08:29.112430+00:00",
+        "estimated_bytes": 1248818019,
+        "executed": false
+      },
+      "dbt_int_sessions_data_test_not_null_int_sessions_ga_session_id": {
+        "checked_at_utc": "2026-10-04T23:14:54.440628+00:00",
+        "estimated_bytes": 995193539,
+        "executed": false,
+        "scope": "int_sessions SELECT over existing staging view; data-test refs inlined because int_sessions is not yet built"
+      },
+      "dbt_int_sessions_data_test_not_null_int_sessions_session_start_date": {
+        "checked_at_utc": "2026-10-04T23:14:57.812979+00:00",
+        "estimated_bytes": 1038149379,
+        "executed": false,
+        "scope": "int_sessions SELECT over existing staging view; data-test refs inlined because int_sessions is not yet built"
+      },
+      "dbt_int_sessions_data_test_not_null_int_sessions_user_pseudo_id": {
+        "checked_at_utc": "2026-10-04T23:14:50.891422+00:00",
+        "estimated_bytes": 995193539,
+        "executed": false,
+        "scope": "int_sessions SELECT over existing staging view; data-test refs inlined because int_sessions is not yet built"
+      },
+      "dbt_int_sessions_data_test_unique_session_pair_int_sessions_ga_session_id__user_pseudo_id": {
+        "checked_at_utc": "2026-10-04T23:15:01.008760+00:00",
+        "estimated_bytes": 995193539,
+        "executed": false,
+        "scope": "int_sessions SELECT over existing staging view; data-test refs inlined because int_sessions is not yet built"
+      },
+      "dbt_int_sessions_materialized_staging": {
+        "checked_at_utc": "2026-10-04T23:14:48.311144+00:00",
+        "estimated_bytes": 1248818019,
+        "executed": false,
+        "scope": "int_sessions SELECT over existing staging view; data-test refs inlined because int_sessions is not yet built"
+      },
+      "dbt_stg_ga4_events": {
+        "checked_at_utc": "2026-10-05T01:08:32.755428+00:00",
+        "estimated_bytes": 2891550912,
+        "executed": false
+      },
+      "dbt_stg_ga4_items": {
+        "checked_at_utc": "2026-10-05T01:08:35.757898+00:00",
+        "estimated_bytes": 1534318328,
+        "executed": false
+      }
+    }
+  },
+  "p2_4_reconciliation": {
+    "cohort": {
+      "checked_at_utc": "2026-10-05T01:20:07.028769+00:00",
+      "estimated_bytes": 1068600245,
+      "executed": true,
+      "job_id": "3adbc5cc-0783-44cc-950a-a0ef0a9d7cdd",
+      "sql_sha256": "9697b57c696229b9b7697c0f0f4d1eecce9a7123ee72a94a22c1b0f2d3ae965b"
+    },
+    "funnel": {
+      "checked_at_utc": "2026-10-05T01:18:06.515069+00:00",
+      "estimated_bytes": 11746410,
+      "executed": true,
+      "job_id": "b95187ab-af42-428a-982c-d6253f53291e",
+      "sql_sha256": "24e4a112dfa2c995b2084f27913a08eadbc837aad9f179a75dd73b0ac9ec7a42"
+    },
+    "grains": {
+      "checked_at_utc": "2026-10-05T01:20:14.196580+00:00",
+      "estimated_bytes": 70696670,
+      "executed": true,
+      "job_id": "640e33d2-6cf6-4a47-8960-26a1db48117c",
+      "sql_sha256": "bfc58a6add156553e19f840543f139626200265b67508a4eff8f54eb9b3c852d"
+    },
+    "products": {
+      "checked_at_utc": "2026-10-05T01:18:08.193387+00:00",
+      "estimated_bytes": 71810845,
+      "executed": true,
+      "job_id": "e01e4318-9ec2-4e3b-9dab-a52c4633bfeb",
+      "sql_sha256": "365c0f766f5d028ddeef92892530f1c121f14aa6ba487af06220abaa6fdb27d2"
+    },
+    "session_segments": {
+      "checked_at_utc": "2026-10-05T01:18:05.127550+00:00",
+      "estimated_bytes": 30986950,
+      "executed": true,
+      "job_id": "5728ce40-2583-42fe-9ce2-be576c3e42ee",
+      "sql_sha256": "5e08106b7a4d1f4c6d44e5ae465a4dfaa3383c4cc19bd094cb458b972d994bb0"
+    }
+  },
+  "p2_5_unit_preflight": {
+    "fixtures": [
+      {
+        "checked_at_utc": "2026-10-05T01:29:11.750901+00:00",
+        "comparison_sql_sha256": "cf030520f9d0c7b05c4ab1ec7eaee7e23d22968e112fa371d7f74d368925c52e",
+        "compiled_model_sql_sha256": "ba8158579f06b41bb4b53f1d393120bf36606c38dd599ff8753918b165757dc9",
+        "estimated_comparison_bytes": 0,
+        "estimated_empty_scratch_ctas_bytes": 0,
+        "executed": false,
+        "expected_columns": [
+          "user_pseudo_id",
+          "ga_session_id",
+          "session_start_date",
+          "event_count",
+          "is_new_user_in_window",
+          "has_view_item",
+          "has_purchase",
+          "ordered_view_item",
+          "ordered_purchase",
+          "purchase_revenue_usd"
+        ],
+        "scratch_ctas_sql_sha256": "c57ff4cacd1c6015a0a0a1f2f7a09313e88cf64674b613499d43e7be5c0e7809",
+        "unique_id": "unit_test.ga4_checkout_funnel.int_sessions.session_logic_handles_ties_missing_keys_and_late_first_visit"
+      },
+      {
+        "checked_at_utc": "2026-10-05T01:29:13.009030+00:00",
+        "comparison_sql_sha256": "103ef25823f8a0758190ba2bcee44e1836583c9e87c74edc502a08b773f1bb1e",
+        "compiled_model_sql_sha256": "2e3cce4ad49e291bae481600b8679eb3dde14a1adbd48017bd799e91a238e0e3",
+        "estimated_comparison_bytes": 0,
+        "estimated_empty_scratch_ctas_bytes": 0,
+        "executed": false,
+        "expected_columns": [
+          "user_pseudo_id",
+          "ga_session_id",
+          "session_start_date",
+          "event_count",
+          "is_new_user_in_window",
+          "has_purchase",
+          "ordered_purchase",
+          "purchase_revenue_usd"
+        ],
+        "scratch_ctas_sql_sha256": "cec2486680db6c7ac57f292777f737a676e299cf7b65f8fd867c307ea39112ba",
+        "unique_id": "unit_test.ga4_checkout_funnel.int_sessions.session_logic_handles_midnight_order_and_first_visit"
+      },
+      {
+        "checked_at_utc": "2026-10-05T01:29:13.119754+00:00",
+        "comparison_sql_sha256": "f52ccbcf771b461c2931a5225183c094a95d050c11de2f42400c715669bf7d57",
+        "compiled_model_sql_sha256": "b1008bdaa710cb3c6b2645b5f7fef28826dbdc9e5a08744e8ff47dd684440f09",
+        "estimated_comparison_bytes": 0,
+        "estimated_empty_scratch_ctas_bytes": 0,
+        "executed": false,
+        "expected_columns": [
+          "user_pseudo_id",
+          "ga_session_id",
+          "session_start_date",
+          "user_cohort"
+        ],
+        "scratch_ctas_sql_sha256": "9ed53e082540c9a16823f9e37f0b04eedc78ccea10bc0bc8ba28bb0562fc5ea1",
+        "unique_id": "unit_test.ga4_checkout_funnel.fct_sessions.replay_refreshes_complete_affected_start_dates"
+      }
+    ],
+    "method": "Pinned native UnitTestManifestLoader/compiler and unit SQL macros; adapter SQL execution forbidden; metadata APIs plus zero-byte BigQuery dry runs only",
+    "native_unit_pass_claim": false
+  },
+  "p2_6_catalog_metadata_confirmation": [
+    {
+      "actual_metadata_job_id": "2554f061-d948-4814-a180-c488bee23447",
+      "checked_at_utc": "2026-10-05T01:46:28.293689+00:00",
+      "estimated_bytes": 41943040,
+      "executed": false,
+      "scope": "post-run dry-run confirmation of final metadata SQL; not misrepresented as a before-execution check",
+      "sql_sha256": "5a9cd9b72963933279d0bb18d15c2d93c0c1e2e2fb7473d1a3e9a77104255350"
+    },
+    {
+      "actual_metadata_job_id": "b7680c1b-9995-4ad6-9a6c-5a03a24a4cab",
+      "checked_at_utc": "2026-10-05T01:46:29.052937+00:00",
+      "estimated_bytes": 41943040,
+      "executed": false,
+      "scope": "post-run dry-run confirmation of final metadata SQL; not misrepresented as a before-execution check",
+      "sql_sha256": "5c1ad82c2f4777dcf432ec01fd8e7dd30c0258dd8b75068bdc323186fab62c6d"
+    }
+  ],
+  "p2_6_catalog_metadata_preflight": {
+    "queries": [
+      {
+        "checked_at_utc": "2026-10-05T01:39:51.696365+00:00",
+        "estimated_bytes": 41943040,
+        "executed": false,
+        "sql_sha256": "f4f25929061bd57044c27981e114bc85d3d771c2ec738a878579b8ae0ca61cec"
+      },
+      {
+        "checked_at_utc": "2026-10-05T01:39:51.747659+00:00",
+        "estimated_bytes": 41943040,
+        "executed": false,
+        "sql_sha256": "212c35dbe0c3a07909fcb53be281851043e4aa397f2b39e3a81ed0b6c58c64de"
+      }
+    ],
+    "scope": "native analytics/public metadata SELECT dry runs only; adapter execution replaced with empty metadata in ignored preflight target; this is not an actual catalog claim"
+  },
+  "p5_2_20201101_extraction": {
+    "billed_bytes": 24117248,
+    "cache_enabled": false,
+    "dry_run_command": "PYTHONMALLOC=malloc PYTHONPATH=src UV_CACHE_DIR=.uv-cache UV_PYTHON_INSTALL_DIR=.uv-python uv run --locked dotenv run -- python -m pipeline.extract_day 2020-11-01 --run-label owner_20201101 --max-bytes-billed 33554432 --dry-run",
+    "dry_run_succeeded": true,
+    "estimated_bytes": 23566064,
+    "event_date": "2020-11-01",
+    "evidence": "native pipeline.extract_day CLI exit 0: INFO Dry run for 2020-11-01 estimated 23566064 bytes",
+    "executed": true,
+    "fresh_pre_execution_dry_run_bytes": 23566064,
+    "job_id": "5607541a-c573-4ea7-88ef-4b3e382a1f23",
+    "location": "US",
+    "maximum_bytes_billed": 33554432,
+    "processed_bytes": 23566064,
+    "query": "SELECT PARSE_DATE('%Y%m%d', event_date) AS event_date, * EXCEPT(event_date) FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201101`",
+    "source_table": "bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201101"
+  },
+  "p5_2_20201101_partitions": {
+    "billed_bytes": 10485760,
+    "checked_at_utc": "2026-10-05T19:18:54.687276+00:00",
+    "dry_run_succeeded": true,
+    "estimated_bytes": 10485760,
+    "executed": true,
+    "job_id": "p5_2_20201101_partitions_7ea9ee83-65e9-49ac-9bb7-dd6ac7ff3bb2",
+    "location": "US",
+    "maximum_bytes_billed": 33554432,
+    "processed_bytes": 10485760,
+    "query": "SELECT partition_id, total_rows, total_logical_bytes,\n        last_modified_time, storage_tier\n        FROM `ga4-checkout-funnel.ga4_raw.INFORMATION_SCHEMA.PARTITIONS`\n        WHERE table_name = 'ga4_events'\n        ORDER BY partition_id, storage_tier",
+    "query_sha256": "668b04d7d5310041bec4e1d9d49f8d4f01daf79ca1b206e51534b8d4a6fc64d0"
+  },
+  "p5_2_20201101_reconciliation": {
+    "billed_bytes": 20971520,
+    "checked_at_utc": "2026-10-05T19:18:56.438653+00:00",
+    "dry_run_succeeded": true,
+    "estimated_bytes": 1119106,
+    "executed": true,
+    "job_id": "p5_2_20201101_reconciliation_d1e72ba3-490c-411d-a239-b0f0b57d5bff",
+    "location": "US",
+    "maximum_bytes_billed": 33554432,
+    "processed_bytes": 1119106,
+    "query": "\n            SELECT\n                'source' AS side,\n                COUNT(*) AS event_count,\n                COUNTIF(event_name = 'purchase') AS purchase_count,\n                COUNTIF(event_name = 'purchase' AND\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.transaction_id') IS NOT NULL)\n                    AS purchase_with_transaction_id,\n                COUNT(DISTINCT IF(event_name = 'purchase',\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.transaction_id'), NULL))\n                    AS distinct_transaction_ids,\n                COUNTIF(event_name = 'purchase' AND\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.purchase_revenue') IS NOT NULL)\n                    AS purchase_revenue_count,\n                SUM(IF(event_name = 'purchase', SAFE_CAST(\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.purchase_revenue') AS BIGNUMERIC\n                ), NULL)) AS purchase_revenue_total,\n                COUNTIF(event_name = 'purchase' AND\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.purchase_revenue_in_usd') IS NOT NULL)\n                    AS purchase_revenue_usd_count,\n                SUM(IF(event_name = 'purchase', SAFE_CAST(\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.purchase_revenue_in_usd') AS BIGNUMERIC\n                ), NULL)) AS purchase_revenue_usd_total\n            FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_20201101`\n            WHERE TRUE\n        \nUNION ALL\n\n            SELECT\n                'raw' AS side,\n                COUNT(*) AS event_count,\n                COUNTIF(event_name = 'purchase') AS purchase_count,\n                COUNTIF(event_name = 'purchase' AND\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.transaction_id') IS NOT NULL)\n                    AS purchase_with_transaction_id,\n                COUNT(DISTINCT IF(event_name = 'purchase',\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.transaction_id'), NULL))\n                    AS distinct_transaction_ids,\n                COUNTIF(event_name = 'purchase' AND\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.purchase_revenue') IS NOT NULL)\n                    AS purchase_revenue_count,\n                SUM(IF(event_name = 'purchase', SAFE_CAST(\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.purchase_revenue') AS BIGNUMERIC\n                ), NULL)) AS purchase_revenue_total,\n                COUNTIF(event_name = 'purchase' AND\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.purchase_revenue_in_usd') IS NOT NULL)\n                    AS purchase_revenue_usd_count,\n                SUM(IF(event_name = 'purchase', SAFE_CAST(\n                    JSON_VALUE(TO_JSON_STRING(ecommerce), '$.purchase_revenue_in_usd') AS BIGNUMERIC\n                ), NULL)) AS purchase_revenue_usd_total\n            FROM `ga4-checkout-funnel.ga4_raw.ga4_events`\n            WHERE event_date = @event_date\n        ",
+    "query_sha256": "86432a1283d86dd714b09aab4f1bc9e5d801b8cda207d13904a19c6b3fbe5677"
+  },
+  "p5_3_replay_preflight": {
+    "checked_at_utc": "2026-10-05T19:47:36.180810+00:00",
+    "estimated_select_bytes_sum": 174986425,
+    "executed": false,
+    "report": "reports/replay_preflight.json",
+    "sha256": "04e1cd821e0301ccacd8047cfd55ed40a2cbaa71f7f574e05f4eb948af81350c"
+  },
+  "partition_comparison_filtered": {
+    "checked_at_utc": "2026-10-06T22:57:05.000988+00:00",
+    "estimated_bytes": 5685678,
+    "executed": true,
+    "filtered": true,
+    "first_day": "2021-01-25",
+    "job_id": "p5_7_filtered_68077d30a2d444ee93eea1408c380dae",
+    "labels": {
+      "app": "ga4_checkout_funnel",
+      "ga4_run": "p5_7_gate24_20210125",
+      "role": "partition_comparison"
+    },
+    "last_day": "2021-01-31",
+    "location": "US",
+    "maximum_bytes_billed": 134217728,
+    "project": "ga4-checkout-funnel",
+    "query": "\n        SELECT\n            COUNT(*) AS scan_scope_rows,\n            COUNTIF(event_date BETWEEN @first_day AND @last_day) AS window_events,\n            COUNT(DISTINCT IF(event_date BETWEEN @first_day AND @last_day, event_date, NULL)) AS observed_window_days,\n            COUNTIF((event_date BETWEEN @first_day AND @last_day) AND event_name = 'purchase') AS window_purchase_events,\n            SUM(IF((event_date BETWEEN @first_day AND @last_day) AND event_name = 'purchase',\n                COALESCE(CAST(ecommerce.purchase_revenue_in_usd AS BIGNUMERIC), 0), 0))\n                AS window_purchase_revenue_usd\n        FROM `ga4-checkout-funnel.ga4_raw.ga4_events`\n        WHERE event_date BETWEEN @first_day AND @last_day\n    ",
+    "query_parameters": [
+      {
+        "name": "first_day",
+        "parameterType": {
+          "type": "DATE"
+        },
+        "parameterValue": {
+          "value": "2021-01-25"
+        }
+      },
+      {
+        "name": "last_day",
+        "parameterType": {
+          "type": "DATE"
+        },
+        "parameterValue": {
+          "value": "2021-01-31"
+        }
+      }
+    ],
+    "query_sha256": "7964f53886b4d728e7de644a8b0c8bbe535b9d195f0c82eb59f5889dea1cd9df",
+    "table_id": "ga4-checkout-funnel.ga4_raw.ga4_events",
+    "use_query_cache": false
+  },
+  "partition_comparison_unfiltered": {
+    "checked_at_utc": "2026-10-06T22:57:04.685537+00:00",
+    "estimated_bytes": 90364769,
+    "executed": true,
+    "filtered": false,
+    "first_day": "2021-01-25",
+    "job_id": "p5_7_unfiltered_e2f92263c00e4447947c4439d9283ee0",
+    "labels": {
+      "app": "ga4_checkout_funnel",
+      "ga4_run": "p5_7_gate24_20210125",
+      "role": "partition_comparison"
+    },
+    "last_day": "2021-01-31",
+    "location": "US",
+    "maximum_bytes_billed": 134217728,
+    "project": "ga4-checkout-funnel",
+    "query": "\n        SELECT\n            COUNT(*) AS scan_scope_rows,\n            COUNTIF(event_date BETWEEN @first_day AND @last_day) AS window_events,\n            COUNT(DISTINCT IF(event_date BETWEEN @first_day AND @last_day, event_date, NULL)) AS observed_window_days,\n            COUNTIF((event_date BETWEEN @first_day AND @last_day) AND event_name = 'purchase') AS window_purchase_events,\n            SUM(IF((event_date BETWEEN @first_day AND @last_day) AND event_name = 'purchase',\n                COALESCE(CAST(ecommerce.purchase_revenue_in_usd AS BIGNUMERIC), 0), 0))\n                AS window_purchase_revenue_usd\n        FROM `ga4-checkout-funnel.ga4_raw.ga4_events`\n        \n    ",
+    "query_parameters": [
+      {
+        "name": "first_day",
+        "parameterType": {
+          "type": "DATE"
+        },
+        "parameterValue": {
+          "value": "2021-01-25"
+        }
+      },
+      {
+        "name": "last_day",
+        "parameterType": {
+          "type": "DATE"
+        },
+        "parameterValue": {
+          "value": "2021-01-31"
+        }
+      }
+    ],
+    "query_sha256": "11d3143afffc2c91af0ead061908453bea06cc3072554ab602a98a79346e9a4d",
+    "table_id": "ga4-checkout-funnel.ga4_raw.ga4_events",
+    "use_query_cache": false
+  },
+  "readonly_category_summary": {
+    "checked_at_utc": "2026-10-04T21:12:42.683272+00:00",
+    "estimated_bytes": 1075149323,
+    "executed": true,
+    "job_id": "ce4ed3f2-c40c-457e-9806-f802ec5bec52"
+  },
+  "readonly_daily_source": {
+    "checked_at_utc": "2026-10-04T21:29:46.452161+00:00",
+    "estimated_bytes": 98955937,
+    "executed": true,
+    "job_id": "47e617a0-564e-450a-b8e6-e8514ca4e357"
+  },
+  "readonly_funnel_segments": {
+    "checked_at_utc": "2026-10-04T20:07:48.589744+00:00",
+    "estimated_bytes": 1159791038,
+    "executed": true,
+    "job_id": "fdfd3955-99aa-421a-80ce-81013b6590b4"
+  },
+  "readonly_product_summary": {
+    "checked_at_utc": "2026-10-04T20:17:56.024422+00:00",
+    "estimated_bytes": 1411793714,
+    "executed": true,
+    "job_id": "e9732359-15f7-4d6c-9805-fee516b55a98"
+  },
+  "readonly_session_summary": {
+    "checked_at_utc": "2026-10-04T20:07:40.479200+00:00",
+    "estimated_bytes": 1029603747,
+    "executed": true,
+    "job_id": "af055eef-b576-4120-86f5-28013d04efce"
+  },
+  "readonly_session_traces": {
+    "checked_at_utc": "2026-10-04T21:31:21.914601+00:00",
+    "estimated_bytes": 1159791038,
+    "executed": true,
+    "job_id": "a3a5be07-5088-4e32-a195-70633f9e9823"
+  }
+}

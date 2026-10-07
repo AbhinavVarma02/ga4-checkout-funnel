@@ -1,0 +1,14 @@
+table recovery_assumption
+	lineageTag: 3a49b2c9-44f0-57eb-a996-d937d798ca9a
+
+	column fraction
+		dataType: double
+		sourceColumn: fraction
+		summarizeBy: none
+		lineageTag: 22c5f711-7002-54cd-bdd2-3b7e8838f739
+		formatString: 0%
+
+	partition recovery_assumption = m
+		mode: import
+		source =
+				#table(type table [fraction = number], {{0.05}, {0.10}, {0.20}})

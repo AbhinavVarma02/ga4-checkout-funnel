@@ -1,0 +1,18 @@
+services:
+  scheduler:
+    # Match the WSL owner so mode-0600 ADC and project outputs stay usable.
+    user: "${LOCAL_AIRFLOW_UID:-1000}:0"
+    volumes:
+      - ..:/usr/local/airflow/project
+      - ${HOME}/.config/gcloud:/usr/local/airflow/.config/gcloud:ro
+    environment:
+      HOME: /home/wsl_airflow
+      PYTHONPATH: /usr/local/airflow/project/src
+      GOOGLE_APPLICATION_CREDENTIALS: /usr/local/airflow/.config/gcloud/application_default_credentials.json
+  dag-processor:
+    volumes:
+      - ..:/usr/local/airflow/project
+      - ${HOME}/.config/gcloud:/usr/local/airflow/.config/gcloud:ro
+    environment:
+      PYTHONPATH: /usr/local/airflow/project/src
+      GOOGLE_APPLICATION_CREDENTIALS: /usr/local/airflow/.config/gcloud/application_default_credentials.json

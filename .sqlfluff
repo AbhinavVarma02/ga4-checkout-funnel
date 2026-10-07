@@ -1,0 +1,8 @@
+[sqlfluff]
+dialect = bigquery
+templater = raw
+max_line_length = 100
+exclude_rules = RF02
+
+[sqlfluff:indentation]
+tab_space_size = 4

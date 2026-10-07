@@ -1,0 +1,2 @@
+expression ExportsFolder = "\\wsl.localhost\Ubuntu\home\abhinav_varma\projects\ga4-checkout-funnel\exports" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 43e63267-0b6b-54ca-9f65-ea4320cf2efe

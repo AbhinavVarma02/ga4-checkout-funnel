@@ -1,0 +1,30 @@
+// Additive prototype measures. Canonical definitions in measures.dax are unchanged.
+// This is modeled exposure at 100% recovery, not measured lost revenue or causal lift.
+Next Step Continuer Purchase Revenue USD =
+    VAR CurrentStep = SELECTEDVALUE ( fct_funnel_daily[step_order] )
+    RETURN
+        IF (
+            HASONEVALUE ( fct_funnel_daily[funnel_mode] )
+                && HASONEVALUE ( fct_funnel_daily[step_order] )
+                && CurrentStep < 5,
+            CALCULATE (
+                SUM ( fct_funnel_daily[purchase_revenue_usd_among_reached] ),
+                REMOVEFILTERS ( fct_funnel_daily[step_order], fct_funnel_daily[step_name] ),
+                fct_funnel_daily[step_order] = CurrentStep + 1
+            )
+        )
+
+Modeled Dropoff Opportunity USD =
+    IF (
+        NOT ISBLANK ( [Funnel Lost Sessions] ) && [Funnel Next Step Sessions] > 0,
+        [Funnel Lost Sessions]
+            * DIVIDE ( [Next Step Continuer Purchase Revenue USD], [Funnel Next Step Sessions] )
+    )
+
+// Descriptive only: MAX returns one label without splitting the item/category grain.
+Product Display Name =
+    IF (
+        HASONEVALUE ( fct_product_daily[item_id] )
+            && HASONEVALUE ( fct_product_daily[item_category] ),
+        MAX ( fct_product_daily[item_name] )
+    )

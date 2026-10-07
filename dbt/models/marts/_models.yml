@@ -1,0 +1,156 @@
+version: 2
+
+models:
+  - name: fct_sessions
+    description: BI-ready session fact with first-touch channel and observed cohort.
+    data_tests:
+      - unique_session_pair:
+          arguments:
+            user_column: user_pseudo_id
+            session_column: ga_session_id
+    columns:
+      - name: user_pseudo_id
+        description: Pseudonymous user half of the session key.
+        data_tests: [not_null]
+      - name: ga_session_id
+        description: Integer GA session ID half of the session key.
+        data_tests: [not_null]
+      - name: session_start_date
+        description: Minimum export date observed for this session.
+        data_tests: [not_null]
+      - name: first_event_timestamp_micros
+        description: Earliest observed event timestamp in this session.
+      - name: device_category
+        description: Device category on the earliest observed event.
+      - name: country
+        description: Country on the earliest observed event.
+      - name: first_touch_source
+        description: User first-acquisition source, not session source.
+      - name: first_touch_medium
+        description: User first-acquisition medium, not session medium.
+      - name: event_count
+        description: Number of export events in this session.
+      - name: session_start_events
+        description: Number of observed session_start events.
+      - name: view_item_events
+        description: Number of observed view_item events.
+      - name: add_to_cart_events
+        description: Number of observed add_to_cart events.
+      - name: begin_checkout_events
+        description: Number of observed begin_checkout events.
+      - name: purchase_events
+        description: Number of observed purchase events.
+      - name: purchase_events_missing_revenue
+        description: Purchase events missing canonical USD revenue.
+      - name: purchase_revenue_usd
+        description: Sum of canonical purchase-event revenue in USD.
+      - name: has_session_start
+        description: Whether session_start appears anywhere in the session.
+      - name: has_view_item
+        description: Whether view_item appears anywhere in the session.
+      - name: has_add_to_cart
+        description: Whether add_to_cart appears anywhere in the session.
+      - name: has_begin_checkout
+        description: Whether begin_checkout appears anywhere in the session.
+      - name: has_purchase
+        description: Whether purchase appears anywhere in the session.
+      - name: ordered_session_start
+        description: Whether session_start begins the strict funnel.
+      - name: ordered_view_item
+        description: Whether view_item follows the qualifying session_start.
+      - name: ordered_add_to_cart
+        description: Whether cart follows the qualifying item view.
+      - name: ordered_begin_checkout
+        description: Whether checkout follows the qualifying cart event.
+      - name: ordered_purchase
+        description: Whether purchase follows the qualifying checkout event.
+      - name: first_touch_channel
+        description: Source and medium combined; explicitly first-touch.
+      - name: user_cohort
+        description: New in window or no observed first_visit; not confirmed returning.
+
+  - name: fct_funnel_daily
+    description: Cumulative session funnel reach by start date, device, country, mode, and step.
+    columns:
+      - name: session_start_date
+        description: Date assigned from each session's first observed export event.
+      - name: device_category
+        description: Device category on the session's earliest observed event.
+      - name: country
+        description: Country on the session's earliest observed event.
+      - name: funnel_mode
+        description: Any-order or strict ordered cumulative funnel mode.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [any_order, strict_ordered]
+      - name: step_order
+        description: One-based position of the primary funnel step.
+      - name: step_name
+        description: Observed GA4 event defining this funnel step.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - session_start
+                  - view_item
+                  - add_to_cart
+                  - begin_checkout
+                  - purchase
+      - name: total_sessions
+        description: All sessions in this date, device, and country segment.
+      - name: reached_sessions
+        description: Sessions satisfying this cumulative funnel step.
+        data_tests: [not_null]
+      - name: purchased_sessions_among_reached
+        description: Reached sessions that also contain a purchase event.
+      - name: purchase_revenue_usd_among_reached
+        description: Purchase-event USD revenue from reached sessions.
+      - name: next_step_reached_sessions
+        description: Sessions reaching the following cumulative step; null at final step.
+      - name: next_step_purchased_sessions
+        description: Following-step sessions with a purchase; null at final step.
+
+  - name: fct_product_daily
+    description: Distinct-session product reach and item revenue by session start date.
+    columns:
+      - name: session_start_date
+        description: Parent session's first observed export date.
+      - name: device_category
+        description: Device category on the session's earliest observed event.
+      - name: country
+        description: Country on the session's earliest observed event.
+      - name: item_id
+        description: Exported product identifier.
+      - name: item_category
+        description: First-level product category on the item event.
+      - name: item_name
+        description: Deterministic minimum observed name for this product segment.
+      - name: viewing_sessions
+        description: Distinct sessions with an item view for this product.
+      - name: purchasing_sessions
+        description: Distinct sessions with an item purchase for this product.
+      - name: view_and_purchase_sessions
+        description: Sessions with both an item view and purchase for this product.
+      - name: purchase_without_view_sessions
+        description: Product purchase sessions with no recorded matching item view.
+      - name: null_purchase_item_revenue_rows
+        description: Purchase item rows with missing USD item revenue.
+      - name: purchase_item_revenue_usd
+        description: Sum of non-null item-level purchase revenue in USD.
+
+  - name: dim_date
+    description: Calendar dates covering the selected GA4 source-table suffix window.
+    columns:
+      - name: date_day
+        description: Calendar date used to join fact session-start dates.
+      - name: calendar_year
+        description: Year component of date_day.
+      - name: calendar_month
+        description: Month number of date_day.
+      - name: calendar_day
+        description: Day-of-month number of date_day.
+      - name: day_of_week_sunday_first
+        description: BigQuery day-of-week number with Sunday first.

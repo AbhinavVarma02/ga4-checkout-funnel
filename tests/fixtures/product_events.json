@@ -1,0 +1,13 @@
+{
+  "label": "Fixture synthetic item events; never real GA4 data",
+  "view_event": "fixture_view",
+  "purchase_event": "fixture_purchase",
+  "events": [
+    {"session_key": "s1", "item_id": "sku-a", "item_category": "mugs", "event_name": "fixture_view", "item_revenue": "0"},
+    {"session_key": "s1", "item_id": "sku-a", "item_category": "mugs", "event_name": "fixture_view", "item_revenue": "0"},
+    {"session_key": "s1", "item_id": "sku-a", "item_category": "mugs", "event_name": "fixture_purchase", "item_revenue": "9.99"},
+    {"session_key": "s2", "item_id": "sku-a", "item_category": "mugs", "event_name": "fixture_view", "item_revenue": "0"},
+    {"session_key": "s3", "item_id": "sku-a", "item_category": "mugs", "event_name": "fixture_purchase", "item_revenue": "9.99"},
+    {"session_key": "s4", "item_id": "sku-b", "item_category": null, "event_name": "fixture_purchase", "item_revenue": "4.50"}
+  ]
+}

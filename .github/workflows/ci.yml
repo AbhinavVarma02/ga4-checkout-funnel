@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          version: '0.12.23'
+      - name: Install pinned environment
+        run: make setup
+      - name: Lint Python and SQL
+        run: make lint
+      - name: Run unit tests
+        run: make test
+      - name: Rebuild and check the offline interactive report
+        run: |
+          make prototype
+          make test-report
+          git diff --exit-code -- reports/prototype.html reports/metrics.json
+      - name: Parse dbt without credentials
+        run: uv run --locked dbt parse --project-dir dbt --profiles-dir dbt
+      - name: Scan full Git history for secrets
+        run: |
+          docker pull ghcr.io/gitleaks/gitleaks:v8.30.1
+          docker run --rm --network none -v "$GITHUB_WORKSPACE:/repo:ro" -w /repo ghcr.io/gitleaks/gitleaks:v8.30.1 git --redact /repo

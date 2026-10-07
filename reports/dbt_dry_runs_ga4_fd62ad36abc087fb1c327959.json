@@ -1,0 +1,58 @@
+{
+  "dbt_dim_date": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:08:34.115929+00:00",
+    "estimated_bytes": 0,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "55bc6018ca5ab69c29834a00a090303e86d7a39ef337e45a1b10f65d08126524"
+  },
+  "dbt_fct_funnel_daily": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:08:33.945932+00:00",
+    "estimated_bytes": 419471564,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "51fd7af49f62d03650cf90507554286a51fd35ae6b65bca5690a78e3b10f2aa4"
+  },
+  "dbt_fct_product_daily": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:08:33.268218+00:00",
+    "estimated_bytes": 493653565,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "f840370f555f306777ccb53b90efe61ff87026f6ddf37c226c01d1ec27a76f1b"
+  },
+  "dbt_fct_sessions": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:08:33.607586+00:00",
+    "estimated_bytes": 451497634,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "aeded28a95b34cdf54ad7fb0ce2941063e89ff19134354b0dfa61b971b28f985"
+  },
+  "dbt_int_sessions": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:08:32.978395+00:00",
+    "estimated_bytes": 451497634,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "27722a43d63ff24cbadc9ce635d27788d8f20f44c3df21aa4efea92dc211d4d2"
+  },
+  "dbt_stg_ga4_events": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:08:32.375707+00:00",
+    "estimated_bytes": 991649057,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "96a0b7f141dd23cd8c05c20ddb5b765f9b115f435fe82b8f0393823b5695ba4f"
+  },
+  "dbt_stg_ga4_items": {
+    "analytics_dataset": "ga4_replay_analytics",
+    "checked_at_utc": "2026-10-06T01:08:32.676742+00:00",
+    "estimated_bytes": 532019202,
+    "executed": false,
+    "maximum_bytes_billed": 4294967296,
+    "sql_sha256": "98a5ccd2d83367524718159b2d742d3b7258329352d4666a163734312a01fe55"
+  }
+}

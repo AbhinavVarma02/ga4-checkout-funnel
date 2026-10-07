@@ -1,0 +1,115 @@
+table fct_product_daily
+	lineageTag: e57fcd73-e155-544b-a40c-e9b8e1874d28
+
+	column session_start_date
+		dataType: dateTime
+		isHidden
+		sourceColumn: session_start_date
+		summarizeBy: none
+		lineageTag: 0566d2a6-caf4-53a8-b36e-a3fae9e0f9cc
+		formatString: yyyy-MM-dd
+
+	column device_category
+		dataType: string
+		isHidden
+		sourceColumn: device_category
+		summarizeBy: none
+		lineageTag: c258a84c-9b97-53a3-b3f5-bf9cd1471bcf
+
+	column country
+		dataType: string
+		isHidden
+		sourceColumn: country
+		summarizeBy: none
+		lineageTag: 2dfe85fb-2769-58e4-9854-b96d11e3a3a1
+
+	column item_id
+		dataType: string
+		sourceColumn: item_id
+		summarizeBy: none
+		lineageTag: e50c3c76-7a9f-5369-9d42-753c2ea5dcd9
+
+	column item_category
+		dataType: string
+		sourceColumn: item_category
+		summarizeBy: none
+		lineageTag: ed17c792-b968-5240-9c91-f57f26a7914d
+
+	column item_name
+		dataType: string
+		isHidden
+		sourceColumn: item_name
+		summarizeBy: none
+		lineageTag: e9adadc9-3fbc-595d-aaf9-0eefa59ef578
+
+	column viewing_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: viewing_sessions
+		summarizeBy: none
+		lineageTag: 8116aed9-cab7-5cc6-8d44-6b31e7b8aee4
+		formatString: #,0
+
+	column purchasing_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: purchasing_sessions
+		summarizeBy: none
+		lineageTag: f1321802-feee-547e-9917-448f3a3c2cc6
+		formatString: #,0
+
+	column view_and_purchase_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: view_and_purchase_sessions
+		summarizeBy: none
+		lineageTag: 09c30706-77ea-5970-ac8d-416d4e263ae2
+		formatString: #,0
+
+	column purchase_without_view_sessions
+		dataType: int64
+		isHidden
+		sourceColumn: purchase_without_view_sessions
+		summarizeBy: none
+		lineageTag: 54a5c1a7-b352-55e5-85f1-2148b44b777f
+		formatString: #,0
+
+	column null_purchase_item_revenue_rows
+		dataType: int64
+		isHidden
+		sourceColumn: null_purchase_item_revenue_rows
+		summarizeBy: none
+		lineageTag: e5bc2364-ec28-5fbd-ab3c-8fcbecbce507
+		formatString: #,0
+
+	column purchase_item_revenue_usd
+		dataType: decimal
+		isHidden
+		sourceColumn: purchase_item_revenue_usd
+		summarizeBy: none
+		lineageTag: aa508ba6-7853-55f6-b22a-db6ddc3ea40b
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+
+	partition fct_product_daily = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ExportsFolder & "\fct_product_daily.csv"),
+				        [Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {
+				        {"session_start_date", type date},
+				        {"device_category", type text},
+				        {"country", type text},
+				        {"item_id", type text},
+				        {"item_category", type text},
+				        {"item_name", type text},
+				        {"viewing_sessions", Int64.Type},
+				        {"purchasing_sessions", Int64.Type},
+				        {"view_and_purchase_sessions", Int64.Type},
+				        {"purchase_without_view_sessions", Int64.Type},
+				        {"null_purchase_item_revenue_rows", Int64.Type},
+				        {"purchase_item_revenue_usd", Currency.Type}
+				    }, "en-US")
+				in
+				    Typed

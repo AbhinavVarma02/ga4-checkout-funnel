@@ -1,0 +1,28 @@
+name: ga4_checkout_funnel
+version: 1.0.0
+config-version: 2
+profile: ga4_checkout_funnel
+
+query-comment:
+  comment: "{{ query_comment(node) }}"
+  job-label: true
+
+model-paths: [models]
+test-paths: [tests]
+macro-paths: [macros]
+target-path: target
+clean-targets: [target, dbt_packages]
+
+vars:
+  pipeline_mode: sandbox
+  start_suffix: '20201101'
+  end_suffix: '20210131'
+
+models:
+  ga4_checkout_funnel:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

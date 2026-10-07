@@ -1,0 +1,36 @@
+.env
+.env.*
+!.env.example
+.venv/
+.uv-cache/
+.uv-python/
+data/
+*.duckdb
+*.duckdb.wal
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+target/
+dbt_packages/
+logs/
+*.pbix
+# Owner-approved, reviewed Power BI deliverable; other PBIX files stay ignored.
+!powerbi/Breadcrumb.pbix
+*.key
+*.pem
+*.jsonl
+gha-creds-*.json
+reports/.metrics_*.json
+reports/.dry_runs_*.json
+reports/.checks/
+dbt/.user.yml
+airflow/.astro/config.yaml.lock
+
+# Generated analytical BI exports; provenance stays in reports/metrics.json.
+exports/*.csv
+exports/.bi_*.csv
+
+# Power BI Desktop machine state, caches, and native validator build outputs.
+**/.pbi/
+powerbi/validation/bin/
+powerbi/validation/obj/

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: ga4_public
+    description: Google public obfuscated GA4 ecommerce sample; one table per day.
+    database: bigquery-public-data
+    schema: ga4_obfuscated_sample_ecommerce
+    tables:
+      - name: events
+        identifier: events_*
+        description: Wildcard source for events_YYYYMMDD tables; models must filter _TABLE_SUFFIX.
+
+  - name: ga4_raw
+    description: Owner-approved simulated daily extraction; not created by source declarations.
+    database: "{{ env_var('GCP_PROJECT_ID', 'pending-project') }}"
+    schema: "{{ env_var('BQ_DATASET_RAW', 'ga4_raw') }}"
+    tables:
+      - name: events
+        identifier: ga4_events
+        description: Native nested GA4 events with event_date converted to DATE and partitioned by day.

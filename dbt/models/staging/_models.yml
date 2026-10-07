@@ -1,0 +1,78 @@
+version: 2
+
+models:
+  - name: stg_ga4_events
+    description: One row per public GA4 export event with observed parameters flattened.
+    columns:
+      - name: event_date
+        description: Export event date parsed from YYYYMMDD.
+      - name: event_date_raw
+        description: Original source date (YYYYMMDD STRING in sandbox; native DATE in replay).
+      - name: event_timestamp_micros
+        description: Source event timestamp in microseconds.
+      - name: event_bundle_sequence_id
+        description: Bundle sequence identifier supplied by the export.
+      - name: event_name
+        description: Observed GA4 event name.
+      - name: user_pseudo_id
+        description: Exported pseudonymous user identifier.
+      - name: ga_session_id
+        description: Integer ga_session_id extracted from event_params.
+      - name: device_category
+        description: Device category recorded on the event.
+      - name: country
+        description: Country recorded on the event.
+      - name: first_touch_source
+        description: User first-acquisition source, not session source.
+      - name: first_touch_medium
+        description: User first-acquisition medium, not session medium.
+      - name: first_touch_campaign
+        description: User first-acquisition campaign name.
+      - name: event_param_source
+        description: Event-level source parameter; not stable within all sessions.
+      - name: event_param_medium
+        description: Event-level medium parameter; not stable within all sessions.
+      - name: transaction_id
+        description: Transaction ID from the nested ecommerce struct.
+      - name: purchase_revenue_usd
+        description: Purchase-event ecommerce revenue cast to NUMERIC, in USD.
+      - name: item_rows
+        description: Number of item elements on this event.
+
+  - name: stg_ga4_items
+    description: One row per item element on a public GA4 export event.
+    columns:
+      - name: event_date
+        description: Export event date parsed from YYYYMMDD.
+      - name: event_timestamp_micros
+        description: Parent event timestamp in microseconds.
+      - name: event_bundle_sequence_id
+        description: Parent event bundle sequence identifier.
+      - name: event_name
+        description: Parent GA4 event name.
+      - name: user_pseudo_id
+        description: Parent event's pseudonymous user identifier.
+      - name: ga_session_id
+        description: Parent event's integer session parameter.
+      - name: device_category
+        description: Device category on the parent event.
+      - name: country
+        description: Country on the parent event.
+      - name: item_offset
+        description: Zero-based position of the item in the parent array.
+      - name: item_id
+        description: Exported product identifier.
+      - name: item_name
+        description: Exported product name.
+      - name: item_category
+        description: First-level exported product category.
+      - name: item_category2
+        description: Second-level exported product category.
+      - name: item_brand
+        description: Exported product brand.
+      - name: quantity
+        description: Item quantity on the parent event.
+      - name: item_price_usd
+        description: Item unit price cast to NUMERIC, in USD.
+      - name: item_revenue_usd
+        description: Item revenue cast to NUMERIC; null on many events.

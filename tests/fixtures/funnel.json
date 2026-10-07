@@ -1,0 +1,10 @@
+{
+  "label": "Fixture synthetic session event sequences; not real GA4 data",
+  "steps": ["fixture_a", "fixture_b", "fixture_c"],
+  "sessions": [
+    ["fixture_a", "fixture_b", "fixture_c"],
+    ["fixture_b", "fixture_a", "fixture_c"],
+    ["fixture_a", "fixture_c"],
+    ["fixture_c", "fixture_b", "fixture_a", "fixture_b", "fixture_c"]
+  ]
+}

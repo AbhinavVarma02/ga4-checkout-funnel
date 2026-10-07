@@ -1,0 +1,5 @@
+# Keep owner-created connections, pools and variables unchanged during local replay.
+airflow:
+  connections: []
+  pools: []
+  variables: []

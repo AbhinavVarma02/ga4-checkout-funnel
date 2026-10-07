@@ -1,0 +1,14 @@
+{
+  "label": "Fixture synthetic funnel transition and scenarios; not real GA4 data",
+  "transition": {
+    "step_name": "fixture_checkout_step",
+    "entering_sessions": 100,
+    "continuing_sessions": 60,
+    "downstream_purchase_rate": "0.25",
+    "average_purchase_revenue": "20.00"
+  },
+  "scenarios": [
+    {"label": "fixture_recovery_a", "recovery_fraction_assumption": "0.10"},
+    {"label": "fixture_recovery_b", "recovery_fraction_assumption": "0.20"}
+  ]
+}

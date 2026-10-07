@@ -1,0 +1,23 @@
+ga4_checkout_funnel:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID', 'pending-project') }}"
+      dataset: "{{ env_var('BQ_DATASET_ANALYTICS', 'ga4_analytics') }}"
+      location: "{{ env_var('BQ_LOCATION', 'US') }}"
+      threads: 4
+      priority: interactive
+      maximum_bytes_billed: "{{ env_var('BQ_MAX_BYTES_BILLED', '21474836480') | int }}"
+    ci:
+      type: bigquery
+      method: oauth
+      project: ga4-checkout-funnel
+      dataset: ga4_ci
+      location: US
+      threads: 1
+      priority: interactive
+      maximum_bytes_billed: 134217728
+      job_retries: 0
+      job_execution_timeout_seconds: 300

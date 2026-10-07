@@ -1,0 +1,18 @@
+table dim_country
+	lineageTag: 114ff621-1799-5591-9cf2-1b74ddb73cac
+
+	column country
+		dataType: string
+		isKey
+		sourceColumn: country
+		summarizeBy: none
+		lineageTag: 1930a0f8-5755-5448-b9c1-59846c34b00e
+
+	partition dim_country = m
+		mode: import
+		source =
+				let
+				    Source = Table.SelectColumns(fct_sessions, {"country"}),
+				    Unique = Table.Distinct(Source)
+				in
+				    Unique

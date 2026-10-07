@@ -1,0 +1,98 @@
+name: Manual BigQuery dbt build
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: Must be ga4-checkout-funnel; separately approved billing project
+        required: true
+        type: string
+        default: ga4-checkout-funnel
+      reviewed_commit:
+        description: Full reviewed main commit SHA; must equal this dispatch commit
+        required: true
+        type: string
+      confirm_cloud_write:
+        description: Select go only after reviewing this build's cloud resource scope
+        required: true
+        type: choice
+        options:
+          - cancel
+          - go
+        default: cancel
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p5-9-bigquery-validation
+  cancel-in-progress: false
+
+jobs:
+  dbt-build:
+    if: inputs.confirm_cloud_write == 'go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GCP_PROJECT_ID: ${{ inputs.project_id }}
+      BQ_LOCATION: US
+      BQ_DATASET_RAW: ga4_raw
+      BQ_DATASET_ANALYTICS: ga4_ci
+      BQ_MAX_BYTES_BILLED: '134217728'
+      GA4_RUN_LABEL: p5_9_${{ github.run_id }}_${{ github.run_attempt }}
+      REVIEWED_COMMIT: ${{ inputs.reviewed_commit }}
+      CONFIRM_CLOUD_WRITE: ${{ inputs.confirm_cloud_write }}
+      PYTHONPATH: src
+      PYTHONMALLOC: malloc
+      UV_CACHE_DIR: .uv-cache
+      UV_PYTHON_INSTALL_DIR: .uv-python
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          version: '0.12.23'
+      - name: Install pinned environment
+        run: make setup
+      - name: Validate reviewed scope before authentication
+        run: uv run --locked python -m pipeline.manual_workflow plan
+      - uses: google-github-actions/auth@v3.0.0
+        id: auth
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+          project_id: ${{ inputs.project_id }}
+      - name: Compile one-day sandbox models and tests
+        run: |
+          uv run --locked dbt compile --project-dir dbt --profiles-dir dbt --target ci \
+            --no-introspect --no-populate-cache --exclude test_type:unit --no-partial-parse \
+            --target-path ../reports/.checks/p5_9/compile \
+            --vars '{"pipeline_mode":"sandbox","start_suffix":"20201101","end_suffix":"20201101"}'
+      - name: Check empty US target and dry-run all 21 model/test SELECTs
+        run: uv run --locked python -m pipeline.manual_workflow preflight
+      - name: Build seven models and run fourteen data tests once
+        id: build
+        run: |
+          uv run --locked dbt build --project-dir dbt --profiles-dir dbt --target ci \
+            --exclude test_type:unit --no-partial-parse --fail-fast \
+            --target-path ../reports/.checks/p5_9/build \
+            --vars '{"pipeline_mode":"sandbox","start_suffix":"20201101","end_suffix":"20201101"}'
+      - name: Save own-job API accounting even after failure
+        if: always() && steps.auth.outcome == 'success'
+        env:
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+        run: uv run --locked python -m pipeline.manual_workflow account
+      - name: Preserve explicit noncredential receipts
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: p5-9-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: warn
+          include-hidden-files: true
+          path: |
+            reports/.checks/p5_9/plan.json
+            reports/.checks/p5_9/preflight.json
+            reports/.checks/p5_9/accounting.json
+            reports/.checks/p5_9/compile/manifest.json
+            reports/.checks/p5_9/build/run_results.json

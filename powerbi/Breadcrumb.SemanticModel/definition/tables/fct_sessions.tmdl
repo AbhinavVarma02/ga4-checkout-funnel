@@ -1,0 +1,522 @@
+table fct_sessions
+	lineageTag: 83ff1b3e-b0fb-526c-a554-633b6dd23554
+
+	measure 'Sessions' =
+			COUNTROWS ( fct_sessions )
+		formatString: #,0
+		displayFolder: Sessions
+		lineageTag: b693961c-fc5c-509e-808b-6d628eb10102
+
+	measure 'Purchase Sessions' =
+			CALCULATE ( [Sessions], fct_sessions[has_purchase] = TRUE () )
+		formatString: #,0
+		displayFolder: Sessions
+		lineageTag: 6a170be5-d6e7-5a15-9b0e-c9495705b240
+
+	measure 'Session Conversion' =
+			DIVIDE ( [Purchase Sessions], [Sessions] )
+		formatString: 0.00%
+		displayFolder: Sessions
+		lineageTag: d86c0eaa-d589-5008-a43c-262fc67c48b0
+
+	measure 'Purchase Revenue USD' =
+			SUM ( fct_sessions[purchase_revenue_usd] )
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+		displayFolder: Sessions
+		lineageTag: 3ba77191-a1af-500d-aedd-9ed3c6c742e7
+
+	measure 'Purchase Events' =
+			SUM ( fct_sessions[purchase_events] )
+		formatString: #,0
+		displayFolder: Sessions
+		lineageTag: 34433a70-2868-577e-8173-f7f74c623bff
+
+	measure 'Revenue per Session USD' =
+			DIVIDE ( [Purchase Revenue USD], [Sessions] )
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+		displayFolder: Sessions
+		lineageTag: 8204632a-f3a3-5fc2-ba1b-91e0dd85476b
+
+	measure 'Sessions without Observed Start' =
+			CALCULATE ( [Sessions], fct_sessions[has_session_start] = FALSE () )
+		formatString: #,0
+		displayFolder: Sessions
+		lineageTag: 200aed1a-c286-549c-82c4-2be067f2c888
+
+	measure 'Funnel Reached Sessions' =
+			IF (
+			        HASONEVALUE ( fct_funnel_daily[funnel_mode] )
+			            && HASONEVALUE ( fct_funnel_daily[step_order] ),
+			        SUM ( fct_funnel_daily[reached_sessions] )
+			    )
+		formatString: #,0
+		displayFolder: Funnel
+		lineageTag: 15687c0e-3cd4-5b0a-b72c-ca5c2e599ee2
+
+	measure 'Funnel Next Step Sessions' =
+			IF (
+			        HASONEVALUE ( fct_funnel_daily[funnel_mode] )
+			            && HASONEVALUE ( fct_funnel_daily[step_order] ),
+			        SUM ( fct_funnel_daily[next_step_reached_sessions] )
+			    )
+		formatString: #,0
+		displayFolder: Funnel
+		lineageTag: 9de9b6cc-2a99-5bc7-bdf1-15f503fa4803
+
+	measure 'Next Step Conversion' =
+			DIVIDE ( [Funnel Next Step Sessions], [Funnel Reached Sessions] )
+		formatString: 0.00%
+		displayFolder: Funnel
+		lineageTag: 188b52c9-0e10-541b-8b86-138dab3716aa
+
+	measure 'Funnel Lost Sessions' =
+			IF (
+			        SELECTEDVALUE ( fct_funnel_daily[step_order] ) < 5
+			            && NOT ISBLANK ( [Funnel Reached Sessions] ),
+			        [Funnel Reached Sessions] - [Funnel Next Step Sessions]
+			    )
+		formatString: #,0
+		displayFolder: Funnel
+		lineageTag: 5c5ee35d-553f-51e3-94c0-254c28bbb2f3
+
+	measure 'Entry Sessions Any Order' =
+			CALCULATE (
+			        SUM ( fct_funnel_daily[reached_sessions] ),
+			        REMOVEFILTERS (
+			            fct_funnel_daily[funnel_mode],
+			            fct_funnel_daily[step_order],
+			            fct_funnel_daily[step_name]
+			        ),
+			        fct_funnel_daily[funnel_mode] = "any_order",
+			        fct_funnel_daily[step_order] = 1
+			    )
+		formatString: #,0
+		displayFolder: Assumed opportunity
+		lineageTag: c96b0321-c7ec-5766-b8ab-c3bd8d96ca8f
+
+	measure 'View Sessions Any Order' =
+			CALCULATE (
+			        SUM ( fct_funnel_daily[reached_sessions] ),
+			        REMOVEFILTERS (
+			            fct_funnel_daily[funnel_mode],
+			            fct_funnel_daily[step_order],
+			            fct_funnel_daily[step_name]
+			        ),
+			        fct_funnel_daily[funnel_mode] = "any_order",
+			        fct_funnel_daily[step_order] = 2
+			    )
+		formatString: #,0
+		displayFolder: Assumed opportunity
+		lineageTag: e6a63524-cce4-52e6-8d9b-2a4e36cc7aad
+
+	measure 'View Continuer Purchase Revenue USD' =
+			CALCULATE (
+			        SUM ( fct_funnel_daily[purchase_revenue_usd_among_reached] ),
+			        REMOVEFILTERS (
+			            fct_funnel_daily[funnel_mode],
+			            fct_funnel_daily[step_order],
+			            fct_funnel_daily[step_name]
+			        ),
+			        fct_funnel_daily[funnel_mode] = "any_order",
+			        fct_funnel_daily[step_order] = 2
+			    )
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+		displayFolder: Assumed opportunity
+		lineageTag: 5d000198-d435-5780-9dae-8415a31c940d
+
+	measure 'Entry Dropouts Any Order' =
+			[Entry Sessions Any Order] - [View Sessions Any Order]
+		formatString: #,0
+		displayFolder: Assumed opportunity
+		lineageTag: 4b399cd7-bca8-5dae-b498-d7932e46f760
+
+	measure 'Assumed Recovery Fraction' =
+			SELECTEDVALUE ( recovery_assumption[fraction] )
+		formatString: 0.00%
+		displayFolder: Assumed opportunity
+		lineageTag: cd6822d7-2a5e-5263-abfe-c043979d020c
+
+	measure 'Modeled Recovery USD' =
+			VAR Opportunity =
+			        [Entry Dropouts Any Order]
+			            * DIVIDE ( [View Continuer Purchase Revenue USD], [View Sessions Any Order] )
+			    VAR ScenarioValue = Opportunity * [Assumed Recovery Fraction]
+			    RETURN
+			        IF (
+			            NOT ISBLANK ( [Assumed Recovery Fraction] )
+			                && [View Sessions Any Order] > 0,
+			            ROUNDDOWN ( ScenarioValue * 100, 0 ) / 100
+			        )
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+		displayFolder: Assumed opportunity
+		lineageTag: 08b8ded2-9578-53a8-b686-c90a37c05dca
+
+	measure 'Item Revenue USD' =
+			SUM ( fct_product_daily[purchase_item_revenue_usd] )
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+		displayFolder: Products
+		lineageTag: 9404eefd-ec4e-51c9-909c-2340a08648d6
+
+	measure 'Product Viewing Sessions' =
+			IF (
+			        HASONEVALUE ( fct_product_daily[item_id] )
+			            && HASONEVALUE ( fct_product_daily[item_category] ),
+			        SUM ( fct_product_daily[viewing_sessions] )
+			    )
+		formatString: #,0
+		displayFolder: Products
+		lineageTag: 73c8716a-948b-5a30-a072-efee1edda1cc
+
+	measure 'Product View and Purchase Sessions' =
+			IF (
+			        HASONEVALUE ( fct_product_daily[item_id] )
+			            && HASONEVALUE ( fct_product_daily[item_category] ),
+			        SUM ( fct_product_daily[view_and_purchase_sessions] )
+			    )
+		formatString: #,0
+		displayFolder: Products
+		lineageTag: f828de89-9cb0-56b3-9e4b-de4cee166534
+
+	measure 'Product Purchase without View Sessions' =
+			IF (
+			        HASONEVALUE ( fct_product_daily[item_id] )
+			            && HASONEVALUE ( fct_product_daily[item_category] ),
+			        SUM ( fct_product_daily[purchase_without_view_sessions] )
+			    )
+		formatString: #,0
+		displayFolder: Products
+		lineageTag: 1e3d0056-a6aa-518a-b8cd-fc4e2fd033eb
+
+	measure 'Product View to Purchase Conversion' =
+			DIVIDE ( [Product View and Purchase Sessions], [Product Viewing Sessions] )
+		formatString: 0.00%
+		displayFolder: Products
+		lineageTag: 62bec922-f0eb-54f7-99f0-0f998088e773
+
+	measure 'Category Viewing Sessions Full Window' =
+			IF (
+			        HASONEVALUE ( category_summary[item_category] ),
+			        SUM ( category_summary[viewing_sessions] )
+			    )
+		formatString: #,0
+		displayFolder: Products
+		lineageTag: 1172a2de-a813-5878-b71a-079654d39522
+
+	measure 'Category View and Purchase Sessions Full Window' =
+			IF (
+			        HASONEVALUE ( category_summary[item_category] ),
+			        SUM ( category_summary[view_and_purchase_sessions] )
+			    )
+		formatString: #,0
+		displayFolder: Products
+		lineageTag: c1b6ca15-ba15-5f07-9da1-31469c5f95b1
+
+	measure 'Category Conversion Full Window' =
+			DIVIDE (
+			        [Category View and Purchase Sessions Full Window],
+			        [Category Viewing Sessions Full Window]
+			    )
+		formatString: 0.00%
+		displayFolder: Products
+		lineageTag: 5f4c96ad-e696-5558-9f52-5c8f439363aa
+
+	measure 'Category Item Revenue USD Full Window' =
+			SUM ( category_summary[purchase_item_revenue_usd] )
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+		displayFolder: Products
+		lineageTag: 4a312a62-d9e1-5dc7-bd94-047d3c31b80c
+
+	measure 'Next Step Continuer Purchase Revenue USD' =
+			VAR CurrentStep = SELECTEDVALUE ( fct_funnel_daily[step_order] )
+			    RETURN
+			        IF (
+			            HASONEVALUE ( fct_funnel_daily[funnel_mode] )
+			                && HASONEVALUE ( fct_funnel_daily[step_order] )
+			                && CurrentStep < 5,
+			            CALCULATE (
+			                SUM ( fct_funnel_daily[purchase_revenue_usd_among_reached] ),
+			                REMOVEFILTERS ( fct_funnel_daily[step_order], fct_funnel_daily[step_name] ),
+			                fct_funnel_daily[step_order] = CurrentStep + 1
+			            )
+			        )
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+		displayFolder: Funnel
+		lineageTag: c4500501-77fb-5981-a9eb-b3f556a3a1dc
+
+	measure 'Modeled Dropoff Opportunity USD' =
+			IF (
+			        NOT ISBLANK ( [Funnel Lost Sessions] ) && [Funnel Next Step Sessions] > 0,
+			        [Funnel Lost Sessions]
+			            * DIVIDE ( [Next Step Continuer Purchase Revenue USD], [Funnel Next Step Sessions] )
+			    )
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+		displayFolder: Assumed opportunity
+		lineageTag: 0dbd9df0-642e-5e77-a25a-80adfb0c1a88
+
+	measure 'Product Display Name' =
+			IF (
+			        HASONEVALUE ( fct_product_daily[item_id] )
+			            && HASONEVALUE ( fct_product_daily[item_category] ),
+			        MAX ( fct_product_daily[item_name] )
+			    )
+		displayFolder: Products
+		lineageTag: d7d4d010-191f-5254-acf1-6950a5dba8e4
+
+	column user_pseudo_id
+		dataType: string
+		isHidden
+		sourceColumn: user_pseudo_id
+		summarizeBy: none
+		lineageTag: 0efae9bc-9859-548a-8061-b9758404959c
+
+	column ga_session_id
+		dataType: int64
+		isHidden
+		sourceColumn: ga_session_id
+		summarizeBy: none
+		lineageTag: a9423f9d-40c5-5597-acb5-2f1f6ff70b98
+		formatString: #,0
+
+	column session_start_date
+		dataType: dateTime
+		isHidden
+		sourceColumn: session_start_date
+		summarizeBy: none
+		lineageTag: a8e16f30-74c2-5ac0-a979-f369e64eca03
+		formatString: yyyy-MM-dd
+
+	column first_event_timestamp_micros
+		dataType: int64
+		isHidden
+		sourceColumn: first_event_timestamp_micros
+		summarizeBy: none
+		lineageTag: f9df7565-7961-5db0-94ce-667df90bd420
+		formatString: #,0
+
+	column device_category
+		dataType: string
+		isHidden
+		sourceColumn: device_category
+		summarizeBy: none
+		lineageTag: e9bfa2de-5b0f-5e90-ac65-8b47a0de0c66
+
+	column country
+		dataType: string
+		isHidden
+		sourceColumn: country
+		summarizeBy: none
+		lineageTag: a58eb9c7-2b18-5865-b6e9-fe182e7178c2
+
+	column first_touch_source
+		dataType: string
+		isHidden
+		sourceColumn: first_touch_source
+		summarizeBy: none
+		lineageTag: 1bc108ae-ef13-5d1f-9992-f5a50661910a
+
+	column first_touch_medium
+		dataType: string
+		isHidden
+		sourceColumn: first_touch_medium
+		summarizeBy: none
+		lineageTag: 526f0529-dae8-5eb5-9c7b-0fce1a636bbf
+
+	column event_count
+		dataType: int64
+		isHidden
+		sourceColumn: event_count
+		summarizeBy: none
+		lineageTag: b49c68e1-c63d-5447-9fd1-90d200040454
+		formatString: #,0
+
+	column session_start_events
+		dataType: int64
+		isHidden
+		sourceColumn: session_start_events
+		summarizeBy: none
+		lineageTag: 2857f74d-879a-52b3-b7b9-34ab8a25bb33
+		formatString: #,0
+
+	column view_item_events
+		dataType: int64
+		isHidden
+		sourceColumn: view_item_events
+		summarizeBy: none
+		lineageTag: 1fb826e8-bb58-59d7-9813-b3285e2189af
+		formatString: #,0
+
+	column add_to_cart_events
+		dataType: int64
+		isHidden
+		sourceColumn: add_to_cart_events
+		summarizeBy: none
+		lineageTag: ffcf793b-6c87-525e-9d38-97f70917134d
+		formatString: #,0
+
+	column begin_checkout_events
+		dataType: int64
+		isHidden
+		sourceColumn: begin_checkout_events
+		summarizeBy: none
+		lineageTag: b3cd82d5-3259-500d-ba3d-8d40462f9459
+		formatString: #,0
+
+	column purchase_events
+		dataType: int64
+		isHidden
+		sourceColumn: purchase_events
+		summarizeBy: none
+		lineageTag: 8eff9d9e-fac8-5edf-91e0-330e75a59bfa
+		formatString: #,0
+
+	column purchase_events_missing_revenue
+		dataType: int64
+		isHidden
+		sourceColumn: purchase_events_missing_revenue
+		summarizeBy: none
+		lineageTag: 04661a94-2108-5438-bbb1-cc1b992aaf3a
+		formatString: #,0
+
+	column purchase_revenue_usd
+		dataType: decimal
+		isHidden
+		sourceColumn: purchase_revenue_usd
+		summarizeBy: none
+		lineageTag: 9f1e6a0b-b2c1-5841-a709-1a7b60d907c9
+		formatString: "$"#,0.00;("$"#,0.00);"$"0.00
+
+	column has_session_start
+		dataType: boolean
+		isHidden
+		sourceColumn: has_session_start
+		summarizeBy: none
+		lineageTag: ce1e417a-7710-5938-a21c-9de6d8966a08
+
+	column has_view_item
+		dataType: boolean
+		isHidden
+		sourceColumn: has_view_item
+		summarizeBy: none
+		lineageTag: 4882bb44-5f25-53c1-90b9-df3929ef7ce1
+
+	column has_add_to_cart
+		dataType: boolean
+		isHidden
+		sourceColumn: has_add_to_cart
+		summarizeBy: none
+		lineageTag: b1d85ff0-88fc-5297-a47e-98a0d60b6945
+
+	column has_begin_checkout
+		dataType: boolean
+		isHidden
+		sourceColumn: has_begin_checkout
+		summarizeBy: none
+		lineageTag: 661e7979-6212-5095-8112-20131d3a46e0
+
+	column has_purchase
+		dataType: boolean
+		isHidden
+		sourceColumn: has_purchase
+		summarizeBy: none
+		lineageTag: b0247536-8476-52a4-9645-4779885dd55c
+
+	column ordered_session_start
+		dataType: boolean
+		isHidden
+		sourceColumn: ordered_session_start
+		summarizeBy: none
+		lineageTag: d60a7b3f-80de-555c-b68a-9fe5ae95e5c9
+
+	column ordered_view_item
+		dataType: boolean
+		isHidden
+		sourceColumn: ordered_view_item
+		summarizeBy: none
+		lineageTag: feb2fca3-023e-5e46-a145-c10a54a0a9c5
+
+	column ordered_add_to_cart
+		dataType: boolean
+		isHidden
+		sourceColumn: ordered_add_to_cart
+		summarizeBy: none
+		lineageTag: ea8e8bf6-b6ab-532d-9f41-f31386eb25b7
+
+	column ordered_begin_checkout
+		dataType: boolean
+		isHidden
+		sourceColumn: ordered_begin_checkout
+		summarizeBy: none
+		lineageTag: 387a264e-edfa-566d-8e49-3c1c0e6abc31
+
+	column ordered_purchase
+		dataType: boolean
+		isHidden
+		sourceColumn: ordered_purchase
+		summarizeBy: none
+		lineageTag: fbd310e0-7ba5-5a9c-8d19-dc76d26f3a8b
+
+	column first_touch_channel
+		dataType: string
+		isHidden
+		sourceColumn: first_touch_channel
+		summarizeBy: none
+		lineageTag: cd86625d-133b-552b-b648-10902fcd9dbd
+
+	column user_cohort
+		dataType: string
+		isHidden
+		sourceColumn: user_cohort
+		summarizeBy: none
+		lineageTag: 458d8569-55f6-51b9-b73d-f21fe88c4e46
+
+	column user_cohort_label
+		dataType: string
+		sourceColumn: user_cohort_label
+		summarizeBy: none
+		lineageTag: cba4d20e-73ba-5231-b0dc-33a128fb9c8f
+
+	partition fct_sessions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(ExportsFolder & "\fct_sessions.csv"),
+				        [Delimiter=",", Columns=28, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {
+				        {"user_pseudo_id", type text},
+				        {"ga_session_id", Int64.Type},
+				        {"session_start_date", type date},
+				        {"first_event_timestamp_micros", Int64.Type},
+				        {"device_category", type text},
+				        {"country", type text},
+				        {"first_touch_source", type text},
+				        {"first_touch_medium", type text},
+				        {"event_count", Int64.Type},
+				        {"session_start_events", Int64.Type},
+				        {"view_item_events", Int64.Type},
+				        {"add_to_cart_events", Int64.Type},
+				        {"begin_checkout_events", Int64.Type},
+				        {"purchase_events", Int64.Type},
+				        {"purchase_events_missing_revenue", Int64.Type},
+				        {"purchase_revenue_usd", Currency.Type},
+				        {"first_touch_channel", type text},
+				        {"user_cohort", type text}
+				    }, "en-US"),
+				    Flags = Table.TransformColumns(Typed, {
+				        {"has_session_start", each if _ = "true" then true else if _ = "false" then false else error "Invalid verified CSV boolean", type logical},
+				        {"has_view_item", each if _ = "true" then true else if _ = "false" then false else error "Invalid verified CSV boolean", type logical},
+				        {"has_add_to_cart", each if _ = "true" then true else if _ = "false" then false else error "Invalid verified CSV boolean", type logical},
+				        {"has_begin_checkout", each if _ = "true" then true else if _ = "false" then false else error "Invalid verified CSV boolean", type logical},
+				        {"has_purchase", each if _ = "true" then true else if _ = "false" then false else error "Invalid verified CSV boolean", type logical},
+				        {"ordered_session_start", each if _ = "true" then true else if _ = "false" then false else error "Invalid verified CSV boolean", type logical},
+				        {"ordered_view_item", each if _ = "true" then true else if _ = "false" then false else error "Invalid verified CSV boolean", type logical},
+				        {"ordered_add_to_cart", each if _ = "true" then true else if _ = "false" then false else error "Invalid verified CSV boolean", type logical},
+				        {"ordered_begin_checkout", each if _ = "true" then true else if _ = "false" then false else error "Invalid verified CSV boolean", type logical},
+				        {"ordered_purchase", each if _ = "true" then true else if _ = "false" then false else error "Invalid verified CSV boolean", type logical}
+				    }),
+				    Labels = Table.AddColumn(Flags, "user_cohort_label", each
+				        if [user_cohort] = "new_in_window" then "New in window"
+				        else if [user_cohort] = "no_observed_first_visit" then "No observed first_visit"
+				        else [user_cohort], type text)
+				in
+				    Labels

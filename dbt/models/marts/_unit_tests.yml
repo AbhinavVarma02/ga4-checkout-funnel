@@ -1,0 +1,32 @@
+version: 2
+
+unit_tests:
+  - name: replay_refreshes_complete_affected_start_dates
+    description: Synthetic replay fixture; older crossings and later first_visit repair whole start-date partitions.
+    model: fct_sessions
+    overrides:
+      macros:
+        is_incremental: true
+        ga4_is_replay: true
+      vars:
+        run_date: '2020-11-05'
+    given:
+      - input: this
+        rows: []
+      - input: ref('int_sessions')
+        rows:
+          - {user_pseudo_id: u1, ga_session_id: 1, session_start_date: '2020-11-01', is_new_user_in_window: false}
+          - {user_pseudo_id: u2, ga_session_id: 2, session_start_date: '2020-11-01', is_new_user_in_window: false}
+          - {user_pseudo_id: u3, ga_session_id: 3, session_start_date: '2020-11-03', is_new_user_in_window: true}
+          - {user_pseudo_id: u4, ga_session_id: 4, session_start_date: '2020-11-02', is_new_user_in_window: false}
+          - {user_pseudo_id: u5, ga_session_id: 5, session_start_date: '2020-11-05', is_new_user_in_window: false}
+      - input: ref('stg_ga4_events')
+        rows:
+          - {user_pseudo_id: u1, ga_session_id: 1, event_date: '2020-11-05', event_name: purchase}
+          - {user_pseudo_id: u3, ga_session_id: 6, event_date: '2020-11-05', event_name: first_visit}
+    expect:
+      rows:
+        - {user_pseudo_id: u1, ga_session_id: 1, session_start_date: '2020-11-01', user_cohort: no_observed_first_visit}
+        - {user_pseudo_id: u2, ga_session_id: 2, session_start_date: '2020-11-01', user_cohort: no_observed_first_visit}
+        - {user_pseudo_id: u3, ga_session_id: 3, session_start_date: '2020-11-03', user_cohort: new_in_window}
+        - {user_pseudo_id: u5, ga_session_id: 5, session_start_date: '2020-11-05', user_cohort: no_observed_first_visit}
