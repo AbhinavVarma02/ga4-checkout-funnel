@@ -1,25 +1,25 @@
-# This exact historical generic-api-key finding is a JSON evidence path:
+# This exact release-commit generic-api-key finding is a JSON evidence path:
 # package_provenance_source_key = continuation_validation.p6_4, not a credential.
-# Keep the exception limited to the original commit, file, rule and line.
-98a2b5201b5104a38cda0cbdda4dad71445c003d:reports/metrics.json:generic-api-key:20547
+# Keep the exception limited to the exact commit, file, rule and line.
+2217c3224a33a6e87cf4fa814f974df160028204:reports/metrics.json:generic-api-key:20887
 # This exact finding is the verified SHA-256 checksum of the local Airflow
 # health JSON artifact, not an API key. No rule or path is broadly excluded.
-b46a5413c02e14550ff0641ccab017e89132d777:reports/metrics.json:generic-api-key:22467
-# This exact historical finding is execution_api_auth_log_sha256: a verified
+2217c3224a33a6e87cf4fa814f974df160028204:reports/metrics.json:generic-api-key:22807
+# This exact finding is execution_api_auth_log_sha256: a verified
 # SHA-256 of the retained Gate 19 dbt diagnostic log, not a credential.
-# Keep this exception limited to its original commit, file, rule and line.
-568d12c0bb3a9b4a8b8ffe07beb927acf3837d98:reports/metrics.json:generic-api-key:26464
+# Keep this exception limited to its exact commit, file, rule and line.
+2217c3224a33a6e87cf4fa814f974df160028204:reports/metrics.json:generic-api-key:26864
 # Verified SHA-256 of the P5.9 anonymous-result access diagnostic, not credentials.
-ab0517f7c9ff2e03593f9db87cdd03f144293778:reports/metrics.json:generic-api-key:322360
+2217c3224a33a6e87cf4fa814f974df160028204:reports/metrics.json:generic-api-key:322877
 # Verified SHA-256 of GitHub secret-name/timestamp metadata; no secret value.
-ab0517f7c9ff2e03593f9db87cdd03f144293778:reports/metrics.json:generic-api-key:322373
+2217c3224a33a6e87cf4fa814f974df160028204:reports/metrics.json:generic-api-key:322890
 # Verified SHA-256 of IAM user-key inventory metadata; no private key.
-ab0517f7c9ff2e03593f9db87cdd03f144293778:reports/metrics.json:generic-api-key:322375
+2217c3224a33a6e87cf4fa814f974df160028204:reports/metrics.json:generic-api-key:322892
 # Verified SHA-256 of the earlier secret-name/timestamp metadata receipt.
-ed62d43e38de55a8d84f631c1a591ee4c7bf5363:reports/metrics.json:generic-api-key:28218
+2217c3224a33a6e87cf4fa814f974df160028204:reports/metrics.json:generic-api-key:28558
 # Verified SHA-256 of the earlier IAM user-key inventory metadata receipt.
-ed62d43e38de55a8d84f631c1a591ee4c7bf5363:reports/metrics.json:generic-api-key:28220
+2217c3224a33a6e87cf4fa814f974df160028204:reports/metrics.json:generic-api-key:28560
 # Resolving metrics source reference to P5.9 execution-gate evidence, not a key.
-ed62d43e38de55a8d84f631c1a591ee4c7bf5363:reports/metrics.json:generic-api-key:28545
+2217c3224a33a6e87cf4fa814f974df160028204:reports/metrics.json:generic-api-key:28885
 # Same source reference repeated in the final false-positive classification.
-5ecd9179892c621e43a9f262f8f5e02ad2eebed9:reports/metrics.json:generic-api-key:20546
+2217c3224a33a6e87cf4fa814f974df160028204:reports/metrics.json:generic-api-key:20546
